@@ -87,27 +87,27 @@ export async function POST(request: NextRequest) {
 
   const data = await res.json();
 
-  // Send email notification regardless of Keane outcome
+  // Send email notification via Cloudflare Worker + Resend
   try {
-    await fetch('https://formsubmit.co/ajax/hello@cover4you.co.nz', {
+    const formBody = new URLSearchParams({
+      _subject: 'New Quote Request - YachtInsurance.co.nz',
+      _next: 'https://yachtinsurance.co.nz/thank-you/',
+      name: name || '',
+      email: email || '',
+      phone: phone || '',
+      vessel_type: vessel_type || '',
+      vessel_value: vessel_value || '',
+      vessel_make_model: vessel_make_model || '',
+      mooring_location: mooring_location || '',
+      keane_reference: data.reference || data.id || '',
+    });
+    await fetch('https://shiny-bush-41cd.darinbutler.workers.dev', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _subject: 'New Quote Request - YachtInsurance.co.nz',
-        _cc: 'butlerdarin@gmail.com',
-        _captcha: 'false',
-        name,
-        email,
-        phone,
-        vessel_type,
-        vessel_value,
-        vessel_make_model: vessel_make_model || '',
-        mooring_location: mooring_location || '',
-        keane_reference: data.reference || data.id || '',
-      }),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formBody.toString(),
     });
   } catch (emailErr) {
-    console.error('FormSubmit email error:', emailErr);
+    console.error('Worker email error:', emailErr);
   }
 
   if (!res.ok) {
