@@ -21,8 +21,17 @@ const VESSEL_VALUE_MAP: Record<string, number> = {
 };
 
 export async function POST(request: NextRequest) {
+  try {
   const body = await request.json();
   const { name, email, phone, vessel_type, vessel_value, vessel_make_model, mooring_location } = body;
+
+  if (!process.env.KEANE_API_KEY || !process.env.KEANE_API_SECRET) {
+    console.error('Missing KEANE_API_KEY or KEANE_API_SECRET env var');
+    return NextResponse.json(
+      { error: 'Server configuration error: missing Keane API credentials' },
+      { status: 500 },
+    );
+  }
 
   // Split full name into first / last
   const parts = (name || '').trim().split(/\s+/);
@@ -85,7 +94,16 @@ export async function POST(request: NextRequest) {
     body: JSON.stringify(payload),
   });
 
-  const data = await res.json();
+  const rawText = await res.text();
+  let data: { message?: string; id?: string | number; reference?: string; [k: string]: unknown } = {};
+  try {
+    data = rawText ? JSON.parse(rawText) : {};
+  } catch {
+    console.error('Keane API returned non-JSON response', {
+      status: res.status,
+      bodyPreview: rawText.slice(0, 500),
+    });
+  }
 
   // Send email notification via Cloudflare Worker + Resend
   try {
@@ -99,7 +117,7 @@ export async function POST(request: NextRequest) {
       vessel_value: vessel_value || '',
       vessel_make_model: vessel_make_model || '',
       mooring_location: mooring_location || '',
-      keane_reference: data.reference || data.id || '',
+      keane_reference: String(data.reference || data.id || ''),
     });
     await fetch('https://shiny-bush-41cd.darinbutler.workers.dev', {
       method: 'POST',
@@ -111,9 +129,19 @@ export async function POST(request: NextRequest) {
   }
 
   if (!res.ok) {
-    console.error('Keane API error:', data);
-    return NextResponse.json({ error: data }, { status: res.status });
+    console.error('Keane API error:', { status: res.status, data, rawPreview: rawText.slice(0, 500) });
+    return NextResponse.json(
+      { error: data && Object.keys(data).length ? data : rawText.slice(0, 500) || 'Keane API error' },
+      { status: res.status },
+    );
   }
 
   return NextResponse.json(data); // { message, id, reference }
+  } catch (err) {
+    console.error('Quote route unhandled error:', err);
+    return NextResponse.json(
+      { error: err instanceof Error ? err.message : 'Unknown server error' },
+      { status: 500 },
+    );
+  }
 }
