@@ -81,10 +81,10 @@ export default function Home() {
         </div>
 
         {/* Scroll indicator — sits above the stats bar */}
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-[108px] sm:bottom-[116px] flex flex-col items-center gap-1 pointer-events-none select-none">
-          <span className="text-slate-400 text-[10px] font-semibold tracking-[0.25em] uppercase">Scroll</span>
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-[148px] sm:bottom-[152px] flex flex-col items-center gap-1.5 pointer-events-none select-none z-20">
+          <span className="text-white/70 text-[10px] font-bold tracking-[0.3em] uppercase drop-shadow-md">Scroll</span>
           <svg
-            className="w-4 h-4 text-teal-400 animate-bounce"
+            className="w-5 h-5 text-teal-400 animate-bounce drop-shadow-md"
             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
             aria-hidden="true"
           >
