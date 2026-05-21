@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://yachtinsurance.co.nz/sectors/yacht',
+    url: 'https://www.yachtinsurance.co.nz/sectors/yacht',
     title: 'Yacht Insurance',
     description:
       'Comprehensive yacht insurance coverage for sailing and motor yachts in New Zealand waters.',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/sectors/yacht',
+    canonical: 'https://www.yachtinsurance.co.nz/sectors/yacht',
   },
 };
 
@@ -142,7 +142,7 @@ export default function YachtInsurancePage() {
     provider: {
       '@type': 'Organization',
       name: 'Yacht Insurance NZ',
-      url: 'https://yachtinsurance.co.nz',
+      url: 'https://www.yachtinsurance.co.nz',
     },
     areaServed: {
       '@type': 'Country',
@@ -165,19 +165,19 @@ export default function YachtInsurancePage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Vessel Types',
-        item: 'https://yachtinsurance.co.nz/sectors',
+        item: 'https://www.yachtinsurance.co.nz/sectors',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Yacht',
-        item: 'https://yachtinsurance.co.nz/sectors/yacht',
+        item: 'https://www.yachtinsurance.co.nz/sectors/yacht',
       },
     ],
   };

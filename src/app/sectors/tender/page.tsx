@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://yachtinsurance.co.nz/sectors/tender',
+    url: 'https://www.yachtinsurance.co.nz/sectors/tender',
     title: 'Tender Insurance',
     description:
       'Specialist insurance for yacht tenders, RIBs, and inflatable auxiliary vessels.',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/sectors/tender',
+    canonical: 'https://www.yachtinsurance.co.nz/sectors/tender',
   },
 };
 
@@ -97,7 +97,7 @@ export default function TenderInsurancePage() {
     provider: {
       '@type': 'Organization',
       name: 'Yacht Insurance NZ',
-      url: 'https://yachtinsurance.co.nz',
+      url: 'https://www.yachtinsurance.co.nz',
     },
     areaServed: {
       '@type': 'Country',
@@ -111,7 +111,7 @@ export default function TenderInsurancePage() {
     '@type': 'Person',
     name: 'Liam Ngata',
     jobTitle: 'Marine Insurance Specialist',
-    worksFor: { '@type': 'Organization', name: 'YachtInsurance.co.nz', url: 'https://yachtinsurance.co.nz' },
+    worksFor: { '@type': 'Organization', name: 'YachtInsurance.co.nz', url: 'https://www.yachtinsurance.co.nz' },
   };
 
   const breadcrumbSchema = {
@@ -122,19 +122,19 @@ export default function TenderInsurancePage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Vessel Types',
-        item: 'https://yachtinsurance.co.nz/sectors',
+        item: 'https://www.yachtinsurance.co.nz/sectors',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Tender',
-        item: 'https://yachtinsurance.co.nz/sectors/tender',
+        item: 'https://www.yachtinsurance.co.nz/sectors/tender',
       },
     ],
   };

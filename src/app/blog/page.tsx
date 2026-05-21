@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://yachtinsurance.co.nz/blog',
+    url: 'https://www.yachtinsurance.co.nz/blog',
     title: 'Yacht Insurance Blog & Guides',
     description:
       'Expert guides on yacht and marine insurance in New Zealand to help boat owners make informed decisions.',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/blog',
+    canonical: 'https://www.yachtinsurance.co.nz/blog',
   },
 };
 
@@ -44,7 +44,7 @@ export default function BlogPage() {
     name: 'Yacht Insurance Blog & Guides',
     description:
       'Expert guides on yacht and marine insurance in New Zealand',
-    url: 'https://yachtinsurance.co.nz/blog',
+    url: 'https://www.yachtinsurance.co.nz/blog',
     mainEntity: blogPosts.map((post) => ({
       '@type': 'BlogPosting',
       headline: post.title,
@@ -67,13 +67,13 @@ export default function BlogPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: 'https://yachtinsurance.co.nz/blog',
+        item: 'https://www.yachtinsurance.co.nz/blog',
       },
     ],
   };

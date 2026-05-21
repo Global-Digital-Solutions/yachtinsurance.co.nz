@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://yachtinsurance.co.nz/sectors/bluewater',
+    url: 'https://www.yachtinsurance.co.nz/sectors/bluewater',
     title: 'Blue Water Cruiser Insurance New Zealand',
     description:
       'Comprehensive insurance for offshore passages, transoceanic voyages, and extended blue water cruising from New Zealand.',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/sectors/bluewater',
+    canonical: 'https://www.yachtinsurance.co.nz/sectors/bluewater',
   },
 };
 
@@ -124,7 +124,7 @@ export default function BlueWaterInsurancePage() {
     provider: {
       '@type': 'Organization',
       name: 'Yacht Insurance NZ',
-      url: 'https://yachtinsurance.co.nz',
+      url: 'https://www.yachtinsurance.co.nz',
     },
     areaServed: {
       '@type': 'Country',
@@ -138,7 +138,7 @@ export default function BlueWaterInsurancePage() {
     '@type': 'Person',
     name: 'Liam Ngata',
     jobTitle: 'Marine Insurance Specialist',
-    worksFor: { '@type': 'Organization', name: 'YachtInsurance.co.nz', url: 'https://yachtinsurance.co.nz' },
+    worksFor: { '@type': 'Organization', name: 'YachtInsurance.co.nz', url: 'https://www.yachtinsurance.co.nz' },
   };
 
   const breadcrumbSchema = {
@@ -149,19 +149,19 @@ export default function BlueWaterInsurancePage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Vessel Types',
-        item: 'https://yachtinsurance.co.nz/sectors',
+        item: 'https://www.yachtinsurance.co.nz/sectors',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Blue Water',
-        item: 'https://yachtinsurance.co.nz/sectors/bluewater',
+        item: 'https://www.yachtinsurance.co.nz/sectors/bluewater',
       },
     ],
   };

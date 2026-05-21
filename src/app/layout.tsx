@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yachtinsurance.co.nz"),
+  metadataBase: new URL("https://www.yachtinsurance.co.nz"),
   title: "Yacht Insurance NZ | Compare & Save | YachtInsurance.co.nz",
   description:
     "Compare top yacht and marine insurance providers in New Zealand. Get instant quotes for boat, yacht, jet ski and marine insurance from specialists like Mariner, Tower and NMI. Save on premiums today.",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Yacht Insurance NZ",
-      url: "https://yachtinsurance.co.nz",
+      url: "https://www.yachtinsurance.co.nz",
     },
   ],
   creator: "Yacht Insurance NZ",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_NZ",
-    url: "https://yachtinsurance.co.nz",
+    url: "https://www.yachtinsurance.co.nz",
     title: "Yacht Insurance NZ | Compare & Save | YachtInsurance.co.nz",
     description:
       "Compare top yacht and marine insurance providers in New Zealand. Get instant quotes for boat, yacht, jet ski and marine insurance.",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     google: "google-site-verification-code",
   },
   alternates: {
-    canonical: "https://yachtinsurance.co.nz",
+    canonical: "https://www.yachtinsurance.co.nz",
   },
   icons: {
     icon: [
@@ -105,8 +105,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Yacht Insurance NZ",
-    url: "https://yachtinsurance.co.nz",
-    logo: "https://yachtinsurance.co.nz/logo.svg",
+    url: "https://www.yachtinsurance.co.nz",
+    logo: "https://www.yachtinsurance.co.nz/logo.svg",
     description:
       "New Zealand yacht and marine insurance comparison service helping boat owners find the best coverage.",
     foundingDate: "2026",
@@ -127,13 +127,13 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Yacht Insurance NZ",
-    url: "https://yachtinsurance.co.nz",
+    url: "https://www.yachtinsurance.co.nz",
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
         urlTemplate:
-          "https://yachtinsurance.co.nz/search?q={search_term_string}",
+          "https://www.yachtinsurance.co.nz/search?q={search_term_string}",
       },
       query_input: "required name=search_term_string",
     },
@@ -152,17 +152,9 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Yacht Insurance NZ" />
         <meta name="format-detection" content="telephone=no" />
 
+        <meta name="msvalidate.01" content="63B34F9B0897A91B07882077C77B3089" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-
-        <link rel="canonical" href="https://yachtinsurance.co.nz" />
-        <link
-          rel="alternate"
-          hrefLang="en-NZ"
-          href="https://yachtinsurance.co.nz"
-        />
 
         <script
           type="application/ld+json"

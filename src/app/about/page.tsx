@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://yachtinsurance.co.nz/about',
+    url: 'https://www.yachtinsurance.co.nz/about',
     title: 'About YachtInsurance.co.nz',
     description: 'Learn about our mission to help NZ boat owners find better yacht and marine insurance.',
     siteName: 'Yacht Insurance NZ',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/about',
+    canonical: 'https://www.yachtinsurance.co.nz/about',
   },
 };
 
@@ -66,11 +66,11 @@ export default function About() {
     '@type': 'AboutPage',
     name: 'About YachtInsurance.co.nz',
     description: 'Information about YachtInsurance.co.nz and our commitment to transparent, independent yacht insurance comparison',
-    url: 'https://yachtinsurance.co.nz/about',
+    url: 'https://www.yachtinsurance.co.nz/about',
     publisher: {
       '@type': 'Organization',
       name: 'YachtInsurance.co.nz',
-      url: 'https://yachtinsurance.co.nz',
+      url: 'https://www.yachtinsurance.co.nz',
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'Customer Service',
@@ -87,13 +87,13 @@ export default function About() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'About',
-        item: 'https://yachtinsurance.co.nz/about',
+        item: 'https://www.yachtinsurance.co.nz/about',
       },
     ],
   };

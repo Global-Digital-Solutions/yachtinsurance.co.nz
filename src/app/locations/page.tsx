@@ -7,11 +7,11 @@ import CTABanner from '@/components/CTABanner';
 export const metadata: Metadata = {
   title: 'Yacht Insurance by Location | YachtInsurance.co.nz',
   description: 'Find yacht and boat insurance guides for your region. Local marine insurance advice for Auckland, Wellington, Bay of Islands, Marlborough, Queenstown and more.',
-  alternates: { canonical: 'https://yachtinsurance.co.nz/locations/' },
+  alternates: { canonical: 'https://www.yachtinsurance.co.nz/locations/' },
   openGraph: {
     title: 'Yacht Insurance by Location',
     description: 'Local yacht and marine insurance guides for every major NZ boating region.',
-    url: 'https://yachtinsurance.co.nz/locations/',
+    url: 'https://www.yachtinsurance.co.nz/locations/',
     type: 'website',
     siteName: 'Yacht Insurance NZ',
   },

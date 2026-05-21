@@ -17,11 +17,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: loc.metaTitle,
     description: loc.metaDescription,
-    alternates: { canonical: `https://yachtinsurance.co.nz/locations/${slug}/` },
+    alternates: { canonical: `https://www.yachtinsurance.co.nz/locations/${slug}/` },
     openGraph: {
       title: loc.metaTitle,
       description: loc.metaDescription,
-      url: `https://yachtinsurance.co.nz/locations/${slug}/`,
+      url: `https://www.yachtinsurance.co.nz/locations/${slug}/`,
       type: 'website',
       siteName: 'Yacht Insurance NZ',
       images: [{ url: loc.heroImage, width: 1920, height: 1080, alt: `${loc.name} yacht insurance` }],
@@ -40,7 +40,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
   const loc = locations.find((l) => l.slug === slug);
   if (!loc) notFound();
 
-  const pageUrl = `https://yachtinsurance.co.nz/locations/${slug}/`;
+  const pageUrl = `https://www.yachtinsurance.co.nz/locations/${slug}/`;
 
   const localBusinessSchema = {
     '@context': 'https://schema.org',
@@ -50,7 +50,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     description: loc.metaDescription,
     url: pageUrl,
     areaServed: { '@type': 'City', name: loc.name, containedInPlace: { '@type': 'Country', name: 'New Zealand' } },
-    provider: { '@type': 'Organization', name: 'YachtInsurance.co.nz', url: 'https://yachtinsurance.co.nz' },
+    provider: { '@type': 'Organization', name: 'YachtInsurance.co.nz', url: 'https://www.yachtinsurance.co.nz' },
   };
 
   const articleSchema = {
@@ -60,7 +60,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     description: loc.metaDescription,
     url: pageUrl,
     author: { '@type': 'Person', name: author.name, jobTitle: author.role },
-    publisher: { '@type': 'Organization', name: 'YachtInsurance.co.nz', url: 'https://yachtinsurance.co.nz' },
+    publisher: { '@type': 'Organization', name: 'YachtInsurance.co.nz', url: 'https://www.yachtinsurance.co.nz' },
     datePublished: '2026-04-01',
     dateModified: '2026-04-23',
   };
@@ -79,8 +79,8 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://yachtinsurance.co.nz' },
-      { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://yachtinsurance.co.nz/locations/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.yachtinsurance.co.nz' },
+      { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://www.yachtinsurance.co.nz/locations/' },
       { '@type': 'ListItem', position: 3, name: loc.name, item: pageUrl },
     ],
   };

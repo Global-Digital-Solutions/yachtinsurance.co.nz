@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://yachtinsurance.co.nz/sectors/jetski',
+    url: 'https://www.yachtinsurance.co.nz/sectors/jetski',
     title: 'Jet Ski Insurance',
     description:
       'Specialist jet ski and personal watercraft insurance with comprehensive coverage.',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/sectors/jetski',
+    canonical: 'https://www.yachtinsurance.co.nz/sectors/jetski',
   },
 };
 
@@ -120,7 +120,7 @@ export default function JetSkiInsurancePage() {
     provider: {
       '@type': 'Organization',
       name: 'Yacht Insurance NZ',
-      url: 'https://yachtinsurance.co.nz',
+      url: 'https://www.yachtinsurance.co.nz',
     },
     areaServed: {
       '@type': 'Country',
@@ -137,19 +137,19 @@ export default function JetSkiInsurancePage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Vessel Types',
-        item: 'https://yachtinsurance.co.nz/sectors',
+        item: 'https://www.yachtinsurance.co.nz/sectors',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Jet Ski',
-        item: 'https://yachtinsurance.co.nz/sectors/jetski',
+        item: 'https://www.yachtinsurance.co.nz/sectors/jetski',
       },
     ],
   };

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://yachtinsurance.co.nz/sectors/racing-boat',
+    url: 'https://www.yachtinsurance.co.nz/sectors/racing-boat',
     title: 'Racing Boat Insurance',
     description:
       'Specialist racing yacht insurance for competitive sailing and regattas in New Zealand.',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/sectors/racing-boat',
+    canonical: 'https://www.yachtinsurance.co.nz/sectors/racing-boat',
   },
 };
 
@@ -98,7 +98,7 @@ export default function RacingBoatInsurancePage() {
     provider: {
       '@type': 'Organization',
       name: 'Yacht Insurance NZ',
-      url: 'https://yachtinsurance.co.nz',
+      url: 'https://www.yachtinsurance.co.nz',
     },
     areaServed: {
       '@type': 'Country',
@@ -112,7 +112,7 @@ export default function RacingBoatInsurancePage() {
     '@type': 'Person',
     name: 'Liam Ngata',
     jobTitle: 'Marine Insurance Specialist',
-    worksFor: { '@type': 'Organization', name: 'YachtInsurance.co.nz', url: 'https://yachtinsurance.co.nz' },
+    worksFor: { '@type': 'Organization', name: 'YachtInsurance.co.nz', url: 'https://www.yachtinsurance.co.nz' },
   };
 
   const breadcrumbSchema = {
@@ -123,19 +123,19 @@ export default function RacingBoatInsurancePage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Vessel Types',
-        item: 'https://yachtinsurance.co.nz/sectors',
+        item: 'https://www.yachtinsurance.co.nz/sectors',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Racing Boat',
-        item: 'https://yachtinsurance.co.nz/sectors/racing-boat',
+        item: 'https://www.yachtinsurance.co.nz/sectors/racing-boat',
       },
     ],
   };

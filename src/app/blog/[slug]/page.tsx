@@ -39,7 +39,7 @@ export async function generateMetadata({
     openGraph: {
       type: 'article',
       locale: 'en_NZ',
-      url: `https://yachtinsurance.co.nz/blog/${post.slug}`,
+      url: `https://www.yachtinsurance.co.nz/blog/${post.slug}`,
       title: post.title,
       description: post.excerpt,
       siteName: 'Yacht Insurance NZ',
@@ -56,7 +56,7 @@ export async function generateMetadata({
       ],
     },
     alternates: {
-      canonical: `https://yachtinsurance.co.nz/blog/${post.slug}`,
+      canonical: `https://www.yachtinsurance.co.nz/blog/${post.slug}`,
     },
   };
 }
@@ -171,7 +171,7 @@ export default async function BlogPostPage({
       '@type': 'ListItem',
       position: idx + 1,
       name: crumb.label,
-      item: `https://yachtinsurance.co.nz${crumb.href}`,
+      item: `https://www.yachtinsurance.co.nz${crumb.href}`,
     })),
   };
 
@@ -192,12 +192,12 @@ export default async function BlogPostPage({
       name: 'Yacht Insurance NZ',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://yachtinsurance.co.nz/logo.svg',
+        url: 'https://www.yachtinsurance.co.nz/logo.svg',
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://yachtinsurance.co.nz/blog/${post.slug}`,
+      '@id': `https://www.yachtinsurance.co.nz/blog/${post.slug}`,
     },
   };
 

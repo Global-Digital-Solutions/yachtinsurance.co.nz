@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Privacy policy for YachtInsurance.co.nz. Learn how we collect, use, and protect your personal information.',
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/privacy',
+    canonical: 'https://www.yachtinsurance.co.nz/privacy',
   },
 };
 
@@ -19,13 +19,13 @@ export default function PrivacyPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Privacy Policy',
-        item: 'https://yachtinsurance.co.nz/privacy',
+        item: 'https://www.yachtinsurance.co.nz/privacy',
       },
     ],
   };

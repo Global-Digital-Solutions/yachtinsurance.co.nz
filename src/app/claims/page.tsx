@@ -6,7 +6,7 @@ import CTABanner from '@/components/CTABanner';
 export const metadata: Metadata = {
   title: 'Making a Claim | Yacht Insurance NZ',
   description: 'Guidance on making a marine insurance claim, complaints process, and support for vulnerable customers. YachtInsurance.co.nz is a referral service — claims are handled directly by your insurer.',
-  alternates: { canonical: 'https://yachtinsurance.co.nz/claims/' },
+  alternates: { canonical: 'https://www.yachtinsurance.co.nz/claims/' },
 };
 
 const insurerClaims = [
@@ -58,8 +58,8 @@ export default function ClaimsPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://yachtinsurance.co.nz' },
-      { '@type': 'ListItem', position: 2, name: 'Making a Claim', item: 'https://yachtinsurance.co.nz/claims/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.yachtinsurance.co.nz' },
+      { '@type': 'ListItem', position: 2, name: 'Making a Claim', item: 'https://www.yachtinsurance.co.nz/claims/' },
     ],
   };
 
@@ -188,7 +188,7 @@ export default function ClaimsPage() {
               <ShieldCheck className="w-8 h-8 text-sky-600 mb-4" />
               <h3 className="text-lg font-bold text-slate-900 mb-3">Complaint About Your Insurer</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                If you have a complaint about your insurance policy, a claim decision, or the conduct of your insurer, contact your insurer directly in the first instance. Major NZ insurers are members of the Insurance Council of New Zealand (ICNZ) and are bound by the <a href="https://icnz.org.nz/regulatory-environment/fair-insurance-code/" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:underline font-medium">Fair Insurance Code</a>.
+                If you have a complaint about your insurance policy, a claim decision, or the conduct of your insurer, contact your insurer directly in the first instance. Major NZ insurers are members of the Insurance Council of New Zealand (ICNZ) and are bound by the <a href="https://icnz.org.nz/fair-insurance-code/" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:underline font-medium">Fair Insurance Code</a>.
               </p>
               <div className="space-y-2 text-sm text-slate-700">
                 <div className="flex gap-2 items-start">

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://yachtinsurance.co.nz/compare',
+    url: 'https://www.yachtinsurance.co.nz/compare',
     title: 'Compare Yacht Insurance Providers NZ',
     description: 'Compare top yacht and boat insurance providers in New Zealand side-by-side.',
     siteName: 'Yacht Insurance NZ',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/compare',
+    canonical: 'https://www.yachtinsurance.co.nz/compare',
   },
 };
 
@@ -68,11 +68,11 @@ export default function Compare() {
     '@type': 'CollectionPage',
     name: 'Compare Yacht Insurance Providers in New Zealand',
     description: 'Comprehensive comparison of marine insurance providers in NZ',
-    url: 'https://yachtinsurance.co.nz/compare',
+    url: 'https://www.yachtinsurance.co.nz/compare',
     publisher: {
       '@type': 'Organization',
       name: 'YachtInsurance.co.nz',
-      url: 'https://yachtinsurance.co.nz',
+      url: 'https://www.yachtinsurance.co.nz',
     },
   };
 
@@ -84,13 +84,13 @@ export default function Compare() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Compare Insurers',
-        item: 'https://yachtinsurance.co.nz/compare',
+        item: 'https://www.yachtinsurance.co.nz/compare',
       },
     ],
   };

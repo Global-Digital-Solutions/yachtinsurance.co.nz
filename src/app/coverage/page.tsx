@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://yachtinsurance.co.nz/coverage',
+    url: 'https://www.yachtinsurance.co.nz/coverage',
     title: 'Yacht Insurance Coverage in NZ | What\'s Covered',
     description: 'Learn what yacht insurance covers in New Zealand: hull, machinery, liability, theft, weather and more.',
     siteName: 'Yacht Insurance NZ',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/coverage',
+    canonical: 'https://www.yachtinsurance.co.nz/coverage',
   },
 };
 
@@ -101,7 +101,7 @@ export default function Coverage() {
     provider: {
       '@type': 'Organization',
       name: 'YachtInsurance.co.nz',
-      url: 'https://yachtinsurance.co.nz',
+      url: 'https://www.yachtinsurance.co.nz',
     },
     areaServed: {
       '@type': 'Country',
@@ -118,13 +118,13 @@ export default function Coverage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Coverage',
-        item: 'https://yachtinsurance.co.nz/coverage',
+        item: 'https://www.yachtinsurance.co.nz/coverage',
       },
     ],
   };

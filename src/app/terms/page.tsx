@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Terms of service for YachtInsurance.co.nz. Read our terms and conditions for using our website and services.',
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/terms',
+    canonical: 'https://www.yachtinsurance.co.nz/terms',
   },
 };
 
@@ -19,13 +19,13 @@ export default function TermsPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Terms of Service',
-        item: 'https://yachtinsurance.co.nz/terms',
+        item: 'https://www.yachtinsurance.co.nz/terms',
       },
     ],
   };

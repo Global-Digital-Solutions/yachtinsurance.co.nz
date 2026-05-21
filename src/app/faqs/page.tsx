@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://yachtinsurance.co.nz/faqs',
+    url: 'https://www.yachtinsurance.co.nz/faqs',
     title: 'Yacht Insurance FAQs | Common Questions Answered',
     description: 'Find answers to frequently asked questions about yacht and boat insurance in New Zealand.',
     siteName: 'Yacht Insurance NZ',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/faqs',
+    canonical: 'https://www.yachtinsurance.co.nz/faqs',
   },
 };
 
@@ -63,13 +63,13 @@ export default function FAQsPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'FAQs',
-        item: 'https://yachtinsurance.co.nz/faqs',
+        item: 'https://www.yachtinsurance.co.nz/faqs',
       },
     ],
   };

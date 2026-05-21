@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
   try {
     const formBody = new URLSearchParams({
       _subject: 'New Quote Request - YachtInsurance.co.nz',
-      _next: 'https://yachtinsurance.co.nz/thank-you/',
+      _next: 'https://www.yachtinsurance.co.nz/thank-you/',
       name: name || '',
       email: email || '',
       phone: phone || '',

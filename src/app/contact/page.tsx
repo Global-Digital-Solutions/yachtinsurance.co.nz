@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://yachtinsurance.co.nz/contact',
+    url: 'https://www.yachtinsurance.co.nz/contact',
     title: 'Get Your Yacht Insurance Quote | YachtInsurance.co.nz',
     description: 'Get a no-obligation yacht insurance quote in under 2 minutes. Compare rates from multiple NZ insurers.',
     siteName: 'Yacht Insurance NZ',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://yachtinsurance.co.nz/contact',
+    canonical: 'https://www.yachtinsurance.co.nz/contact',
   },
 };
 
@@ -80,7 +80,7 @@ export default function ContactPage() {
     '@type': 'ContactPage',
     name: 'Yacht Insurance NZ Contact',
     description: 'Get your yacht insurance quote',
-    url: 'https://yachtinsurance.co.nz/contact',
+    url: 'https://www.yachtinsurance.co.nz/contact',
     email: 'hello@cover4you.co.nz',
     contactPoint: {
       '@type': 'ContactPoint',
@@ -98,13 +98,13 @@ export default function ContactPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://yachtinsurance.co.nz',
+        item: 'https://www.yachtinsurance.co.nz',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Contact',
-        item: 'https://yachtinsurance.co.nz/contact',
+        item: 'https://www.yachtinsurance.co.nz/contact',
       },
     ],
   };
