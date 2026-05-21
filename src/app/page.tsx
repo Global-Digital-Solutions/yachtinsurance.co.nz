@@ -41,13 +41,18 @@ const latestPosts = [
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative bg-slate-900 overflow-hidden min-h-[680px]">
+      {/* Hero — full-height with overlaid stats + scroll indicator */}
+      <section className="relative bg-slate-900 overflow-hidden min-h-[800px] lg:min-h-[92vh] flex flex-col">
+        {/* Background image */}
         <div className="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1800&h=900&fit=crop" alt="Sailing yacht on New Zealand waters" className="w-full h-full object-cover opacity-80" />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-slate-900/30" />
+          {/* Bottom fade so stats & scroll indicator read clearly */}
+          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-slate-900/80 to-transparent" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+
+        {/* Main hero content */}
+        <div className="relative flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-20 lg:py-28 pb-48 sm:pb-52">
           <div className="grid lg:grid-cols-[1fr_420px] gap-10 items-center">
             <div>
               <div className="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/30 rounded-full px-4 py-2 text-teal-400 text-sm font-medium mb-6">
@@ -74,28 +79,40 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Stats Bar */}
-      <section className="bg-slate-800 border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
-            {[
-              { label: 'Registered Advisors', value: 'ICNZ', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /> },
-              { label: 'Quote Response',       value: '<24hrs', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /> },
-              { label: 'Nationwide Cover',     value: 'NZwide', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" /> },
-              { label: 'Claims Support',       value: '24/7',   icon: <><path strokeLinecap="round" strokeLinejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" /></> },
-            ].map(s => (
-              <div key={s.label} className="flex flex-col items-center text-center px-6 py-4 gap-3">
-                <div className="w-11 h-11 rounded-xl bg-teal-500/15 border border-teal-500/25 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>{s.icon}</svg>
+        {/* Scroll indicator — sits above the stats bar */}
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-[108px] sm:bottom-[116px] flex flex-col items-center gap-1 pointer-events-none select-none">
+          <span className="text-slate-400 text-[10px] font-semibold tracking-[0.25em] uppercase">Scroll</span>
+          <svg
+            className="w-4 h-4 text-teal-400 animate-bounce"
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+            aria-hidden="true"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+
+        {/* Stats overlay — pinned to bottom of hero */}
+        <div className="absolute inset-x-0 bottom-0 bg-black/40 backdrop-blur-md border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
+              {[
+                { label: 'Registered Advisors', value: 'ICNZ',   icon: <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /> },
+                { label: 'Quote Response',      value: '<24hrs', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /> },
+                { label: 'Nationwide Cover',    value: 'NZwide', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" /> },
+                { label: 'Claims Support',      value: '24/7',   icon: <><path strokeLinecap="round" strokeLinejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" /></> },
+              ].map(s => (
+                <div key={s.label} className="flex flex-col items-center text-center px-4 sm:px-6 py-4 sm:py-5 gap-2">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-teal-500/20 border border-teal-500/30 flex items-center justify-center">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>{s.icon}</svg>
+                  </div>
+                  <div>
+                    <div className="text-xl sm:text-2xl font-black text-white tracking-tight">{s.value}</div>
+                    <div className="text-slate-400 text-[10px] sm:text-xs font-medium uppercase tracking-wider mt-0.5">{s.label}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-2xl font-black text-white tracking-tight">{s.value}</div>
-                  <div className="text-slate-400 text-xs font-medium uppercase tracking-wider mt-0.5">{s.label}</div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -131,7 +131,7 @@ export default function Footer() {
         <div className="bg-slate-900 rounded-xl p-6 mb-8 border border-white/5">
           <h4 className="text-white font-bold text-sm mb-2">How This Site Works</h4>
           <p className="text-slate-400 text-xs leading-relaxed">
-            YachtInsurance.co.nz is operated by Cover4You. We are a referral service — when you submit a quote request, your details are passed to licensed insurance advisers and brokers who will contact you with quotes and coverage options. We do not sell insurance directly and do not provide regulated financial advice. Our advisers earn commission from insurers when a policy is placed. This service is completely free to you — you pay nothing extra.
+            YachtInsurance.co.nz is operated by <a href="https://www.cover4you.co.nz" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 transition-colors">Cover4You</a>. We are a referral service — when you submit a quote request, your details are passed to licensed insurance advisers and brokers who will contact you with quotes and coverage options. We do not sell insurance directly and do not provide regulated financial advice. Our advisers earn commission from insurers when a policy is placed. This service is completely free to you — you pay nothing extra.
           </p>
         </div>
 
@@ -140,7 +140,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="text-slate-500 text-xs">
               <p>
-                &copy; {new Date().getFullYear()} YachtInsurance.co.nz — operated by Cover4You. All rights reserved. |{' '}
+                &copy; {new Date().getFullYear()} YachtInsurance.co.nz — operated by <a href="https://www.cover4you.co.nz" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors">Cover4You</a>. All rights reserved. |{' '}
                 <a href="https://icnz.org.nz" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors">
                   Insurance Council of New Zealand (ICNZ)
                 </a>
@@ -152,7 +152,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="text-center text-slate-600 text-xs mt-6">
-            <p>Powered by <span className="text-teal-500 font-semibold">Cover4You</span></p>
+            <p>Powered by <a href="https://www.cover4you.co.nz" target="_blank" rel="noopener noreferrer" className="text-teal-500 font-semibold hover:text-teal-400 transition-colors">Cover4You</a></p>
           </div>
         </div>
       </div>
