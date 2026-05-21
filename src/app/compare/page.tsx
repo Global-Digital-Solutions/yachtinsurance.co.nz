@@ -129,7 +129,7 @@ export default function Compare() {
                 <span className="text-white font-medium">Compare Insurers</span>
               </nav>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-                Compare Yacht Insurance Providers in NZ
+                Compare Yacht Insurance Providers
               </h1>
               <p className="text-lg sm:text-xl text-slate-200 mb-6 max-w-2xl leading-relaxed">
                 Side-by-side comparison of New Zealand's leading marine insurers. Find the right provider for your vessel.

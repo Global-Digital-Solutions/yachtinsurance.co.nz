@@ -105,15 +105,15 @@ export default function FAQsPage() {
             Frequently Asked Questions
           </h1>
           <p className="text-lg sm:text-xl text-slate-200 mb-6 max-w-3xl leading-relaxed">
-            Everything you need to know about yacht and marine insurance in New Zealand
+            Everything you need to know about yacht and marine insurance
           </p>
           <div className="space-y-4 text-slate-300 max-w-3xl">
             <p>
-              Navigating yacht and boat insurance in New Zealand can feel overwhelming, especially if you&apos;re a first-time boat owner or switching providers. Below we&apos;ve compiled the most common questions our visitors ask about marine insurance coverage, costs, claims, and policy features. If you can&apos;t find the answer you&apos;re looking for, feel free to{' '}
+              Navigating yacht and boat insurance can feel overwhelming, especially if you&apos;re a first-time boat owner or switching providers. Below we&apos;ve compiled the most common questions our visitors ask about marine insurance coverage, costs, claims, and policy features. If you can&apos;t find the answer you&apos;re looking for, feel free to{' '}
               <Link href="/contact" className="text-sky-300 hover:text-white transition-colors font-medium underline underline-offset-2">
                 contact us directly
               </Link>{' '}
-              for personalised advice from a qualified NZ marine insurance adviser.
+              for personalised advice from a qualified marine insurance adviser.
             </p>
           </div>
         </div>
@@ -161,29 +161,28 @@ export default function FAQsPage() {
           {/* Additional Context Section */}
           <div className="mt-16 bg-sky-50 rounded-2xl p-8 md:p-10 border border-sky-100">
             <h2 className="text-2xl font-bold text-slate-900 mb-6">
-              Understanding Yacht Insurance in New Zealand
+              Understanding Yacht Insurance
             </h2>
             <div className="prose prose-slate max-w-none space-y-4 text-slate-700 leading-relaxed">
               <p>
-                New Zealand is a maritime nation with over 1.6 million recreational vessels registered across the country.
-                From the Bay of Islands to the Marlborough Sounds, Kiwi boat owners enjoy some of the best cruising
-                grounds in the world. However, with this privilege comes the responsibility of properly insuring your
-                vessel against the unique risks of New Zealand waters — from unpredictable weather patterns to the
-                specific navigational hazards found around our coastline.
+                With over 1.6 million recreational vessels registered — among the highest boat ownership per capita in the world —
+                New Zealand&apos;s boating community is one of the most active anywhere. From the Bay of Islands to the Marlborough Sounds,
+                boat owners enjoy some of the finest cruising grounds on the planet. With that privilege comes the responsibility
+                of properly protecting your vessel against weather, navigational hazards, and liability risks unique to our waters.
               </p>
               <p>
-                Marine insurance in New Zealand is regulated by the Insurance Council of New Zealand (ICNZ) and governed
-                by the Marine Insurance Act 1908, which sets out the legal framework for marine insurance contracts.
-                Unlike car insurance, marine insurance is not compulsory in New Zealand. However, most lenders,
+                Marine insurance is governed by the Marine Insurance Act 1908 and the Insurance Council of New Zealand (ICNZ) Fair Insurance Code,
+                which sets the legal and ethical framework for policy terms and claims handling.
+                Unlike vehicle insurance, marine cover is not legally compulsory — however, most lenders,
                 marinas, and mooring facilities require proof of insurance before they will allow your vessel to be
-                stored or financed through them. Understanding what your policy covers — and what it excludes — is
+                stored or financed. Understanding what your policy covers — and what it excludes — is
                 essential for making an informed decision.
               </p>
               <p>
-                At YachtInsurance.co.nz, we compare policies from over 10 leading NZ marine insurers to help you find
+                At YachtInsurance.co.nz, we compare policies from leading specialist marine insurers to help you find
                 the right balance of coverage and cost. Whether you own a small dinghy, a coastal cruiser, a racing
                 yacht, or a blue water vessel, our comparison service connects you with specialist marine insurance
-                advisers who understand the unique needs of New Zealand boaters. There are no brokerage fees, no
+                advisers who understand the unique demands of boating in our waters. There are no brokerage fees, no
                 obligations — just clear, unbiased information to help you protect your investment on the water.
               </p>
             </div>

@@ -1,6 +1,6 @@
 # YachtInsurance.co.nz
 
-> Specialist yacht and marine insurance referral service for New Zealand boat owners. We connect you with licensed advisers who compare cover from Keane, Mariner, NMI, Tower and other leading marine insurers — free of charge, no obligation.
+> Specialist yacht and marine insurance referral service for New Zealand boat owners. We connect you with licensed advisers who compare cover from Keane, Mariner, NMI, Tower and other leading marine insurers — at no charge, no obligation.
 
 ## About This Site
 
@@ -13,26 +13,28 @@ YachtInsurance.co.nz is operated by Cover4You. We are a referral service — whe
 
 ## Core Pages
 
-- [Home](https://yachtinsurance.co.nz/) — Main landing page. Yacht and marine insurance comparison for New Zealand boat owners.
-- [Compare Insurers](https://yachtinsurance.co.nz/compare/) — Side-by-side comparison of Keane, Mariner, NMI, Tower, AMI, Gallagher, Baileys, NZI and Star Insurance. Ratings, features, pricing and specialties.
-- [Get a Free Quote](https://yachtinsurance.co.nz/contact/) — Quote request form. Connected to licensed marine insurance advisers within 24 hours.
-- [About Us](https://yachtinsurance.co.nz/about/) — About Cover4You and how the referral service operates.
-- [FAQs](https://yachtinsurance.co.nz/faqs/) — Common questions about marine insurance, vessel types, coverage requirements, and switching insurers.
-- [Insurance by Location](https://yachtinsurance.co.nz/locations/) — Regional marine insurance guides for every major NZ boating area.
+- [Home](https://www.yachtinsurance.co.nz/) — Main landing page. Yacht and marine insurance comparison for New Zealand boat owners.
+- [Compare Insurers](https://www.yachtinsurance.co.nz/compare/) — Side-by-side comparison of Keane, Mariner, NMI, Tower, AMI, Gallagher, Baileys, NZI and Star Insurance. Ratings, features, pricing and specialties.
+- [Get a Quote](https://www.yachtinsurance.co.nz/contact/) — Quote request form. Connected to licensed marine insurance advisers within 24 hours.
+- [About Us](https://www.yachtinsurance.co.nz/about/) — About Cover4You and how the referral service operates.
+- [Coverage Types](https://www.yachtinsurance.co.nz/coverage/) — Detailed guide to hull, liability, salvage, crew protection, and specialist marine coverage.
+- [FAQs](https://www.yachtinsurance.co.nz/faqs/) — Common questions about marine insurance, vessel types, coverage requirements, and switching insurers.
+- [Making a Claim](https://www.yachtinsurance.co.nz/claims/) — Step-by-step claims guide, insurer contacts, ICNZ Fair Code complaints process.
+- [Insurance by Location](https://www.yachtinsurance.co.nz/locations/) — Regional marine insurance guides for every major NZ boating area.
 
 ---
 
 ## Vessel Type Pages
 
-Seven dedicated pages covering insurance for each vessel category available in New Zealand:
+Seven dedicated pages covering insurance for each vessel category:
 
-- [Yacht Insurance](https://yachtinsurance.co.nz/sectors/yacht/) — Sailing and motor yachts of all sizes. Comprehensive hull, liability, and offshore cover.
-- [Jet Ski Insurance](https://yachtinsurance.co.nz/sectors/jetski/) — Personal watercraft insurance with liability protection.
-- [Dinghy Insurance](https://yachtinsurance.co.nz/sectors/dinghy/) — Affordable cover for small sailing dinghies and tenders.
-- [Tender Insurance](https://yachtinsurance.co.nz/sectors/tender/) — Auxiliary vessels and rescue dinghies.
-- [Racing Boat Insurance](https://yachtinsurance.co.nz/sectors/racing-boat/) — Specialist racing yacht cover including competition coverage.
-- [Coastal Cruising Insurance](https://yachtinsurance.co.nz/sectors/coastal-cruising/) — Vessels cruising NZ regional and Tasman waters.
-- [Blue Water Cruiser Insurance](https://yachtinsurance.co.nz/sectors/bluewater/) — Extended offshore cover for international passages.
+- [Yacht Insurance](https://www.yachtinsurance.co.nz/sectors/yacht/) — Sailing and motor yachts of all sizes. Comprehensive hull, liability, and offshore cover.
+- [Jet Ski Insurance](https://www.yachtinsurance.co.nz/sectors/jetski/) — Personal watercraft insurance with liability protection.
+- [Dinghy Insurance](https://www.yachtinsurance.co.nz/sectors/dinghy/) — Affordable cover for small sailing dinghies and tenders.
+- [Tender Insurance](https://www.yachtinsurance.co.nz/sectors/tender/) — Auxiliary vessels and rescue dinghies.
+- [Racing Boat Insurance](https://www.yachtinsurance.co.nz/sectors/racing-boat/) — Specialist racing yacht cover including competition coverage.
+- [Coastal Cruising Insurance](https://www.yachtinsurance.co.nz/sectors/coastal-cruising/) — Vessels cruising NZ regional and Tasman waters.
+- [Blue Water Cruiser Insurance](https://www.yachtinsurance.co.nz/sectors/bluewater/) — Extended offshore cover for international passages.
 
 ---
 
@@ -40,34 +42,37 @@ Seven dedicated pages covering insurance for each vessel category available in N
 
 Twelve region-specific marine insurance guides with local boating context, hazard information, coverage advice, and FAQs:
 
-- [Auckland](https://yachtinsurance.co.nz/locations/auckland/) — Waitemata Harbour, Hauraki Gulf, commercial traffic, offshore cover for Great Barrier Island.
-- [Wellington](https://yachtinsurance.co.nz/locations/wellington/) — Cook Strait conditions, heavy weather, specialist offshore requirements.
-- [Christchurch](https://yachtinsurance.co.nz/locations/christchurch/) — Banks Peninsula, Lyttelton and Akaroa Harbours, Canterbury cruising.
-- [Bay of Islands](https://yachtinsurance.co.nz/locations/bay-of-islands/) — Premier NZ cruising destination, Poor Knights, remote anchorages.
-- [Tauranga](https://yachtinsurance.co.nz/locations/tauranga/) — Bay of Plenty, commercial port, Mayor Island passages.
-- [Whangarei](https://yachtinsurance.co.nz/locations/whangarei/) — Northland's marina hub, offshore passage preparation.
-- [Queenstown](https://yachtinsurance.co.nz/locations/queenstown/) — Alpine lake sailing, katabatic winds, cold water immersion risks.
-- [Marlborough Sounds](https://yachtinsurance.co.nz/locations/marlborough/) — Remote cruising grounds, Queen Charlotte Sound, salvage considerations.
-- [Nelson](https://yachtinsurance.co.nz/locations/nelson/) — Tasman Bay, Abel Tasman access, South Island gateway.
-- [Hamilton](https://yachtinsurance.co.nz/locations/hamilton/) — Inland Waikato River, Lake Taupo, freshwater vessel cover.
-- [Dunedin](https://yachtinsurance.co.nz/locations/dunedin/) — Otago Harbour, Southern Ocean exposure, Fiordland gateway.
-- [Napier](https://yachtinsurance.co.nz/locations/napier/) — Hawke's Bay, east coast passages, Mahia Peninsula cruising.
+- [Auckland](https://www.yachtinsurance.co.nz/locations/auckland/) — Waitemata Harbour, Hauraki Gulf, commercial traffic, offshore cover for Great Barrier Island.
+- [Wellington](https://www.yachtinsurance.co.nz/locations/wellington/) — Cook Strait conditions, heavy weather, specialist offshore requirements.
+- [Christchurch](https://www.yachtinsurance.co.nz/locations/christchurch/) — Banks Peninsula, Lyttelton and Akaroa Harbours, Canterbury cruising.
+- [Bay of Islands](https://www.yachtinsurance.co.nz/locations/bay-of-islands/) — Premier NZ cruising destination, Poor Knights, remote anchorages.
+- [Tauranga](https://www.yachtinsurance.co.nz/locations/tauranga/) — Bay of Plenty, commercial port, Mayor Island passages.
+- [Whangarei](https://www.yachtinsurance.co.nz/locations/whangarei/) — Northland's marina hub, offshore passage preparation.
+- [Queenstown](https://www.yachtinsurance.co.nz/locations/queenstown/) — Alpine lake sailing, katabatic winds, cold water immersion risks.
+- [Marlborough Sounds](https://www.yachtinsurance.co.nz/locations/marlborough/) — Remote cruising grounds, Queen Charlotte Sound, salvage considerations.
+- [Nelson](https://www.yachtinsurance.co.nz/locations/nelson/) — Tasman Bay, Abel Tasman access, South Island gateway.
+- [Hamilton](https://www.yachtinsurance.co.nz/locations/hamilton/) — Inland Waikato River, Lake Taupo, freshwater vessel cover.
+- [Dunedin](https://www.yachtinsurance.co.nz/locations/dunedin/) — Otago Harbour, Southern Ocean exposure, Fiordland gateway.
+- [Napier](https://www.yachtinsurance.co.nz/locations/napier/) — Hawke's Bay, east coast passages, Mahia Peninsula cruising.
 
 ---
 
 ## Insurance Guides (Blog)
 
-Nine long-form articles covering marine insurance topics for New Zealand boat owners:
+Twelve long-form articles covering marine insurance topics for New Zealand boat owners:
 
-- [Understanding Yacht Insurance](https://yachtinsurance.co.nz/blog/understanding-yacht-insurance-nz/) — What marine insurance covers, policy types, and what to look for.
-- [Top 5 Yacht Insurance Risks](https://yachtinsurance.co.nz/blog/top-5-yacht-insurance-risks-nz/) — The most common claims and how to protect against them.
-- [Coastal Cruising: Bay of Islands to Fiordland](https://yachtinsurance.co.nz/blog/coastal-cruising-bay-islands-fiordland/) — Insurance considerations for extended coastal passages.
-- [Jet Ski Insurance Guide](https://yachtinsurance.co.nz/blog/jet-ski-insurance-nz/) — Personal watercraft insurance explained for NZ riders.
-- [Choosing Marine Insurance](https://yachtinsurance.co.nz/blog/choosing-marine-insurance-nz/) — How to compare policies and select the right insurer for your vessel.
-- [Racing Yacht Insurance](https://yachtinsurance.co.nz/blog/racing-yacht-insurance/) — Specialist cover for racing yachts and competitive sailing.
-- [Blue Water Cruising Insurance](https://yachtinsurance.co.nz/blog/blue-water-cruising-nz/) — Offshore and worldwide cover for extended voyages.
-- [Storm Season Vessel Protection](https://yachtinsurance.co.nz/blog/storm-season-vessel-protection/) — Preparing your boat and policy for cyclone and storm season.
-- [Insuring Small Boats, Tenders and Dinghies](https://yachtinsurance.co.nz/blog/insuring-small-boats-tenders-dinghies-nz/) — Budget-friendly cover options for smaller recreational vessels.
+- [Understanding Yacht Insurance](https://www.yachtinsurance.co.nz/blog/understanding-yacht-insurance-nz/) — What marine insurance covers, policy types, and what to look for.
+- [Top 5 Yacht Insurance Risks](https://www.yachtinsurance.co.nz/blog/top-5-yacht-insurance-risks-nz/) — The most common claims and how to protect against them.
+- [Coastal Cruising: Bay of Islands to Fiordland](https://www.yachtinsurance.co.nz/blog/coastal-cruising-bay-islands-fiordland/) — Insurance considerations for extended coastal passages.
+- [Jet Ski Insurance Guide](https://www.yachtinsurance.co.nz/blog/jet-ski-insurance-nz/) — Personal watercraft insurance explained for NZ riders.
+- [Choosing Marine Insurance](https://www.yachtinsurance.co.nz/blog/choosing-marine-insurance-nz/) — How to compare policies and select the right insurer for your vessel.
+- [Racing Yacht Insurance](https://www.yachtinsurance.co.nz/blog/racing-yacht-insurance/) — Specialist cover for racing yachts and competitive sailing.
+- [Blue Water Cruising Insurance](https://www.yachtinsurance.co.nz/blog/blue-water-cruising-nz/) — Offshore and worldwide cover for extended voyages.
+- [Storm Season Vessel Protection](https://www.yachtinsurance.co.nz/blog/storm-season-vessel-protection/) — Preparing your boat and policy for cyclone and storm season.
+- [Insuring Small Boats, Tenders and Dinghies](https://www.yachtinsurance.co.nz/blog/insuring-small-boats-tenders-dinghies-nz/) — Budget-friendly cover options for smaller recreational vessels.
+- [NZ Storm Season 2025–2026 & Marine Insurance](https://www.yachtinsurance.co.nz/blog/nz-storm-season-marine-insurance-2025-2026/) — Cyclone Gabrielle legacy, La Niña patterns, storm clauses and premium impacts.
+- [The Red Sea Effect: Yacht Costs & War Risk Insurance](https://www.yachtinsurance.co.nz/blog/red-sea-crisis-yacht-costs-war-risk-insurance/) — Houthi attacks, Cape rerouting, fuel/parts supply chain disruption, war risk cover for blue water cruisers.
+- [Liveaboard Yacht Costs & Insurance NZ 2025](https://www.yachtinsurance.co.nz/blog/liveaboard-yacht-costs-insurance-nz-2025/) — Marina fees, maintenance costs, supply chain impacts, and how liveaboard status changes your policy needs.
 
 ---
 
@@ -85,8 +90,10 @@ Nine long-form articles covering marine insurance topics for New Zealand boat ow
 
 **Geographic coverage:** All New Zealand waters including offshore, plus worldwide cover available through Keane and select specialist insurers.
 
-**Market context:** New Zealand has 1.6 million registered recreational vessels — the highest boat ownership per capita in the world. Boat insurance is not legally required but is strongly recommended and often required by marinas, lenders, and yacht clubs.
+**Market context:** New Zealand has 1.6 million registered recreational vessels — among the highest boat ownership per capita in the world. Boat insurance is not legally required but is strongly recommended and often required by marinas, lenders, and yacht clubs.
+
+**Regulatory framework:** Governed by the Marine Insurance Act 1908 and the ICNZ Fair Insurance Code. Referred advisers are licensed under the Financial Markets Conduct Act 2013.
 
 **Service area:** New Zealand (.co.nz domain). Worldwide cruising cover available.
 
-**Last updated:** April 2026
+**Last updated:** May 2026
