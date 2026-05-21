@@ -98,7 +98,7 @@ export default function BlogPage() {
       <section
         className="relative min-h-[100vh] flex items-center overflow-hidden"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&h=1080&fit=crop)',
+          backgroundImage: 'url(/blog-hero.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
