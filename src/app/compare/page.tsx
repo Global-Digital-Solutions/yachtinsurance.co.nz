@@ -262,6 +262,33 @@ export default function Compare() {
         </div>
       </section>
 
+      {/* Advisory Callout */}
+      <section className="py-8 bg-teal-700">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+            <div className="flex-shrink-0 w-14 h-14 rounded-full bg-white/20 flex items-center justify-center">
+              <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <p className="text-white font-semibold text-lg leading-snug">
+                Not sure which provider suits your vessel? Our advisers compare these options on your behalf.
+              </p>
+              <p className="text-teal-100 text-sm mt-1">
+                Submit one form — a licensed marine insurance adviser will review your vessel details and come back with the most suitable coverage and pricing within 24 hours. No obligation.
+              </p>
+            </div>
+            <Link
+              href="/contact"
+              className="flex-shrink-0 inline-block px-7 py-3 bg-white text-teal-700 rounded-lg font-bold text-sm hover:bg-teal-50 transition-colors whitespace-nowrap shadow"
+            >
+              Get Expert Advice →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Comprehensive Comparison Table */}
       <section className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -415,47 +442,37 @@ export default function Compare() {
               Yacht and boat insurance is a specialized form of marine insurance that protects vessel owners against financial risks associated with boat ownership and operation. In New Zealand, where boating is a popular recreational activity, several insurance providers specialize in marine coverage with expertise in local conditions and specific vessel types.
             </p>
 
-            <h3 className="text-2xl font-bold text-slate-900 mt-8">Leading Yacht Insurance Providers</h3>
+            <h3 className="text-2xl font-bold text-slate-900 mt-8">How We Compare Providers</h3>
             <p>
-              New Zealand's yacht insurance market is served by both large national insurers and specialist marine insurers. Major providers like Tower Insurance, NZI, and AMI offer comprehensive boat insurance alongside their general insurance products. These large insurers typically provide competitive rates and the convenience of bundled policies.
+              YachtInsurance.co.nz is a specialist marine insurance referral service. When you submit a quote request, your details go to a licensed marine insurance adviser who reviews the market on your behalf — matching your vessel type, usage, and location with the most appropriate coverage options. Our featured partner, Keane, is a specialist marine underwriter able to cover virtually any vessel on any waters, including complex risks that general insurers will not write.
             </p>
 
             <p>
-              Specialist marine insurers like Mariner, Nautilus Marine Insurance (NMI), Gallagher, Baileys, and Star Insurance focus exclusively on marine risks. Their expertise in yacht and boat insurance translates to more comprehensive coverage options, better understanding of specialized vessels like racing yachts, and superior claims handling for maritime-specific issues.
+              The comparison on this page covers the main providers active in the NZ marine market: specialist marine underwriters, general insurers with dedicated marine products, and broker-placed cover for higher-value or complex risks. Each provider has strengths suited to particular vessel types and usage patterns — which is why matching the right underwriter to your specific situation matters more than simply choosing the provider with the most marketing presence.
             </p>
 
-            <h3 className="text-2xl font-bold text-slate-900 mt-8">Premium Calculations in Marine Insurance</h3>
+            <h3 className="text-2xl font-bold text-slate-900 mt-8">Specialist vs General Insurers</h3>
             <p>
-              Yacht insurance premiums are calculated based on several factors including vessel value, age, construction material, length, usage patterns, navigation limits, claims history, security measures, and operator experience. Most insurers in New Zealand charge premiums between NZD 350 and 500 annually for basic coverage, with comprehensive policies costing more depending on vessel value and coverage options.
+              The market divides broadly into specialist marine underwriters and general insurers offering boat cover as a product extension. Specialist underwriters — including Keane, Gallagher, Baileys, and Star Insurance — focus exclusively on marine risks, employ experienced marine claims handlers, and can write policies for vessels or situations that fall outside general insurer appetites: liveaboards, bluewater passage cover, classic or high-value vessels, and offshore cruising beyond standard navigation limits. General insurers like Tower, AMI, and NZI offer competitive pricing for standard recreational vessel types, and appeal particularly to owners who want to consolidate policies under one provider.
             </p>
 
-            <h3 className="text-2xl font-bold text-slate-900 mt-8">Coverage Options Across Different Providers</h3>
+            <h3 className="text-2xl font-bold text-slate-900 mt-8">What Drives Premium Differences</h3>
             <p>
-              While all marine insurers provide basic hull and liability coverage, differences emerge in optional features. Some providers specialize in new-for-old replacement policies, guaranteed agreed value without depreciation, or specialized <Link href="/sectors/racing-boat" className="text-sky-600 hover:text-sky-700 font-semibold">racing coverage</Link>. <Link href="/sectors/bluewater" className="text-sky-600 hover:text-sky-700 font-semibold">Offshore cruising</Link> requires providers with blue water experience and international geographic coverage. <Link href="/coverage" className="text-sky-600 hover:text-sky-700 font-semibold">Learn more about coverage options</Link> to understand which features matter for your vessel.
+              Premium quotes for the same vessel can vary substantially between providers because each insurer applies different underwriting criteria. Key factors include vessel type and hull material, agreed insured value, navigation area limits, mooring and storage arrangement, the owner&apos;s boating experience and claims history, and whether racing or charter use is involved. A specialist underwriter may price a bluewater cruiser or liveaboard vessel more competitively than a general insurer — or vice versa for a standard trailered runabout. <Link href="/coverage" className="text-sky-600 hover:text-sky-700 font-semibold">Understanding coverage types</Link> helps you compare like-for-like when reviewing quotes.
             </p>
 
-            <h3 className="text-2xl font-bold text-slate-900 mt-8">Claims Handling and Customer Support</h3>
+            <h3 className="text-2xl font-bold text-slate-900 mt-8">Claims Handling Matters as Much as Price</h3>
             <p>
-              A critical difference between insurers is their claims handling process and customer support. 24/7 claims support ensures you can access help when needed, whether your vessel requires emergency assistance or survey inspection. Some insurers assess claims within 48 hours, while others may take longer. Specialist marine insurers typically employ marine engineers and surveyors who understand vessel issues better than general insurance claim handlers.
+              The real test of an insurer is how it behaves at claim time. Specialist marine insurers typically employ marine surveyors and engineers who understand vessel damage in a way that general claims handlers may not. This translates to more accurate assessments, faster resolution, and fewer disputes over repair methodology or replacement values. When comparing providers, look beyond the premium figure to the insurer&apos;s track record, claims process, and whether they have <Link href="/claims" className="text-sky-600 hover:text-sky-700 font-semibold">dedicated claims support</Link> for marine incidents.
             </p>
 
-            <h3 className="text-2xl font-bold text-slate-900 mt-8">Specializations by Insurer</h3>
+            <h3 className="text-2xl font-bold text-slate-900 mt-8">ICNZ Fair Insurance Code</h3>
             <p>
-              Each insurer in the NZ market has developed specializations reflecting their expertise and customer focus. Mariner and Gallagher excel in large yacht and offshore cruising coverage. NMI specializes in racing yacht insurance. Baileys and Star Insurance focus on high-value vessels and classic boats. Tower and NZI offer broad coverage across all vessel types at competitive rates. Understanding these specializations helps match your needs with the right provider.
-            </p>
-
-            <h3 className="text-2xl font-bold text-slate-900 mt-8">Comparing Quotes from Multiple Providers</h3>
-            <p>
-              The best way to find the right insurance provider is comparing quotes from multiple insurers. Premium quotes vary significantly based on your specific vessel characteristics and chosen coverage level. A vessel that costs NZD 400 per year to insure with one provider might cost NZD 600 with another due to different underwriting criteria and risk assessment approaches. Comparing at least 3-4 quotes ensures you understand market rates and select the best value.
-            </p>
-
-            <h3 className="text-2xl font-bold text-slate-900 mt-8">ICNZ Compliance and Insurer Reliability</h3>
-            <p>
-              All legitimate yacht insurance providers in New Zealand are registered with and comply with the Insurance Council of New Zealand (ICNZ) regulations. This membership ensures adherence to professional standards, ethical practices, and consumer protections. When comparing insurers, verify their ICNZ status to ensure you're dealing with established, regulated providers.
+              All providers listed on this page operate under the Insurance Council of New Zealand (ICNZ) Fair Insurance Code, which sets minimum standards for policy clarity, claims handling timeframes, and complaints resolution. If a claim is disputed, the ICNZ process provides a structured escalation path before formal dispute resolution. Our advisers are licensed under the Financial Markets Conduct Act and operate under disclosure obligations — meaning you will always be told how they are remunerated before a policy is placed.
             </p>
 
             <p className="text-slate-600 italic mt-8">
-              Ready to compare yacht insurance providers and find the right coverage for your vessel? Get multiple quotes today to see how much you can save with the right insurer.
+              The most efficient path to the right cover is a single conversation with an adviser who knows the market. Submit your details and a licensed marine insurance adviser will come back with coverage options matched to your vessel within 24 hours.
             </p>
           </div>
         </div>
