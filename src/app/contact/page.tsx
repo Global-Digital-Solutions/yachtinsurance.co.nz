@@ -190,33 +190,91 @@ export default function ContactPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+      <section
+        className="relative py-20 md:py-28 overflow-hidden"
+        style={{
+          backgroundImage: 'url(https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&q=80)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/97 via-slate-900/92 to-teal-900/88" />
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Heading */}
+          <div className="text-center mb-16">
+            <span className="inline-block text-teal-400 text-xs font-bold tracking-widest uppercase mb-3 bg-teal-400/10 px-4 py-1.5 rounded-full border border-teal-400/20">
+              Simple · Fast · Expert
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mt-4 mb-4">
               How It Works
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Getting the right yacht insurance in New Zealand is simple with our comparison service
+            <p className="text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
+              One form connects you with a specialist marine insurance adviser who handles the rest
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          {/* Steps */}
+          <div className="relative grid md:grid-cols-3 gap-8 md:gap-0">
+
+            {/* Connector line between circles — desktop only */}
+            <div className="hidden md:block absolute top-[52px] left-[calc(50%/3+40px)] right-[calc(50%/3+40px)] h-px bg-gradient-to-r from-teal-500 via-sky-400 to-teal-500 z-0 opacity-50" />
+
             {[
-              { step: '1', title: 'Tell Us About Your Vessel', description: 'Fill out our quick form with details about your boat, yacht, or jet ski. It takes less than 2 minutes and there\'s no obligation.', icon: '🚤' },
-              { step: '2', title: 'We Compare Multiple Insurers', description: 'Our team contacts top NZ marine insurers on your behalf to find the best coverage options and most competitive premiums.', icon: '📊' },
-              { step: '3', title: 'Get Your Tailored Quote', description: 'Receive personalised quotes within 24 hours. Choose the policy that suits you best with guidance from our expert advisors.', icon: '✅' },
+              {
+                step: '01',
+                title: 'Tell Us About Your Vessel',
+                description: 'Fill in our 2-minute form with your vessel type, value, and how you use it. No commitment, no credit card — just the basics so we can match you accurately.',
+                icon: (
+                  <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                  </svg>
+                ),
+              },
+              {
+                step: '02',
+                title: 'We Search the Market',
+                description: 'A licensed marine insurance adviser reviews your details and searches specialist underwriters — including Keane — to find the most suitable cover at the best available rate.',
+                icon: (
+                  <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                  </svg>
+                ),
+              },
+              {
+                step: '03',
+                title: 'Get Covered Within 24 Hours',
+                description: "Receive tailored coverage recommendations within 24 hours. Your adviser explains your options in plain English and arranges the policy — at no cost to you.",
+                icon: (
+                  <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
+                ),
+              },
             ].map((item) => (
-              <div key={item.step} className="relative bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-sky-300 hover:shadow-lg transition-all group">
-                <div className="absolute -top-5 left-8 w-10 h-10 bg-gradient-to-br from-sky-600 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
-                  {item.step}
+              <div key={item.step} className="relative z-10 flex flex-col items-center text-center px-4 md:px-8">
+                {/* Step circle */}
+                <div className="relative w-[104px] h-[104px] rounded-full bg-gradient-to-br from-teal-500 to-sky-600 flex flex-col items-center justify-center mb-7 shadow-2xl shadow-teal-900/50 ring-4 ring-slate-900 ring-offset-0">
+                  <span className="text-teal-200 text-[9px] font-black tracking-widest uppercase mb-0.5">{item.step}</span>
+                  {item.icon}
                 </div>
-                <div className="text-4xl mb-4 mt-2">{item.icon}</div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{item.description}</p>
+                <h3 className="text-xl font-bold text-white mb-3 leading-snug">{item.title}</h3>
+                <p className="text-slate-300 leading-relaxed text-sm max-w-xs mx-auto">{item.description}</p>
               </div>
             ))}
           </div>
+
+          {/* CTA */}
+          <div className="text-center mt-14">
+            <a
+              href="#quote-form"
+              className="inline-block px-10 py-4 bg-gradient-to-r from-teal-500 to-sky-500 text-white rounded-xl font-bold text-lg hover:from-teal-400 hover:to-sky-400 transition-all shadow-2xl shadow-teal-900/50 hover:-translate-y-0.5 transform"
+            >
+              Get My Quote Now →
+            </a>
+            <p className="text-slate-400 text-sm mt-3">No obligation &nbsp;·&nbsp; No brokerage fees &nbsp;·&nbsp; Response within 24 hours</p>
+          </div>
+
         </div>
       </section>
 
