@@ -5,20 +5,26 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.yachtinsurance.co.nz"),
-  title: "Yacht Insurance NZ | Compare & Save | YachtInsurance.co.nz",
+  title: "Yacht Insurance NZ | Specialist Marine Cover | YachtInsurance.co.nz",
   description:
-    "Compare top yacht and marine insurance providers in New Zealand. Get instant quotes for boat, yacht, jet ski and marine insurance from specialists like Mariner, Tower and NMI. Save on premiums today.",
+    "Get specialist yacht and marine insurance quotes for New Zealand waters. We connect you with Keane and leading marine insurers — hull, liability, racing, liveaboard and blue water cover. Free, no obligation, response within 24 hours.",
   keywords: [
     "yacht insurance nz",
     "boat insurance nz",
     "marine insurance new zealand",
+    "keane marine insurance",
+    "keane yacht insurance",
     "jet ski insurance nz",
-    "boat insurance quotes",
-    "yacht insurance comparison",
+    "boat insurance quotes nz",
+    "yacht insurance comparison nz",
     "marine insurance comparison",
-    "sailing yacht insurance",
-    "motor yacht insurance",
+    "sailing yacht insurance nz",
+    "motor yacht insurance nz",
     "vessel insurance nz",
+    "liveaboard insurance nz",
+    "blue water yacht insurance",
+    "racing yacht insurance nz",
+    "hull and machinery insurance nz",
   ],
   authors: [
     {
@@ -44,9 +50,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_NZ",
     url: "https://www.yachtinsurance.co.nz",
-    title: "Yacht Insurance NZ | Compare & Save | YachtInsurance.co.nz",
+    title: "Yacht Insurance NZ | Specialist Marine Cover | YachtInsurance.co.nz",
     description:
-      "Compare top yacht and marine insurance providers in New Zealand. Get instant quotes for boat, yacht, jet ski and marine insurance.",
+      "Specialist yacht and marine insurance for New Zealand waters. Connect with Keane and leading marine insurers — hull, liability, racing, liveaboard and blue water cover. Free, no obligation.",
     siteName: "Yacht Insurance NZ",
     images: [
       {
@@ -62,9 +68,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@YachtInsuranceNZ",
     creator: "@YachtInsuranceNZ",
-    title: "Yacht Insurance NZ | Compare & Save",
+    title: "Yacht Insurance NZ | Specialist Marine Cover",
     description:
-      "Compare top yacht and marine insurance providers in New Zealand. Get instant quotes for boat, yacht, jet ski and marine insurance.",
+      "Specialist yacht and marine insurance for NZ waters. Connect with Keane and leading marine insurers — hull, liability, racing and blue water cover. Free, no obligation.",
     images: [
       "https://images.unsplash.com/photo-1602943554726-d8bebe914982?w=1200&h=630&fit=crop",
     ],
