@@ -85,7 +85,7 @@ export default function LocationsIndex() {
             href="/contact/"
             className="inline-flex items-center gap-2 px-8 py-3 bg-sky-600 text-white rounded-xl font-semibold hover:bg-sky-700 transition-colors"
           >
-            Get a Free Quote <ChevronRight className="w-4 h-4" />
+            Get a Quote <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
       </section>

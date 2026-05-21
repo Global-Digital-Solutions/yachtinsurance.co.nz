@@ -182,7 +182,7 @@ export default function FAQsPage() {
               <p>
                 At YachtInsurance.co.nz, we compare policies from over 10 leading NZ marine insurers to help you find
                 the right balance of coverage and cost. Whether you own a small dinghy, a coastal cruiser, a racing
-                yacht, or a blue water vessel, our free comparison service connects you with specialist marine insurance
+                yacht, or a blue water vessel, our comparison service connects you with specialist marine insurance
                 advisers who understand the unique needs of New Zealand boaters. There are no brokerage fees, no
                 obligations — just clear, unbiased information to help you protect your investment on the water.
               </p>
@@ -224,7 +224,7 @@ export default function FAQsPage() {
               </div>
               <div>
                 <p className="font-semibold text-slate-900 group-hover:text-emerald-600 transition-colors">Get a Quote</p>
-                <p className="text-sm text-slate-500">Free, no obligation</p>
+                <p className="text-sm text-slate-500">No obligation</p>
               </div>
             </Link>
           </div>

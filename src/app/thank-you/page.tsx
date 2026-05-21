@@ -200,7 +200,7 @@ export default function ThankYouPage() {
                     <span className="transition group-open:rotate-180">▼</span>
                   </summary>
                   <div className="px-4 py-3 text-slate-600">
-                    No. This is a free, no-obligation quote service. You can review the
+                    No. This is a no-obligation quote service. You can review the
                     quotes and coverage options without any commitment. Insurance decisions
                     are entirely yours to make.
                   </div>

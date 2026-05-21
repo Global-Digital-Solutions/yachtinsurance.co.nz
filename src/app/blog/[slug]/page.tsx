@@ -378,13 +378,13 @@ export default async function BlogPostPage({
             Ready to protect your vessel?
           </h2>
           <p className="text-lg text-sky-100 mb-8">
-            Get a free, no-obligation quote from our marine insurance specialists
+            Get a no-obligation quote from our marine insurance specialists
           </p>
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-sky-600 font-bold rounded-lg hover:bg-sky-50 transition-colors shadow-lg"
           >
-            Get Your Free Quote
+            Get Your Quote
             <ArrowRight size={20} />
           </Link>
         </div>

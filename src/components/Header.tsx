@@ -19,8 +19,7 @@ const navLinks = [
   { label: 'Coverage', href: '/coverage' },
   { label: 'Compare', href: '/compare' },
   { label: 'Blog', href: '/blog' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'FAQs', href: '/faqs' },
 ];
 
 export default function Header() {
@@ -92,7 +91,7 @@ export default function Header() {
             href="/contact"
             className="px-6 py-2.5 bg-sky-600 text-white rounded-xl font-medium text-sm hover:bg-sky-700 transition-colors shadow-md hover:shadow-lg"
           >
-            Get a Free Quote
+            Get a Quote
           </Link>
         </div>
 
@@ -151,7 +150,7 @@ export default function Header() {
               className="block w-full px-4 py-2.5 bg-sky-600 text-white rounded-xl font-medium text-sm text-center hover:bg-sky-700 transition-colors mt-4"
               onClick={() => setIsOpen(false)}
             >
-              Get a Free Quote
+              Get a Quote
             </Link>
           </div>
         </div>

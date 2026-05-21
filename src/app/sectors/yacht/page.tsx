@@ -17,7 +17,7 @@ import QuoteForm from '@/components/QuoteForm';
 export const metadata: Metadata = {
   title: 'Yacht Insurance | Comprehensive Marine Coverage',
   description:
-    'Get expert yacht insurance coverage in New Zealand. We offer comprehensive protection for sailing and motor yachts of all sizes. Free quotes from specialists.',
+    'Get expert yacht insurance coverage in New Zealand. We offer comprehensive protection for sailing and motor yachts of all sizes. Specialist quotes available.',
   keywords: [
     'yacht insurance nz',
     'sailing yacht insurance',
@@ -395,7 +395,7 @@ export default function YachtInsurancePage() {
               href="/contact"
               className="inline-flex items-center gap-2 px-6 py-3 bg-sky-600 text-white font-semibold rounded-lg hover:bg-sky-700 transition-colors"
             >
-              Get Your Free Quote
+              Get Your Quote
               <ArrowRight size={18} />
             </Link>
           </div>
@@ -518,14 +518,14 @@ export default function YachtInsurancePage() {
             Protect Your Yacht Today
           </h2>
           <p className="text-xl text-sky-100 mb-8">
-            Get a free quote from our marine insurance specialists in under 2
+            Get a quote from our marine insurance specialists in under 2
             minutes
           </p>
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-sky-600 font-bold rounded-lg hover:bg-sky-50 transition-colors shadow-xl"
           >
-            Get Your Free Quote
+            Get Your Quote
             <ArrowRight size={20} />
           </Link>
         </div>

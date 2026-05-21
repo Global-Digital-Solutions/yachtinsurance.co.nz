@@ -164,7 +164,7 @@ export default function QuoteForm({ mode = 'full' }: QuoteFormProps) {
             Sending…
           </>
         ) : (
-          'Get My Free Quote →'
+          'Get My Quote →'
         )}
       </button>
 
@@ -201,7 +201,7 @@ export default function QuoteForm({ mode = 'full' }: QuoteFormProps) {
         <div className="bg-gradient-to-r from-sky-600 to-teal-500 px-5 py-4">
           <div className="flex items-center gap-2 mb-1">
             <Shield size={18} className="text-white" />
-            <h3 className="text-lg font-bold text-white">Get Your Free Quote</h3>
+            <h3 className="text-lg font-bold text-white">Get Your Quote</h3>
           </div>
           <p className="text-sky-100 text-sm">No obligation — takes under 2 minutes</p>
         </div>
@@ -220,7 +220,7 @@ export default function QuoteForm({ mode = 'full' }: QuoteFormProps) {
           <div className="p-2 bg-white/20 rounded-lg">
             <Shield size={22} className="text-white" />
           </div>
-          <h2 className="text-2xl font-bold text-white">Free, No-Obligation Quote</h2>
+          <h2 className="text-2xl font-bold text-white">No-Obligation Quote</h2>
         </div>
         <p className="text-sky-100 mt-1">Get a personalized quote in under 2 minutes</p>
       </div>

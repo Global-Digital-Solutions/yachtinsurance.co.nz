@@ -396,7 +396,7 @@ export default function Compare() {
               href="/contact"
               className="inline-block px-10 py-4 bg-gradient-to-r from-sky-600 to-teal-500 text-white rounded-xl font-semibold text-lg hover:from-sky-700 hover:to-teal-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
-              Compare Quotes Now — It&apos;s Free →
+              Compare Quotes Now →
             </Link>
             <p className="text-sm text-slate-500 mt-3">No obligation, no brokerage fees</p>
           </div>
@@ -486,7 +486,7 @@ export default function Compare() {
             </div>
             <div className="bg-white rounded-lg p-6 border border-sky-200 hover:shadow-lg transition-shadow">
               <h3 className="font-bold text-lg text-slate-900 mb-2">
-                <Link href="/contact" className="text-sky-600 hover:text-sky-700">Get Your Free Quote</Link>
+                <Link href="/contact" className="text-sky-600 hover:text-sky-700">Get Your Quote</Link>
               </h3>
               <p className="text-slate-600 text-sm mb-4">Start comparing quotes from NZ's leading marine insurers and find the best value for your vessel.</p>
             </div>

@@ -167,7 +167,7 @@ export default function Home() {
               href="/contact"
               className="px-8 py-3 sm:py-4 bg-sky-600 text-white rounded-xl font-semibold hover:bg-sky-700 transition-colors shadow-lg hover:shadow-xl text-center"
             >
-              Get a Free Quote
+              Get a Quote
             </Link>
             <Link
               href="/compare"
@@ -380,7 +380,7 @@ export default function Home() {
         <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Get Your Free Quote in 2 Minutes
+              Get Your Quote in 2 Minutes
             </h2>
             <p className="text-lg text-sky-200">
               No credit card required. Instant quotes from multiple insurers.

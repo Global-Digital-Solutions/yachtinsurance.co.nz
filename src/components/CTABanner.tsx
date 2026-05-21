@@ -8,7 +8,7 @@ export default function CTABanner() {
           Ready to Protect Your Vessel?
         </h2>
         <p className="text-lg text-sky-100 mb-8 max-w-2xl mx-auto">
-          Get a free, no-obligation quote from NZ's leading marine insurers in under 2 minutes.
+          Compare quotes from NZ's leading marine insurers. No-obligation, no hidden fees — most enquiries answered within 24 hours.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -16,7 +16,7 @@ export default function CTABanner() {
             href="/contact"
             className="px-8 py-3 bg-white text-sky-700 rounded-xl font-semibold hover:bg-sky-50 transition-colors shadow-lg hover:shadow-xl"
           >
-            Get a Free Quote
+            Get a Quote
           </Link>
           <Link
             href="/compare"

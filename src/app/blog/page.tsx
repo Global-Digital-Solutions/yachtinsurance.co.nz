@@ -199,7 +199,7 @@ export default function BlogPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6">
             <Shield size={16} className="text-white" />
-            <span className="text-sm font-medium text-white">Free, No-Obligation Quotes</span>
+            <span className="text-sm font-medium text-white">No-Obligation Quotes</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Protect Your Vessel?
@@ -212,7 +212,7 @@ export default function BlogPage() {
               href="/contact"
               className="px-8 py-4 bg-white text-sky-700 rounded-xl font-semibold text-lg hover:bg-sky-50 transition-colors shadow-lg hover:shadow-xl"
             >
-              Get a Free Quote
+              Get a Quote
             </Link>
             <Link
               href="/compare"
@@ -255,7 +255,7 @@ export default function BlogPage() {
             </div>
             <div className="bg-slate-50 rounded-lg p-6 border border-sky-200 hover:shadow-lg transition-shadow">
               <h3 className="font-bold text-lg text-slate-900 mb-2">
-                <Link href="/contact" className="text-sky-600 hover:text-sky-700">Get Your Free Quote</Link>
+                <Link href="/contact" className="text-sky-600 hover:text-sky-700">Get Your Quote</Link>
               </h3>
               <p className="text-slate-600 text-sm mb-4">Compare quotes from multiple NZ marine insurers and find the right protection for your boat.</p>
             </div>

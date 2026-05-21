@@ -533,14 +533,14 @@ export default function TenderInsurancePage() {
             Insure Your Tender Today
           </h2>
           <p className="text-xl text-sky-100 mb-8">
-            Get a free quote for tender insurance, standalone or linked to your yacht
+            Get a quote for tender insurance, standalone or linked to your yacht
             policy
           </p>
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-sky-600 font-bold rounded-lg hover:bg-sky-50 transition-colors shadow-xl"
           >
-            Get Your Free Quote
+            Get Your Quote
             <ArrowRight size={20} />
           </Link>
         </div>

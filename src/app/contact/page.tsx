@@ -5,21 +5,21 @@ import QuoteForm from '@/components/QuoteForm';
 import { faqs } from '@/data/faqs';
 
 export const metadata: Metadata = {
-  title: 'Get Your Free Yacht Insurance Quote | YachtInsurance.co.nz',
-  description: 'Get a free, no-obligation yacht insurance quote in under 2 minutes. Compare rates from multiple NZ insurers. ICNZ registered, 100% secure, instant response.',
+  title: 'Get Your Yacht Insurance Quote | YachtInsurance.co.nz',
+  description: 'Get a no-obligation yacht insurance quote in under 2 minutes. Compare rates from multiple NZ insurers. ICNZ registered, 100% secure, instant response.',
   keywords: [
     'yacht insurance quote',
     'boat insurance quote nz',
     'marine insurance quote',
-    'free insurance quote',
+    'insurance quote',
     'yacht insurance contact',
   ],
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
     url: 'https://yachtinsurance.co.nz/contact',
-    title: 'Get Your Free Yacht Insurance Quote | YachtInsurance.co.nz',
-    description: 'Get a free, no-obligation yacht insurance quote in under 2 minutes. Compare rates from multiple NZ insurers.',
+    title: 'Get Your Yacht Insurance Quote | YachtInsurance.co.nz',
+    description: 'Get a no-obligation yacht insurance quote in under 2 minutes. Compare rates from multiple NZ insurers.',
     siteName: 'Yacht Insurance NZ',
     images: [
       {
@@ -79,7 +79,7 @@ export default function ContactPage() {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: 'Yacht Insurance NZ Contact',
-    description: 'Get your free yacht insurance quote',
+    description: 'Get your yacht insurance quote',
     url: 'https://yachtinsurance.co.nz/contact',
     email: 'hello@cover4you.co.nz',
     contactPoint: {
@@ -140,7 +140,7 @@ export default function ContactPage() {
                 <span className="text-white font-medium">Contact</span>
               </nav>
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg max-w-4xl">
-                Get Your Free Yacht Insurance Quote
+                Get Your Yacht Insurance Quote
               </h1>
               <p className="text-lg sm:text-xl text-slate-200 mb-6 max-w-3xl leading-relaxed">
                 Takes less than 2 minutes. No credit card required.
@@ -197,7 +197,7 @@ export default function ContactPage() {
               How It Works
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Getting the right yacht insurance in New Zealand is simple with our free comparison service
+              Getting the right yacht insurance in New Zealand is simple with our comparison service
             </p>
           </div>
 

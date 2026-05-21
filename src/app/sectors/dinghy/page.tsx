@@ -545,7 +545,7 @@ export default function DinghyInsurancePage() {
             href="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-sky-600 font-bold rounded-lg hover:bg-sky-50 transition-colors shadow-xl"
           >
-            Get Your Free Quote
+            Get Your Quote
             <ArrowRight size={20} />
           </Link>
         </div>
