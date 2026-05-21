@@ -45,7 +45,7 @@ export default function Home() {
       <section className="relative bg-slate-900 overflow-hidden min-h-[800px] lg:min-h-[92vh] flex flex-col">
         {/* Background image */}
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1800&h=900&fit=crop" alt="Sailing yacht on New Zealand waters" className="w-full h-full object-cover opacity-80" />
+          <img src="/home-hero.png" alt="Sailing yachts on New Zealand waters" className="w-full h-full object-cover opacity-85" />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-slate-900/30" />
           {/* Bottom fade so stats & scroll indicator read clearly */}
           <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-slate-900/80 to-transparent" />
