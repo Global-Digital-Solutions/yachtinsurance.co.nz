@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import QuoteForm from '@/components/QuoteForm';
+import HeroForm from '@/components/HeroForm';
 
 export const metadata: Metadata = {
   title: 'Yacht Insurance NZ — Compare Marine Insurance Quotes | YachtInsurance.co.nz',
@@ -42,13 +42,13 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-slate-900 overflow-hidden">
+      <section className="relative bg-slate-900 overflow-hidden min-h-[680px]">
         <div className="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1800&h=900&fit=crop" alt="Sailing yacht on New Zealand waters" className="w-full h-full object-cover opacity-80" />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-slate-900/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-slate-900/30" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-          <div className="grid lg:grid-cols-[1fr,420px] gap-10 items-center">
+          <div className="grid lg:grid-cols-[1fr_420px] gap-10 items-center">
             <div>
               <div className="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/30 rounded-full px-4 py-2 text-teal-400 text-sm font-medium mb-6">
                 <span>⚓</span> New Zealand Specialist Marine Insurance
@@ -69,8 +69,8 @@ export default function Home() {
                 <Link href="/compare" className="border border-white/20 hover:border-white/40 text-white font-semibold px-8 py-4 rounded-xl transition-colors">Compare Insurers</Link>
               </div>
             </div>
-            <div className="lg:block w-full">
-              <QuoteForm mode="compact" />
+            <div className="hidden lg:block">
+              <HeroForm />
             </div>
           </div>
         </div>
