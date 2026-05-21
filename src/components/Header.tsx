@@ -1,9 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import Logo from './Logo';
-import { Menu, X, ChevronDown } from 'lucide-react';
 
 const vesselTypes = [
   { label: 'Yacht', href: '/sectors/yacht' },
@@ -15,140 +13,110 @@ const vesselTypes = [
   { label: 'Blue Water Cruiser', href: '/sectors/bluewater' },
 ];
 
-const navLinks = [
-  { label: 'Coverage', href: '/coverage' },
-  { label: 'Compare', href: '/compare' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'FAQs', href: '/faqs' },
-];
-
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-200 ${
-        isScrolled
-          ? 'bg-white shadow-md border-b border-slate-200'
-          : 'bg-white border-b border-slate-100'
-      }`}
-    >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex-shrink-0">
-          <Logo />
-        </div>
+    <header className="bg-slate-900 border-b border-white/10 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex md:items-center md:gap-8">
-          {/* Vessel Types Dropdown */}
-          <div className="relative group">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-1 text-slate-700 hover:text-sky-600 transition-colors font-medium text-sm"
-            >
-              Vessel Types
-              <ChevronDown size={16} />
-            </button>
-            <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-slate-200">
-              {vesselTypes.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block px-4 py-3 text-slate-700 hover:bg-sky-50 hover:text-sky-600 text-sm first:rounded-t-lg last:rounded-b-lg transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+              <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 28 L15 4 Q15 4 6 22 Z" fill="#14b8a6" />
+                <path d="M15 8 L15 24 L26 24 Z" fill="#0f766e" />
+                <line x1="4" y1="28" x2="28" y2="28" stroke="#14b8a6" strokeWidth="1.5" strokeLinecap="round" />
+                <line x1="15" y1="4" x2="15" y2="28" stroke="#e2e8f0" strokeWidth="1.2" strokeLinecap="round" />
+              </svg>
             </div>
-          </div>
-
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-slate-700 hover:text-sky-600 transition-colors font-medium text-sm"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-
-        {/* Desktop CTA Button */}
-        <div className="hidden md:block">
-          <Link
-            href="/contact"
-            className="px-6 py-2.5 bg-sky-600 text-white rounded-xl font-medium text-sm hover:bg-sky-700 transition-colors shadow-md hover:shadow-lg"
-          >
-            Get a Quote
+            <div className="flex items-baseline gap-0 leading-none">
+              <span className="text-teal-400 font-bold text-lg tracking-tight">Yacht</span>
+              <span className="text-white font-bold text-lg tracking-tight">Insurance</span>
+              <span className="text-slate-400 font-semibold text-lg tracking-tight">.co.nz</span>
+            </div>
           </Link>
-        </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-slate-700 hover:text-sky-600 transition-colors"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
-
-      {/* Mobile Navigation */}
-      {isOpen && (
-        <div className="md:hidden bg-white border-t border-slate-200 shadow-lg">
-          <div className="px-4 py-4 space-y-4">
-            {/* Vessel Types Mobile Dropdown */}
-            <div>
-              <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-2 text-slate-700 hover:text-sky-600 font-medium text-sm w-full"
-              >
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center gap-6">
+            {/* Vessel Types dropdown */}
+            <div className="relative group">
+              <button className="text-slate-300 hover:text-white text-sm font-medium transition-colors flex items-center gap-1">
                 Vessel Types
-                <ChevronDown size={16} className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
               </button>
-              {isDropdownOpen && (
-                <div className="mt-2 ml-4 space-y-2">
-                  {vesselTypes.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="block text-slate-600 hover:text-sky-600 text-sm py-1"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              <div className="absolute top-full left-0 mt-2 w-52 bg-slate-800 border border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all p-2">
+                {vesselTypes.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
 
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block text-slate-700 hover:text-sky-600 font-medium text-sm"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            <Link href="/coverage" className="text-slate-300 hover:text-white text-sm font-medium transition-colors">Coverage</Link>
+            <Link href="/compare" className="text-slate-300 hover:text-white text-sm font-medium transition-colors">Compare</Link>
+            <Link href="/blog" className="text-slate-300 hover:text-white text-sm font-medium transition-colors">Resources</Link>
+            <Link href="/faqs" className="text-slate-300 hover:text-white text-sm font-medium transition-colors">FAQs</Link>
+          </nav>
 
+          {/* Desktop CTA */}
+          <div className="hidden lg:block">
             <Link
               href="/contact"
-              className="block w-full px-4 py-2.5 bg-sky-600 text-white rounded-xl font-medium text-sm text-center hover:bg-sky-700 transition-colors mt-4"
-              onClick={() => setIsOpen(false)}
+              className="bg-teal-500 hover:bg-teal-400 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors"
+            >
+              Get a Quote
+            </Link>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="lg:hidden text-slate-300 p-2"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {mobileOpen
+                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="lg:hidden bg-slate-900 border-t border-white/10 px-4 py-4 space-y-1">
+          <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold px-3 py-1">Vessel Types</p>
+          {vesselTypes.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setMobileOpen(false)}
+              className="block px-3 py-2 text-slate-300 hover:text-white text-sm transition-colors rounded-lg hover:bg-white/5"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <div className="border-t border-white/10 pt-2 mt-2 space-y-1">
+            <Link href="/coverage" onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-slate-300 hover:text-white text-sm rounded-lg hover:bg-white/5">Coverage</Link>
+            <Link href="/compare" onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-slate-300 hover:text-white text-sm rounded-lg hover:bg-white/5">Compare</Link>
+            <Link href="/blog" onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-slate-300 hover:text-white text-sm rounded-lg hover:bg-white/5">Resources</Link>
+            <Link href="/faqs" onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-slate-300 hover:text-white text-sm rounded-lg hover:bg-white/5">FAQs</Link>
+            <Link href="/about" onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-slate-300 hover:text-white text-sm rounded-lg hover:bg-white/5">About</Link>
+            <Link href="/contact" onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-slate-300 hover:text-white text-sm rounded-lg hover:bg-white/5">Contact</Link>
+          </div>
+          <div className="pt-2">
+            <Link
+              href="/contact"
+              onClick={() => setMobileOpen(false)}
+              className="block w-full bg-teal-500 hover:bg-teal-400 text-white font-semibold px-5 py-3 rounded-xl text-sm text-center transition-colors"
             >
               Get a Quote
             </Link>
