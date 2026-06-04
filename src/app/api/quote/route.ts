@@ -20,9 +20,29 @@ const VESSEL_VALUE_MAP: Record<string, number> = {
   'Over $500,000': 750000,
 };
 
+const ALLOWED_ORIGINS = [
+  'https://yachtinsurance.co.nz',
+  'https://www.yachtinsurance.co.nz',
+];
+
 export async function POST(request: NextRequest) {
   try {
+  // Spam protection: only accept submissions from our own browser origins.
+  // Browsers cannot forge the Origin header on cross-origin requests.
+  const origin = request.headers.get('origin') || '';
+  const isDev = process.env.NODE_ENV !== 'production';
+  if (!isDev && !ALLOWED_ORIGINS.includes(origin)) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
+
   const body = await request.json();
+
+  // Honeypot: hidden field real users never fill. Bots fill everything.
+  // Return success so the bot doesn't retry or adapt.
+  if (body.company_url && String(body.company_url).trim() !== '') {
+    return NextResponse.json({ ok: true });
+  }
+
   const { name, email, phone, vessel_type, vessel_value, vessel_make_model, mooring_location } = body;
 
   if (!process.env.KEANE_API_KEY || !process.env.KEANE_API_SECRET) {
@@ -121,7 +141,10 @@ export async function POST(request: NextRequest) {
     });
     await fetch('https://shiny-bush-41cd.darinbutler.workers.dev', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-Form-Secret': process.env.FORM_SECRET || '',
+      },
       body: formBody.toString(),
     });
   } catch (emailErr) {

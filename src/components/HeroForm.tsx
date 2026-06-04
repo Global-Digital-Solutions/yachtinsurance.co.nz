@@ -21,6 +21,7 @@ export default function HeroForm() {
       vessel_value: fd.get('vessel_value'),
       vessel_make_model: fd.get('vessel_make_model'),
       mooring_location: fd.get('mooring_location'),
+      company_url: fd.get('company_url') || '',
     };
     try {
       const res = await fetch('/api/quote', {
@@ -46,6 +47,16 @@ export default function HeroForm() {
       {/* Form */}
       <div className="px-6 py-5">
         <form onSubmit={handleSubmit} className="space-y-3">
+
+          {/* Honeypot — must stay empty */}
+          <input
+            type="text"
+            name="company_url"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }}
+          />
 
           {/* Name + Email */}
           <div className="grid grid-cols-2 gap-3">

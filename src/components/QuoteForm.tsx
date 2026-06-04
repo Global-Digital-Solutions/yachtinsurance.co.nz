@@ -29,6 +29,7 @@ export default function QuoteForm({ mode = 'full' }: QuoteFormProps) {
       vessel_value: fd.get('vessel_value'),
       vessel_make_model: fd.get('vessel_make_model'),
       mooring_location: fd.get('mooring_location'),
+      company_url: fd.get('company_url') || '',
     };
 
     try {
@@ -52,6 +53,16 @@ export default function QuoteForm({ mode = 'full' }: QuoteFormProps) {
 
   const formContent = (
     <form onSubmit={handleSubmit} className="space-y-4">
+
+      {/* Honeypot — must stay empty */}
+      <input
+        type="text"
+        name="company_url"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }}
+      />
 
       {/* Name */}
       <div>
