@@ -128,6 +128,7 @@ export async function POST(request: NextRequest) {
   // Send email notification via Cloudflare Worker + Resend
   try {
     const formBody = new URLSearchParams({
+      source: 'yachtinsurance.co.nz',
       _subject: 'New Quote Request - YachtInsurance.co.nz',
       _next: 'https://www.yachtinsurance.co.nz/thank-you/',
       name: name || '',
