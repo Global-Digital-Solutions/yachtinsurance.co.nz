@@ -59,7 +59,7 @@ export default function Home() {
                 <span>⚓</span> New Zealand Specialist Marine Insurance
               </div>
               <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                Yacht Insurance for<br /><span className="text-teal-400">New Zealand Waters</span>
+                Yacht Insurance for<br /><span className="text-teal-400">New Zealand Sailors</span>
               </h1>
               <p className="text-slate-300 text-lg leading-relaxed mb-8">
                 From Auckland&apos;s Hauraki Gulf to Fiordland&apos;s remote sounds — specialist marine insurance for every NZ sailing destination. Hull &amp; machinery, liability, racing cover, and blue water cruising policies.
