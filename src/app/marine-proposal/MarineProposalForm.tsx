@@ -3,31 +3,174 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
-/* ── Field Types ─────────────────────────────────────────────── */
+/* ── CSS constants (outside component — stable) ──────────────── */
+const inputCls = 'w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition';
+const labelCls = 'block text-sm font-medium text-slate-300 mb-1.5';
+const noteCls  = 'text-xs text-slate-500 mt-1';
+
+const CURRENCIES = ['NZD', 'AUD', 'USD', 'GBP', 'EUR', 'ZAR'];
+
+const STEPS = [
+  'Proposer Details',
+  'Additional Insured',
+  'Vessel Particulars',
+  'Engine, Tender & Trailer',
+  'Safety, Gas & Mooring',
+  'Cover & Sums Insured',
+  'Declaration & Submit',
+];
+
+/* ── Reusable field components (OUTSIDE main component) ─────── */
+/* Defining these inside the component creates a new type identity
+   on every render, causing React to unmount/remount on each keystroke. */
+
+const Field = ({
+  label, id, type = 'text', value, onChange, required, placeholder, hint,
+}: {
+  label: string; id: string; type?: string; value: string;
+  onChange: (v: string) => void; required?: boolean; placeholder?: string; hint?: string;
+}) => (
+  <div>
+    <label htmlFor={id} className={labelCls}>
+      {label}{required && <span className="text-teal-400 ml-1">*</span>}
+    </label>
+    <input
+      id={id} type={type} value={value} placeholder={placeholder}
+      onChange={e => onChange(e.target.value)}
+      className={inputCls} autoComplete="off"
+    />
+    {hint && <p className={noteCls}>{hint}</p>}
+  </div>
+);
+
+const TextArea = ({
+  label, id, value, onChange, rows = 3, required, placeholder,
+}: {
+  label: string; id: string; value: string; onChange: (v: string) => void;
+  rows?: number; required?: boolean; placeholder?: string;
+}) => (
+  <div>
+    <label htmlFor={id} className={labelCls}>
+      {label}{required && <span className="text-teal-400 ml-1">*</span>}
+    </label>
+    <textarea
+      id={id} value={value} rows={rows} placeholder={placeholder}
+      onChange={e => onChange(e.target.value)}
+      className={`${inputCls} resize-none`}
+    />
+  </div>
+);
+
+const Select = ({
+  label, id, value, onChange, options, required,
+}: {
+  label: string; id: string; value: string; onChange: (v: string) => void;
+  options: string[]; required?: boolean;
+}) => (
+  <div>
+    <label htmlFor={id} className={labelCls}>
+      {label}{required && <span className="text-teal-400 ml-1">*</span>}
+    </label>
+    <select id={id} value={value} onChange={e => onChange(e.target.value)} className={`${inputCls} cursor-pointer`}>
+      <option value="">— Select —</option>
+      {options.map(o => <option key={o} value={o}>{o}</option>)}
+    </select>
+  </div>
+);
+
+const YesNo = ({
+  label, id, value, onChange, hint,
+}: {
+  label: string; id: string; value: string; onChange: (v: string) => void; hint?: string;
+}) => (
+  <div>
+    <p className={labelCls}>{label}</p>
+    <div className="flex gap-2" id={id}>
+      {['Yes', 'No'].map(opt => (
+        <button
+          key={opt} type="button"
+          onClick={() => onChange(opt)}
+          className={`px-5 py-2 rounded-lg text-sm font-semibold transition border ${
+            value === opt
+              ? opt === 'Yes'
+                ? 'bg-teal-600 border-teal-500 text-white'
+                : 'bg-slate-600 border-slate-500 text-white'
+              : 'bg-slate-800 border-slate-600 text-slate-400 hover:border-slate-400'
+          }`}
+        >{opt}</button>
+      ))}
+    </div>
+    {hint && <p className={noteCls}>{hint}</p>}
+  </div>
+);
+
+const CheckBox = ({
+  label, checked, onChange,
+}: { label: string; checked: boolean; onChange: () => void }) => (
+  <label className="flex items-start gap-2.5 cursor-pointer group">
+    <div
+      onClick={onChange}
+      className={`mt-0.5 w-5 h-5 rounded flex-shrink-0 border flex items-center justify-center transition ${
+        checked ? 'bg-teal-600 border-teal-500' : 'bg-slate-800 border-slate-600 group-hover:border-slate-400'
+      }`}
+    >
+      {checked && (
+        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      )}
+    </div>
+    <span className="text-sm text-slate-300 leading-5">{label}</span>
+  </label>
+);
+
+const Card = ({ title, children }: { title?: string; children: React.ReactNode }) => (
+  <div className="bg-slate-800/40 border border-slate-700 rounded-xl p-5 space-y-4">
+    {title && <h3 className="text-teal-400 font-semibold text-sm uppercase tracking-wider">{title}</h3>}
+    {children}
+  </div>
+);
+
+const Grid2 = ({ children }: { children: React.ReactNode }) => (
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{children}</div>
+);
+
+const Tick = () => (
+  <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+  </svg>
+);
+
+const Toggle = ({ checked, onChange }: { checked: boolean; onChange: () => void }) => (
+  <div
+    onClick={onChange}
+    className={`mt-0.5 w-5 h-5 rounded flex-shrink-0 border flex items-center justify-center cursor-pointer transition ${
+      checked ? 'bg-teal-600 border-teal-500' : 'bg-slate-800 border-slate-600 hover:border-slate-400'
+    }`}
+  >
+    {checked && <Tick />}
+  </div>
+);
+
+/* ── Form State ──────────────────────────────────────────────── */
 interface FormState {
-  // Step 1 – Proposer
   ownerName: string; dob: string; address: string; city: string;
   stateCounty: string; zipPostcode: string; country: string;
   email: string; phone: string; occupation: string;
   boatingQualifications: string; boatingExperience: string; previousVessels: string;
-  // Step 2 – Additional Insured
   hasAdditional: boolean;
   addl_name: string; addl_dob: string; addl_address: string; addl_city: string;
   addl_stateCounty: string; addl_zipPostcode: string;
   addl_experience: string; addl_qualifications: string;
-  // Step 3 – Vessel
   vesselName: string; hullNumber: string; countryFlag: string;
   stateFlagUSA: string; registrationStateUSA: string;
   yearBuilt: string; length: string; manufacturer: string; model: string;
   vesselType: string; isConversion: string;
   constructionMaterials: string[]; constructionOther: string;
-  datePurchased: string; pricePaid: string;
-  lastSurveyDate: string; surveyorName: string;
-  // Step 4 – Engine
+  datePurchased: string; pricePaid: string; lastSurveyDate: string; surveyorName: string;
   engine_manufacturer: string; engine_model: string; engine_yearBuilt: string;
   engine_hp: string; engine_fuel: string; engine_serial: string;
   engine_count: string; engine_maxSpeed: string;
-  // Step 4 – Tender
   hasTender: boolean;
   tender_serial: string; tender_displaysName: string;
   tender_manufacturer: string; tender_model: string; tender_length: string;
@@ -35,20 +178,15 @@ interface FormState {
   tenderMotor_manufacturer: string; tenderMotor_model: string; tenderMotor_yearBuilt: string;
   tenderMotor_hp: string; tenderMotor_fuel: string; tenderMotor_serial: string;
   tenderMotor_locked: string;
-  // Step 4 – Trailer
   hasTrailer: boolean;
   trailer_makeModel: string; trailer_age: string; trailer_value: string;
   trailer_serial: string; trailer_wheelClamp: string; trailer_lockedBuilding: string;
-  // Step 5 – Safety
   safetyEquipment: string[]; safetyOther: string;
   handheldExtCount: string; autoExtLocations: string[];
-  // Step 5 – Gas
   lpgUsed: string; lpg_cockpitLocker: string; lpg_approvedTubing: string;
-  // Step 5 – Mooring
   cruisingItinerary: string; mooringName: string; mooringType: string;
   laidUpLocation: string; laidUpFrom: string; laidUpTo: string;
   storedAshoreDaily: string; storedAshoreHow: string;
-  // Step 6 – SI
   si_hull_currency: string; si_hull_amount: string;
   si_tender_currency: string; si_tender_amount: string;
   si_trailer_currency: string; si_trailer_amount: string;
@@ -59,7 +197,6 @@ interface FormState {
   si_medical_currency: string; si_medical_amount: string;
   si_crew_currency: string; si_crew_amount: string;
   si_passenger_currency: string; si_passenger_amount: string;
-  // Step 6 – Coverage
   cover_fullyComp: string; cover_tplOnly: string; cover_privatePleasure: string;
   cover_commercial: string; cover_barebat: string; cover_captainCharter: string;
   cover_fishingCharter: string; cover_commercialOther: string;
@@ -67,7 +204,6 @@ interface FormState {
   cover_maxPassengers: string; cover_inWater: string;
   cover_employedCrew: string; cover_maxCrew: string;
   cover_waterSkiing: string; cover_medicalExp: string; cover_salvage: string;
-  // Step 6 – Endorsements
   end_agreedValue: string; end_breachWarranty: string; end_loanAmount: string;
   end_buildersRisk: string; end_commercialFishing: string; end_diving: string;
   end_houseboat: string; end_newForOld: string; end_nightNav: string;
@@ -75,7 +211,6 @@ interface FormState {
   end_singleHanded: string; end_storm7to12: string; end_storm12plus: string;
   end_stormPrep: string; end_takenAshore: string; end_unattended: string;
   end_uninsuredBoater: string;
-  // Step 7 – Declaration
   decl_declined: string; decl_declinedDetails: string;
   decl_accidents: string; decl_accidentDetails: string;
   decl_dishonesty: string; decl_dishonestyDetails: string;
@@ -84,7 +219,6 @@ interface FormState {
   decl_disabilities: string; decl_disabilityDetails: string;
   preferredStartDate: string; previousInsurer: string; noClaimsBonus: string;
   declarationAccepted: boolean;
-  // Honeypot
   company_url: string;
 }
 
@@ -111,8 +245,8 @@ const BLANK: FormState = {
   trailer_serial: '', trailer_wheelClamp: 'No', trailer_lockedBuilding: 'No',
   safetyEquipment: [], safetyOther: '', handheldExtCount: '', autoExtLocations: [],
   lpgUsed: 'No', lpg_cockpitLocker: 'Yes', lpg_approvedTubing: 'Yes',
-  cruisingItinerary: '', mooringName: '', mooringType: '', laidUpLocation: '',
-  laidUpFrom: '', laidUpTo: '', storedAshoreDaily: 'No', storedAshoreHow: '',
+  cruisingItinerary: '', mooringName: '', mooringType: '',
+  laidUpLocation: '', laidUpFrom: '', laidUpTo: '', storedAshoreDaily: 'No', storedAshoreHow: '',
   si_hull_currency: 'NZD', si_hull_amount: '',
   si_tender_currency: 'NZD', si_tender_amount: '',
   si_trailer_currency: 'NZD', si_trailer_amount: '',
@@ -134,8 +268,7 @@ const BLANK: FormState = {
   end_houseboat: 'No', end_newForOld: 'No', end_nightNav: 'No',
   end_towing: 'No', end_racing: 'No', end_racingNames: '', end_mastValue: '',
   end_singleHanded: 'No', end_storm7to12: 'No', end_storm12plus: 'No',
-  end_stormPrep: 'No', end_takenAshore: 'No', end_unattended: 'No',
-  end_uninsuredBoater: 'No',
+  end_stormPrep: 'No', end_takenAshore: 'No', end_unattended: 'No', end_uninsuredBoater: 'No',
   decl_declined: 'No', decl_declinedDetails: '',
   decl_accidents: 'No', decl_accidentDetails: '',
   decl_dishonesty: 'No', decl_dishonestyDetails: '',
@@ -146,18 +279,6 @@ const BLANK: FormState = {
   declarationAccepted: false,
   company_url: '',
 };
-
-const STEPS = [
-  'Proposer Details',
-  'Additional Insured',
-  'Vessel Particulars',
-  'Engine, Tender & Trailer',
-  'Safety, Gas & Mooring',
-  'Cover & Sums Insured',
-  'Declaration & Submit',
-];
-
-const CURRENCIES = ['NZD', 'AUD', 'USD', 'GBP', 'EUR', 'ZAR'];
 
 /* ── Main Component ──────────────────────────────────────────── */
 export default function MarineProposalForm() {
@@ -175,7 +296,6 @@ export default function MarineProposalForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
-  // Persist draft
   useEffect(() => {
     try { localStorage.setItem('marine-proposal-draft', JSON.stringify(form)); } catch { /* ignore */ }
   }, [form]);
@@ -213,134 +333,9 @@ export default function MarineProposalForm() {
     }
   };
 
-  /* ── Reusable field helpers ─── */
-  const inputCls = 'w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition';
-  const labelCls = 'block text-sm font-medium text-slate-300 mb-1.5';
-  const noteCls = 'text-xs text-slate-500 mt-1';
-
-  const Field = ({
-    label, id, type = 'text', value, onChange, required, placeholder, hint,
-  }: {
-    label: string; id: string; type?: string; value: string;
-    onChange: (v: string) => void; required?: boolean; placeholder?: string; hint?: string;
-  }) => (
-    <div>
-      <label htmlFor={id} className={labelCls}>
-        {label}{required && <span className="text-teal-400 ml-1">*</span>}
-      </label>
-      <input
-        id={id} type={type} value={value} placeholder={placeholder}
-        onChange={e => onChange(e.target.value)}
-        className={inputCls} autoComplete="off"
-      />
-      {hint && <p className={noteCls}>{hint}</p>}
-    </div>
-  );
-
-  const TextArea = ({
-    label, id, value, onChange, rows = 3, required, placeholder,
-  }: {
-    label: string; id: string; value: string; onChange: (v: string) => void;
-    rows?: number; required?: boolean; placeholder?: string;
-  }) => (
-    <div>
-      <label htmlFor={id} className={labelCls}>
-        {label}{required && <span className="text-teal-400 ml-1">*</span>}
-      </label>
-      <textarea
-        id={id} value={value} rows={rows} placeholder={placeholder}
-        onChange={e => onChange(e.target.value)}
-        className={`${inputCls} resize-none`}
-      />
-    </div>
-  );
-
-  const Select = ({
-    label, id, value, onChange, options, required,
-  }: {
-    label: string; id: string; value: string; onChange: (v: string) => void;
-    options: string[] | { value: string; label: string }[]; required?: boolean;
-  }) => (
-    <div>
-      <label htmlFor={id} className={labelCls}>
-        {label}{required && <span className="text-teal-400 ml-1">*</span>}
-      </label>
-      <select
-        id={id} value={value}
-        onChange={e => onChange(e.target.value)}
-        className={`${inputCls} cursor-pointer`}
-      >
-        <option value="">— Select —</option>
-        {options.map(o => {
-          const v = typeof o === 'string' ? o : o.value;
-          const l = typeof o === 'string' ? o : o.label;
-          return <option key={v} value={v}>{l}</option>;
-        })}
-      </select>
-    </div>
-  );
-
-  const YesNo = ({
-    label, id, value, onChange, hint,
-  }: {
-    label: string; id: string; value: string; onChange: (v: string) => void; hint?: string;
-  }) => (
-    <div>
-      <p className={labelCls}>{label}</p>
-      <div className="flex gap-2" id={id}>
-        {['Yes', 'No'].map(opt => (
-          <button
-            key={opt} type="button"
-            onClick={() => onChange(opt)}
-            className={`px-5 py-2 rounded-lg text-sm font-semibold transition border ${
-              value === opt
-                ? opt === 'Yes'
-                  ? 'bg-teal-600 border-teal-500 text-white'
-                  : 'bg-slate-600 border-slate-500 text-white'
-                : 'bg-slate-800 border-slate-600 text-slate-400 hover:border-slate-400'
-            }`}
-          >{opt}</button>
-        ))}
-      </div>
-      {hint && <p className={noteCls}>{hint}</p>}
-    </div>
-  );
-
-  const CheckBox = ({
-    label, checked, onChange,
-  }: { label: string; checked: boolean; onChange: (v: boolean) => void }) => (
-    <label className="flex items-start gap-2.5 cursor-pointer group">
-      <div
-        onClick={() => onChange(!checked)}
-        className={`mt-0.5 w-5 h-5 rounded flex-shrink-0 border flex items-center justify-center transition ${
-          checked ? 'bg-teal-600 border-teal-500' : 'bg-slate-800 border-slate-600 group-hover:border-slate-400'
-        }`}
-      >
-        {checked && (
-          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        )}
-      </div>
-      <span className="text-sm text-slate-300 leading-5">{label}</span>
-    </label>
-  );
-
-  const Card = ({ title, children }: { title?: string; children: React.ReactNode }) => (
-    <div className="bg-slate-800/40 border border-slate-700 rounded-xl p-5 space-y-4">
-      {title && <h3 className="text-teal-400 font-semibold text-sm uppercase tracking-wider">{title}</h3>}
-      {children}
-    </div>
-  );
-
-  const Grid2 = ({ children }: { children: React.ReactNode }) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{children}</div>
-  );
-
-  const SumInsuredRow = ({
-    label, curField, amtField,
-  }: { label: string; curField: keyof FormState; amtField: keyof FormState }) => (
-    <div className="flex gap-2 items-start">
+  /* ── Sums Insured row (needs form + set, rendered inline not as JSX component) */
+  const siRow = (label: string, curField: keyof FormState, amtField: keyof FormState) => (
+    <div className="flex gap-2 items-start" key={label}>
       <div className="w-28">
         <label className="block text-xs text-slate-400 mb-1.5">Currency</label>
         <select
@@ -364,9 +359,9 @@ export default function MarineProposalForm() {
     </div>
   );
 
-  /* ── Step renderers ─── */
+  /* ── Steps ───────────────────────────────────────────────── */
 
-  const renderStep1 = () => (
+  const step1 = (
     <div className="space-y-4">
       <Card title="Personal Information">
         <Grid2>
@@ -383,7 +378,6 @@ export default function MarineProposalForm() {
           <Field label="Country" id="country" value={form.country} onChange={v => set('country', v)} required />
         </Grid2>
       </Card>
-
       <Card title="Contact Details">
         <Grid2>
           <Field label="Email Address" id="email" type="email" value={form.email} onChange={v => set('email', v)} required placeholder="your@email.com" />
@@ -391,53 +385,26 @@ export default function MarineProposalForm() {
         </Grid2>
         <Field label="Occupation" id="occupation" value={form.occupation} onChange={v => set('occupation', v)} />
       </Card>
-
       <Card title="Boating Background">
-        <TextArea
-          label="Boating Qualifications & Licences"
-          id="boatingQualifications" value={form.boatingQualifications}
-          onChange={v => set('boatingQualifications', v)} rows={3}
-          placeholder="e.g. Day Skipper, NZQA Level 3, Commercial Licence..."
-        />
-        <Field
-          label="Years of Boating Experience"
-          id="boatingExperience" type="number" value={form.boatingExperience}
-          onChange={v => set('boatingExperience', v)} placeholder="e.g. 10"
-        />
-        <TextArea
-          label="Previous Vessels Owned or Operated"
-          id="previousVessels" value={form.previousVessels}
-          onChange={v => set('previousVessels', v)} rows={3}
-          placeholder="List vessel name, type, length and years operated..."
-        />
+        <TextArea label="Boating Qualifications & Licences" id="boatingQualifications" value={form.boatingQualifications} onChange={v => set('boatingQualifications', v)} rows={3} placeholder="e.g. Day Skipper, NZQA Level 3, Commercial Licence..." />
+        <Field label="Years of Boating Experience" id="boatingExperience" type="number" value={form.boatingExperience} onChange={v => set('boatingExperience', v)} placeholder="e.g. 10" />
+        <TextArea label="Previous Vessels Owned or Operated" id="previousVessels" value={form.previousVessels} onChange={v => set('previousVessels', v)} rows={3} placeholder="List vessel name, type, length and years operated..." />
       </Card>
     </div>
   );
 
-  const renderStep2 = () => (
+  const step2 = (
     <div className="space-y-4">
       <Card>
         <div className="flex items-start gap-3">
-          <div
-            onClick={() => set('hasAdditional', !form.hasAdditional)}
-            className={`mt-0.5 w-5 h-5 rounded flex-shrink-0 border flex items-center justify-center cursor-pointer transition ${
-              form.hasAdditional ? 'bg-teal-600 border-teal-500' : 'bg-slate-800 border-slate-600 hover:border-slate-400'
-            }`}
-          >
-            {form.hasAdditional && (
-              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-            )}
-          </div>
+          <Toggle checked={form.hasAdditional} onChange={() => set('hasAdditional', !form.hasAdditional)} />
           <div>
             <p className="text-white font-medium">Include an additional insured person</p>
             <p className="text-slate-400 text-sm mt-0.5">Tick if another person (e.g. co-owner, partner) should also be named on the policy.</p>
           </div>
         </div>
       </Card>
-
-      {form.hasAdditional && (
+      {form.hasAdditional ? (
         <>
           <Card title="Additional Insured — Personal Details">
             <Grid2>
@@ -456,17 +423,13 @@ export default function MarineProposalForm() {
             <TextArea label="Boating Qualifications & Licences" id="addl_qualifications" value={form.addl_qualifications} onChange={v => set('addl_qualifications', v)} rows={3} />
           </Card>
         </>
-      )}
-
-      {!form.hasAdditional && (
-        <div className="text-center py-8 text-slate-500 text-sm">
-          No additional insured — you can proceed to the next step.
-        </div>
+      ) : (
+        <div className="text-center py-8 text-slate-500 text-sm">No additional insured — proceed to the next step.</div>
       )}
     </div>
   );
 
-  const renderStep3 = () => (
+  const step3 = (
     <div className="space-y-4">
       <Card title="Vessel Identity">
         <Grid2>
@@ -479,7 +442,6 @@ export default function MarineProposalForm() {
         </Grid2>
         <Field label="Registration State (USA only)" id="registrationStateUSA" value={form.registrationStateUSA} onChange={v => set('registrationStateUSA', v)} />
       </Card>
-
       <Card title="Vessel Specifications">
         <Grid2>
           <Field label="Year Built" id="yearBuilt" type="number" value={form.yearBuilt} onChange={v => set('yearBuilt', v)} required placeholder="e.g. 2005" />
@@ -489,30 +451,20 @@ export default function MarineProposalForm() {
           <Field label="Manufacturer / Builder" id="manufacturer" value={form.manufacturer} onChange={v => set('manufacturer', v)} required />
           <Field label="Model / Name" id="model" value={form.model} onChange={v => set('model', v)} />
         </Grid2>
-        <Select
-          label="Vessel Type" id="vesselType" value={form.vesselType}
-          onChange={v => set('vesselType', v)} required
-          options={['Sail Monohull', 'Sail Catamaran', 'Motor Cruiser', 'Motor Catamaran', 'Sport Boat', 'Runabout', 'Jet Ski / PWC', 'House Boat', 'Commercial Vessel', 'Other']}
-        />
+        <Select label="Vessel Type" id="vesselType" value={form.vesselType} onChange={v => set('vesselType', v)} required options={['Sail Monohull', 'Sail Catamaran', 'Motor Cruiser', 'Motor Catamaran', 'Sport Boat', 'Runabout', 'Jet Ski / PWC', 'House Boat', 'Commercial Vessel', 'Other']} />
         <YesNo label="Is this vessel a conversion?" id="isConversion" value={form.isConversion} onChange={v => set('isConversion', v)} />
       </Card>
-
       <Card title="Construction Material">
         <p className={labelCls}>Select all that apply</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {['Fibreglass (GRP)', 'Aluminium', 'Steel', 'Timber (Traditional)', 'Timber (Cold Moulded)', 'Ferro-Cement', 'Carbon Fibre', 'Kevlar', 'Other'].map(m => (
-            <CheckBox
-              key={m} label={m}
-              checked={form.constructionMaterials.includes(m)}
-              onChange={() => toggleArr('constructionMaterials', m)}
-            />
+            <CheckBox key={m} label={m} checked={form.constructionMaterials.includes(m)} onChange={() => toggleArr('constructionMaterials', m)} />
           ))}
         </div>
         {form.constructionMaterials.includes('Other') && (
           <Field label="Other Construction Material" id="constructionOther" value={form.constructionOther} onChange={v => set('constructionOther', v)} placeholder="Please specify" />
         )}
       </Card>
-
       <Card title="Purchase & Survey">
         <Grid2>
           <Field label="Date Purchased" id="datePurchased" type="date" value={form.datePurchased} onChange={v => set('datePurchased', v)} />
@@ -526,7 +478,7 @@ export default function MarineProposalForm() {
     </div>
   );
 
-  const renderStep4 = () => (
+  const step4 = (
     <div className="space-y-4">
       <Card title="Main Engine(s)">
         <Grid2>
@@ -549,14 +501,7 @@ export default function MarineProposalForm() {
 
       <Card>
         <div className="flex items-start gap-3">
-          <div
-            onClick={() => set('hasTender', !form.hasTender)}
-            className={`mt-0.5 w-5 h-5 rounded flex-shrink-0 border flex items-center justify-center cursor-pointer transition ${
-              form.hasTender ? 'bg-teal-600 border-teal-500' : 'bg-slate-800 border-slate-600'
-            }`}
-          >
-            {form.hasTender && <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
-          </div>
+          <Toggle checked={form.hasTender} onChange={() => set('hasTender', !form.hasTender)} />
           <p className="text-white font-medium">Vessel has a tender / dinghy to include</p>
         </div>
       </Card>
@@ -601,14 +546,7 @@ export default function MarineProposalForm() {
 
       <Card>
         <div className="flex items-start gap-3">
-          <div
-            onClick={() => set('hasTrailer', !form.hasTrailer)}
-            className={`mt-0.5 w-5 h-5 rounded flex-shrink-0 border flex items-center justify-center cursor-pointer transition ${
-              form.hasTrailer ? 'bg-teal-600 border-teal-500' : 'bg-slate-800 border-slate-600'
-            }`}
-          >
-            {form.hasTrailer && <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
-          </div>
+          <Toggle checked={form.hasTrailer} onChange={() => set('hasTrailer', !form.hasTrailer)} />
           <p className="text-white font-medium">Vessel has a trailer to include</p>
         </div>
       </Card>
@@ -640,7 +578,7 @@ export default function MarineProposalForm() {
     'Yacht Controller (remote cut-off)', 'CO Detector',
   ];
 
-  const renderStep5 = () => (
+  const step5 = (
     <div className="space-y-4">
       <Card title="Safety & Security Equipment On Board">
         <p className="text-slate-400 text-sm">Select all safety equipment present on the vessel</p>
@@ -662,7 +600,6 @@ export default function MarineProposalForm() {
           </div>
         </Grid2>
       </Card>
-
       <Card title="Gas System">
         <YesNo label="Is LPG / gas used on board?" id="lpgUsed" value={form.lpgUsed} onChange={v => set('lpgUsed', v)} />
         {form.lpgUsed === 'Yes' && (
@@ -672,24 +609,13 @@ export default function MarineProposalForm() {
           </Grid2>
         )}
       </Card>
-
       <Card title="Cruising Itinerary">
-        <TextArea
-          label="Describe your intended cruising area / itinerary"
-          id="cruisingItinerary" value={form.cruisingItinerary}
-          onChange={v => set('cruisingItinerary', v)} rows={4}
-          placeholder="e.g. Coastal NZ — Waitemata Harbour, Hauraki Gulf, Bay of Islands. Occasional Cook Strait crossing..."
-        />
+        <TextArea label="Describe your intended cruising area / itinerary" id="cruisingItinerary" value={form.cruisingItinerary} onChange={v => set('cruisingItinerary', v)} rows={4} placeholder="e.g. Coastal NZ — Waitemata Harbour, Hauraki Gulf, Bay of Islands. Occasional Cook Strait crossing..." />
       </Card>
-
       <Card title="Mooring & Storage">
         <Grid2>
           <Field label="Mooring Location Name / Marina" id="mooringName" value={form.mooringName} onChange={v => set('mooringName', v)} required />
-          <Select
-            label="Mooring Type" id="mooringType" value={form.mooringType}
-            onChange={v => set('mooringType', v)} required
-            options={['Swing Mooring', 'Pen / Marina Berth', 'Hardstand / Boatyard', 'At Home (trailer)', 'Anchor', 'Other']}
-          />
+          <Select label="Mooring Type" id="mooringType" value={form.mooringType} onChange={v => set('mooringType', v)} required options={['Swing Mooring', 'Pen / Marina Berth', 'Hardstand / Boatyard', 'At Home (trailer)', 'Anchor', 'Other']} />
         </Grid2>
         <Field label="Laid-Up Location (if different)" id="laidUpLocation" value={form.laidUpLocation} onChange={v => set('laidUpLocation', v)} />
         <Grid2>
@@ -704,21 +630,21 @@ export default function MarineProposalForm() {
     </div>
   );
 
-  const renderStep6 = () => (
+  const step6 = (
     <div className="space-y-4">
       <Card title="Sums Insured">
         <p className="text-slate-400 text-sm">Enter the insured value for each item. Leave blank if not applicable.</p>
         <div className="space-y-3">
-          <SumInsuredRow label="Hull (vessel)" curField="si_hull_currency" amtField="si_hull_amount" />
-          <SumInsuredRow label="Tender / Dinghy" curField="si_tender_currency" amtField="si_tender_amount" />
-          <SumInsuredRow label="Trailer" curField="si_trailer_currency" amtField="si_trailer_amount" />
-          <SumInsuredRow label="Personal Effects" curField="si_effects_currency" amtField="si_effects_amount" />
-          <SumInsuredRow label="Navigation Equipment" curField="si_nav_currency" amtField="si_nav_amount" />
-          <SumInsuredRow label="Third Party Liability" curField="si_tpl_currency" amtField="si_tpl_amount" />
-          <SumInsuredRow label="Uninsured Boater" curField="si_uninsured_currency" amtField="si_uninsured_amount" />
-          <SumInsuredRow label="Medical Payments" curField="si_medical_currency" amtField="si_medical_amount" />
-          <SumInsuredRow label="Captain / Crew" curField="si_crew_currency" amtField="si_crew_amount" />
-          <SumInsuredRow label="Passenger Liability" curField="si_passenger_currency" amtField="si_passenger_amount" />
+          {siRow('Hull (vessel)', 'si_hull_currency', 'si_hull_amount')}
+          {siRow('Tender / Dinghy', 'si_tender_currency', 'si_tender_amount')}
+          {siRow('Trailer', 'si_trailer_currency', 'si_trailer_amount')}
+          {siRow('Personal Effects', 'si_effects_currency', 'si_effects_amount')}
+          {siRow('Navigation Equipment', 'si_nav_currency', 'si_nav_amount')}
+          {siRow('Third Party Liability', 'si_tpl_currency', 'si_tpl_amount')}
+          {siRow('Uninsured Boater', 'si_uninsured_currency', 'si_uninsured_amount')}
+          {siRow('Medical Payments', 'si_medical_currency', 'si_medical_amount')}
+          {siRow('Captain / Crew', 'si_crew_currency', 'si_crew_amount')}
+          {siRow('Passenger Liability', 'si_passenger_currency', 'si_passenger_amount')}
         </div>
       </Card>
 
@@ -784,8 +710,6 @@ export default function MarineProposalForm() {
           <YesNo label="Unattended" id="end_unattended" value={form.end_unattended} onChange={v => set('end_unattended', v)} />
           <YesNo label="Uninsured Boater" id="end_uninsuredBoater" value={form.end_uninsuredBoater} onChange={v => set('end_uninsuredBoater', v)} />
         </div>
-
-        {/* Sub-fields for endorsements */}
         {form.end_breachWarranty === 'Yes' && (
           <Field label="Loan / Mortgage Amount (Breach of Warranty)" id="end_loanAmount" value={form.end_loanAmount} onChange={v => set('end_loanAmount', v)} placeholder="e.g. NZD 120,000" />
         )}
@@ -802,13 +726,12 @@ export default function MarineProposalForm() {
     </div>
   );
 
-  const renderStep7 = () => (
+  const step7 = (
     <div className="space-y-4">
       <div className="bg-amber-900/20 border border-amber-700/50 rounded-xl p-4">
         <p className="text-amber-300 text-sm font-medium mb-1">Declaration Questions</p>
-        <p className="text-slate-400 text-sm">Please answer each question honestly. If Yes, please provide details in the box that appears.</p>
+        <p className="text-slate-400 text-sm">Please answer each question honestly. Where Yes, provide full details.</p>
       </div>
-
       <Card>
         <div className="space-y-5">
           <div className="space-y-2">
@@ -837,7 +760,6 @@ export default function MarineProposalForm() {
           </div>
         </div>
       </Card>
-
       <Card title="Policy Start Date & Previous Cover">
         <Grid2>
           <Field label="Preferred Cover Start Date" id="preferredStartDate" type="date" value={form.preferredStartDate} onChange={v => set('preferredStartDate', v)} required />
@@ -845,43 +767,35 @@ export default function MarineProposalForm() {
         </Grid2>
         <Field label="No Claims Bonus (if applicable)" id="noClaimsBonus" value={form.noClaimsBonus} onChange={v => set('noClaimsBonus', v)} placeholder="e.g. 3 years, 60%, None" />
       </Card>
-
       <Card title="Declaration & Consent">
         <div className="bg-slate-900 rounded-lg p-4 text-sm text-slate-400 leading-relaxed space-y-2">
-          <p>I/We declare that to the best of my/our knowledge and belief all the statements and particulars given in this proposal are true and complete. I/We agree that this proposal and declaration shall form the basis of the contract of insurance and agree to notify the insurer of any material change that occurs prior to the commencement of the policy.</p>
+          <p>I/We declare that to the best of my/our knowledge and belief all the statements and particulars given in this proposal are true and complete. I/We agree that this proposal and declaration shall form the basis of the contract of insurance and agree to notify the insurer of any material change prior to commencement of the policy.</p>
           <p>I/We understand that this proposal is subject to acceptance by the underwriter and does not constitute a binding contract of insurance until confirmed in writing.</p>
           <p>I/We consent to the collection and use of personal information provided herein for the purpose of assessing and administering this insurance. Our privacy policy is available at <span className="text-teal-400">yachtinsurance.co.nz/privacy/</span>.</p>
         </div>
         <label className="flex items-start gap-3 cursor-pointer group mt-2">
-          <div
-            onClick={() => set('declarationAccepted', !form.declarationAccepted)}
-            className={`mt-0.5 w-5 h-5 rounded flex-shrink-0 border flex items-center justify-center transition ${
-              form.declarationAccepted ? 'bg-teal-600 border-teal-500' : 'bg-slate-800 border-slate-600 group-hover:border-slate-400'
-            }`}
-          >
-            {form.declarationAccepted && <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
-          </div>
+          <Toggle checked={form.declarationAccepted} onChange={() => set('declarationAccepted', !form.declarationAccepted)} />
           <span className="text-sm text-slate-300 leading-5">
-            I confirm that the information provided is accurate and complete to the best of my knowledge, and I agree to the declaration above. <span className="text-teal-400 font-medium">*</span>
+            I confirm that the information provided is accurate and complete to the best of my knowledge, and I agree to the declaration above.{' '}
+            <span className="text-teal-400 font-medium">*</span>
           </span>
         </label>
       </Card>
-
       {/* Honeypot */}
       <input type="text" name="company_url" value={form.company_url} onChange={e => set('company_url', e.target.value)} style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
-
       {submitError && (
         <div className="bg-red-900/30 border border-red-700 rounded-xl p-4 text-red-300 text-sm">{submitError}</div>
       )}
     </div>
   );
 
-  /* ── Render ───────────────────────────────────────────────── */
+  /* ── Render ──────────────────────────────────────────────── */
   const progressPct = (step / 7) * 100;
+  const stepContent = [step1, step2, step3, step4, step5, step6, step7];
 
   return (
     <div className="min-h-screen bg-slate-950 pb-16">
-      {/* Header Banner */}
+      {/* Header */}
       <div className="bg-slate-900 border-b border-slate-800 py-6 px-4">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-2xl font-bold text-white">Marine Insurance Proposal Form</h1>
@@ -889,7 +803,7 @@ export default function MarineProposalForm() {
         </div>
       </div>
 
-      {/* Progress */}
+      {/* Sticky progress */}
       <div className="bg-slate-900 sticky top-0 z-10 border-b border-slate-800 px-4 py-4">
         <div className="max-w-2xl mx-auto">
           <div className="flex justify-between text-xs text-slate-500 mb-2">
@@ -897,88 +811,52 @@ export default function MarineProposalForm() {
             <span>{Math.round(progressPct)}% complete</span>
           </div>
           <div className="w-full bg-slate-800 rounded-full h-1.5">
-            <div
-              className="bg-teal-500 h-1.5 rounded-full transition-all duration-500"
-              style={{ width: `${progressPct}%` }}
-            />
+            <div className="bg-teal-500 h-1.5 rounded-full transition-all duration-500" style={{ width: `${progressPct}%` }} />
           </div>
-          {/* Step pills — desktop */}
           <div className="hidden sm:flex gap-1 mt-3">
-            {STEPS.map((label, i) => (
-              <div
-                key={i}
-                className={`flex-1 text-center text-xs py-1 rounded font-medium truncate transition ${
-                  i + 1 === step
-                    ? 'bg-teal-600 text-white'
-                    : i + 1 < step
-                    ? 'bg-teal-900/60 text-teal-400'
-                    : 'bg-slate-800 text-slate-600'
-                }`}
-              >
-                {i + 1}
-              </div>
+            {STEPS.map((_, i) => (
+              <div key={i} className={`flex-1 text-center text-xs py-1 rounded font-medium transition ${
+                i + 1 === step ? 'bg-teal-600 text-white'
+                  : i + 1 < step ? 'bg-teal-900/60 text-teal-400'
+                  : 'bg-slate-800 text-slate-600'
+              }`}>{i + 1}</div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Step Content */}
+      {/* Step content */}
       <div className="max-w-2xl mx-auto px-4 pt-6">
         <h2 className="text-xl font-bold text-white mb-5">
           <span className="text-teal-500 mr-2">{step}.</span>{STEPS[step - 1]}
         </h2>
 
-        {step === 1 && renderStep1()}
-        {step === 2 && renderStep2()}
-        {step === 3 && renderStep3()}
-        {step === 4 && renderStep4()}
-        {step === 5 && renderStep5()}
-        {step === 6 && renderStep6()}
-        {step === 7 && renderStep7()}
+        {stepContent[step - 1]}
 
         {/* Navigation */}
         <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-800">
-          <button
-            type="button"
-            onClick={prevStep}
-            disabled={step === 1}
+          <button type="button" onClick={prevStep} disabled={step === 1}
             className={`px-6 py-3 rounded-xl font-semibold text-sm transition border ${
-              step === 1
-                ? 'border-slate-800 text-slate-700 cursor-not-allowed'
+              step === 1 ? 'border-slate-800 text-slate-700 cursor-not-allowed'
                 : 'border-slate-600 text-slate-300 hover:border-slate-400 hover:text-white'
             }`}
-          >
-            ← Back
-          </button>
+          >← Back</button>
 
           {step < 7 ? (
-            <button
-              type="button"
-              onClick={nextStep}
-              className="px-8 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-semibold text-sm transition"
-            >
+            <button type="button" onClick={nextStep} className="px-8 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-semibold text-sm transition">
               Next: {STEPS[step]} →
             </button>
           ) : (
-            <button
-              type="button"
-              onClick={handleSubmit}
-              disabled={submitting || !form.declarationAccepted}
+            <button type="button" onClick={handleSubmit} disabled={submitting || !form.declarationAccepted}
               className={`px-8 py-3 rounded-xl font-bold text-sm transition ${
                 submitting || !form.declarationAccepted
                   ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
                   : 'bg-teal-600 hover:bg-teal-500 text-white shadow-lg shadow-teal-900/40'
               }`}
-            >
-              {submitting ? 'Submitting…' : 'Submit Proposal'}
-            </button>
+            >{submitting ? 'Submitting…' : 'Submit Proposal'}</button>
           )}
         </div>
-
-        {/* Draft note */}
-        <p className="text-center text-slate-600 text-xs mt-4">
-          Your answers are saved automatically as you type.
-        </p>
+        <p className="text-center text-slate-600 text-xs mt-4">Your answers are saved automatically as you type.</p>
       </div>
     </div>
   );
