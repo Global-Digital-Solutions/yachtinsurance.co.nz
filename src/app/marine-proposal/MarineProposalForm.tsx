@@ -152,6 +152,63 @@ const Toggle = ({ checked, onChange }: { checked: boolean; onChange: () => void 
   </div>
 );
 
+/* ── DateSelect — three dropdowns instead of native browser picker ── */
+const MONTHS_LONG = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+const THIS_YEAR = new Date().getFullYear();
+
+const selCls = 'bg-slate-800 border border-slate-600 rounded-lg px-2 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition cursor-pointer w-full';
+
+const DateSelect = ({
+  label, id, value, onChange, required, minYear, maxYear, futureOnly,
+}: {
+  label: string; id: string; value: string; onChange: (v: string) => void;
+  required?: boolean; minYear?: number; maxYear?: number; futureOnly?: boolean;
+}) => {
+  const parts = value ? value.split('-') : ['', '', ''];
+  const yr = parts[0] || '';
+  const mo = parts[1] || '';
+  const dy = parts[2] || '';
+
+  const emit = (y: string, m: string, d: string) => {
+    if (y && m && d) onChange(`${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`);
+    else onChange('');
+  };
+
+  const daysInMo = yr && mo ? new Date(parseInt(yr), parseInt(mo), 0).getDate() : 31;
+  const lo = minYear ?? (futureOnly ? THIS_YEAR : 1940);
+  const hi = maxYear ?? (futureOnly ? THIS_YEAR + 3 : THIS_YEAR);
+  const years = Array.from({ length: hi - lo + 1 }, (_, i) => futureOnly ? lo + i : hi - i);
+
+  return (
+    <div>
+      <label htmlFor={`${id}-day`} className={labelCls}>
+        {label}{required && <span className="text-teal-400 ml-1">*</span>}
+      </label>
+      <div className="grid grid-cols-3 gap-2">
+        <select id={`${id}-day`} value={dy} onChange={e => emit(yr, mo, e.target.value)} className={selCls}>
+          <option value="">Day</option>
+          {Array.from({ length: daysInMo }, (_, i) => i + 1).map(d => (
+            <option key={d} value={String(d).padStart(2, '0')}>{d}</option>
+          ))}
+        </select>
+        <select value={mo} onChange={e => emit(yr, e.target.value, dy)} className={selCls}>
+          <option value="">Month</option>
+          {MONTHS_LONG.map((m, i) => (
+            <option key={i} value={String(i + 1).padStart(2, '0')}>{m}</option>
+          ))}
+        </select>
+        <select value={yr} onChange={e => emit(e.target.value, mo, dy)} className={selCls}>
+          <option value="">Year</option>
+          {years.map(y => <option key={y} value={String(y)}>{y}</option>)}
+        </select>
+      </div>
+    </div>
+  );
+};
+
 /* ── Form State ──────────────────────────────────────────────── */
 interface FormState {
   ownerName: string; dob: string; address: string; city: string;
@@ -366,7 +423,7 @@ export default function MarineProposalForm() {
       <Card title="Personal Information">
         <Grid2>
           <Field label="Full Name" id="ownerName" value={form.ownerName} onChange={v => set('ownerName', v)} required placeholder="First and last name" />
-          <Field label="Date of Birth" id="dob" type="date" value={form.dob} onChange={v => set('dob', v)} required />
+          <DateSelect label="Date of Birth" id="dob" value={form.dob} onChange={v => set('dob', v)} required minYear={1920} />
         </Grid2>
         <Field label="Residential Address" id="address" value={form.address} onChange={v => set('address', v)} required placeholder="Street address" />
         <Grid2>
@@ -409,7 +466,7 @@ export default function MarineProposalForm() {
           <Card title="Additional Insured — Personal Details">
             <Grid2>
               <Field label="Full Name" id="addl_name" value={form.addl_name} onChange={v => set('addl_name', v)} required />
-              <Field label="Date of Birth" id="addl_dob" type="date" value={form.addl_dob} onChange={v => set('addl_dob', v)} />
+              <DateSelect label="Date of Birth" id="addl_dob" value={form.addl_dob} onChange={v => set('addl_dob', v)} minYear={1920} />
             </Grid2>
             <Field label="Residential Address" id="addl_address" value={form.addl_address} onChange={v => set('addl_address', v)} />
             <Grid2>
@@ -467,11 +524,11 @@ export default function MarineProposalForm() {
       </Card>
       <Card title="Purchase & Survey">
         <Grid2>
-          <Field label="Date Purchased" id="datePurchased" type="date" value={form.datePurchased} onChange={v => set('datePurchased', v)} />
+          <DateSelect label="Date Purchased" id="datePurchased" value={form.datePurchased} onChange={v => set('datePurchased', v)} minYear={1940} />
           <Field label="Price Paid" id="pricePaid" value={form.pricePaid} onChange={v => set('pricePaid', v)} placeholder="e.g. NZD 150,000" />
         </Grid2>
         <Grid2>
-          <Field label="Date of Last Survey" id="lastSurveyDate" type="date" value={form.lastSurveyDate} onChange={v => set('lastSurveyDate', v)} />
+          <DateSelect label="Date of Last Survey" id="lastSurveyDate" value={form.lastSurveyDate} onChange={v => set('lastSurveyDate', v)} minYear={2000} />
           <Field label="Name of Surveyor" id="surveyorName" value={form.surveyorName} onChange={v => set('surveyorName', v)} />
         </Grid2>
       </Card>
@@ -522,7 +579,7 @@ export default function MarineProposalForm() {
               <Field label="Year Built" id="tender_yearBuilt" type="number" value={form.tender_yearBuilt} onChange={v => set('tender_yearBuilt', v)} />
             </Grid2>
             <Grid2>
-              <Field label="Purchase Date" id="tender_purchaseDate" type="date" value={form.tender_purchaseDate} onChange={v => set('tender_purchaseDate', v)} />
+              <DateSelect label="Purchase Date" id="tender_purchaseDate" value={form.tender_purchaseDate} onChange={v => set('tender_purchaseDate', v)} minYear={1940} />
               <Field label="Purchase Price" id="tender_purchasePrice" value={form.tender_purchasePrice} onChange={v => set('tender_purchasePrice', v)} />
             </Grid2>
           </Card>
@@ -762,7 +819,7 @@ export default function MarineProposalForm() {
       </Card>
       <Card title="Policy Start Date & Previous Cover">
         <Grid2>
-          <Field label="Preferred Cover Start Date" id="preferredStartDate" type="date" value={form.preferredStartDate} onChange={v => set('preferredStartDate', v)} required />
+          <DateSelect label="Preferred Cover Start Date" id="preferredStartDate" value={form.preferredStartDate} onChange={v => set('preferredStartDate', v)} required futureOnly />
           <Field label="Previous / Current Insurer" id="previousInsurer" value={form.previousInsurer} onChange={v => set('previousInsurer', v)} placeholder="e.g. Vero, NZI, AMI" />
         </Grid2>
         <Field label="No Claims Bonus (if applicable)" id="noClaimsBonus" value={form.noClaimsBonus} onChange={v => set('noClaimsBonus', v)} placeholder="e.g. 3 years, 60%, None" />
