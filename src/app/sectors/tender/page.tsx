@@ -158,7 +158,7 @@ export default function TenderInsurancePage() {
       <section
         className="relative lg:min-h-[100vh] flex items-center overflow-hidden"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&h=1080&fit=crop)',
+          backgroundImage: 'url(/vessels/inflatable-rib.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

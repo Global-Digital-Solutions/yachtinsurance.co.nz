@@ -167,7 +167,7 @@ export default function CoastalCruisingInsurancePage() {
       <section
         className="relative lg:min-h-[100vh] flex items-center overflow-hidden"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1768667779694-c8a1ec81528e?w=1920&h=1080&fit=crop)',
+          backgroundImage: 'url(/vessels/cabin-cruiser.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

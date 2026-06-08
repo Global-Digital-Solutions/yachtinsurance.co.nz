@@ -173,7 +173,7 @@ export default function JetSkiInsurancePage() {
       <section
         className="relative lg:min-h-[100vh] flex items-center overflow-hidden"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1768722688751-5d995b9e6393?w=1920&h=1080&fit=crop)',
+          backgroundImage: 'url(/vessels/jet-ski.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

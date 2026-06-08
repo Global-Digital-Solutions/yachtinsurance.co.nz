@@ -185,7 +185,7 @@ export default function BlueWaterInsurancePage() {
       <section
         className="relative lg:min-h-[100vh] flex items-center overflow-hidden"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1696028354827-0d36454dcaa8?w=1920&h=1080&fit=crop)',
+          backgroundImage: 'url(/vessels/catamaran.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

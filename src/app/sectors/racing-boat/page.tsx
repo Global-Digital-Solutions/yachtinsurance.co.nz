@@ -159,7 +159,7 @@ export default function RacingBoatInsurancePage() {
       <section
         className="relative lg:min-h-[100vh] flex items-center overflow-hidden"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1920&h=1080&fit=crop)',
+          backgroundImage: 'url(/vessels/ski-boat.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

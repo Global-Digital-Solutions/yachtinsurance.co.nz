@@ -153,7 +153,7 @@ export default function DinghyInsurancePage() {
       <section
         className="relative lg:min-h-[100vh] flex items-center overflow-hidden"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=1920&h=1080&fit=crop)',
+          backgroundImage: 'url(/vessels/dinghy.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

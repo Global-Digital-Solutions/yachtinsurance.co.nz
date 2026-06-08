@@ -201,7 +201,7 @@ export default function YachtInsurancePage() {
       <section
         className="relative lg:min-h-[100vh] flex items-center overflow-hidden"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1602943554726-d8bebe914982?w=1920&h=1080&fit=crop)',
+          backgroundImage: 'url(/vessels/yacht.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
