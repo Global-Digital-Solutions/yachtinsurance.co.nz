@@ -76,7 +76,7 @@ export default function ClaimsPage() {
           backgroundPosition: 'center 40%',
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/88 via-slate-900/70 to-slate-900/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/65 via-slate-900/45 to-slate-900/20" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
           <nav className="flex items-center gap-2 text-sm text-slate-300 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>

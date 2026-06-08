@@ -242,7 +242,7 @@ export default async function BlogPostPage({
         <img
           src={post.image}
           alt={post.title}
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover opacity-80"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
       </section>

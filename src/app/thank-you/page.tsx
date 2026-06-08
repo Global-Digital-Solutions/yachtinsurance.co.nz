@@ -59,7 +59,7 @@ export default function ThankYouPage() {
         className="relative min-h-[70vh] flex items-center justify-center px-4 py-20"
         style={{
           backgroundImage:
-            'linear-gradient(to bottom, rgba(2,8,23,0.55) 0%, rgba(2,8,23,0.72) 60%, rgba(2,8,23,0.95) 100%), url(/home-hero.png)',
+            'linear-gradient(to bottom, rgba(2,8,23,0.35) 0%, rgba(2,8,23,0.55) 60%, rgba(2,8,23,0.85) 100%), url(/home-hero.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center 40%',
         }}

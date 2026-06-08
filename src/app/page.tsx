@@ -46,9 +46,9 @@ export default function Home() {
         {/* Background image */}
         <div className="absolute inset-0">
           <img src="/home-hero.png" alt="Sailing yachts on New Zealand waters" className="w-full h-full object-cover opacity-85" />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-slate-900/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/60 via-slate-900/35 to-slate-900/10" />
           {/* Bottom fade so stats & scroll indicator read clearly */}
-          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-slate-900/80 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-slate-900/60 to-transparent" />
         </div>
 
         {/* Main hero content */}

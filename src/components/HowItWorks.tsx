@@ -52,7 +52,7 @@ export default function HowItWorks() {
         backgroundAttachment: 'fixed',
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/92 via-slate-800/88 to-sky-900/90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/72 via-slate-800/60 to-sky-900/68" />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div
