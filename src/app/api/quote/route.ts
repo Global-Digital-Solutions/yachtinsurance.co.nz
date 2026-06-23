@@ -83,6 +83,7 @@ export async function POST(request: NextRequest) {
     years_experience: 10,
     vessel_year_built,
     vessel_is_conversion: false,
+    vessel_construction_material_id: 1, // GRP (default; Keane now requires this)
     vessel_purchase_date: '2020-01-01',
     vessel_price_currency_id: 4,     // NZD
     vessel_maximum_speed: 20,
