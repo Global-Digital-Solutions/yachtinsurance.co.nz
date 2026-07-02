@@ -2062,7 +2062,7 @@ export default function MarineProposalForm() {
           <p className="text-teal-300 font-bold text-base mb-0.5">Land ahoy — you&apos;re nearly done!</p>
           <p className="text-slate-400 text-sm leading-relaxed">
             You&apos;ve navigated 6 steps like a seasoned blue-water sailor. Just the declaration to go
-            and your proposal is on its way to Keane Specialty. Fair winds from here.
+            and your proposal is on its way to our underwriters. Fair winds from here.
           </p>
         </div>
       </div>
@@ -2267,7 +2267,7 @@ export default function MarineProposalForm() {
     "The quote process is longer than a sea shanty — but we promise it'll be worth it. ⚓",
     "Got a first mate? Add them here. They'll thank you when the boom swings. 🪝",
     "Your boat deserves better than 'big, floaty, goes fast' — the more detail, the sharper the deal. 🛥️",
-    "Engines, tenders, trailers… we know, it's a lot. Keane's underwriters have seen worse. Considerably worse. ⚙️",
+    "Engines, tenders, trailers… our underwriters have seen worse. Considerably worse. ⚙️",
     "Nearly there. Even pirates had to fill out paperwork eventually. 🏴‍☠️",
     "The fun bit — deciding what everything's worth. Treat your hull value like a Tinder profile: honest, but put your best foot forward. 💰",
     "Land ahoy! 🏝️ You're nearly done — just the declaration left. Shorter than The Rime of the Ancient Mariner and considerably less tragic.",
@@ -2312,7 +2312,7 @@ export default function MarineProposalForm() {
 
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section
-        className="relative py-8 sm:py-14 px-4 text-center"
+        className="relative py-5 sm:py-8 px-4 text-center"
         style={{
           backgroundImage:
             'linear-gradient(to bottom, rgba(2,8,23,0.45) 0%, rgba(2,8,23,0.70) 60%, rgba(2,8,23,0.95) 100%), url(/home-hero.png)',
@@ -2321,63 +2321,28 @@ export default function MarineProposalForm() {
         }}
       >
         <div className="max-w-2xl mx-auto">
-          {/* Keane badge */}
-          <div className="inline-flex items-center gap-2 bg-teal-900/50 border border-teal-700/60 rounded-full px-4 py-1.5 text-teal-300 text-xs font-semibold uppercase tracking-wider mb-5">
-            <span>⚓</span> Specialist Marine Underwriting Proposal
+          <div className="inline-flex items-center gap-2 bg-teal-900/50 border border-teal-700/60 rounded-full px-4 py-1.5 text-teal-300 text-xs font-semibold uppercase tracking-wider mb-4">
+            <span>⚓</span> Specialist Marine Insurance Quote
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
             Marine Insurance Proposal Form
           </h1>
-          <p className="text-slate-300 text-base leading-relaxed max-w-lg mx-auto">
-            Complete your proposal and receive a tailored marine insurance quote from Keane
-            Specialty within <strong className="text-white">2 working days</strong>. All
-            information is saved automatically as you go.
-          </p>
-
-          {/* Trust badges — 2×2 grid on mobile, 4-across on sm+ */}
-          <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-lg mx-auto">
-            {[
-              { icon: <Lock className="w-4 h-4" />, label: '256-bit encrypted' },
-              { icon: <Anchor className="w-4 h-4" />, label: 'Marine specialists' },
-              { icon: <Clock className="w-4 h-4" />, label: 'Quote in 2 days' },
-              { icon: <Save className="w-4 h-4" />, label: 'Auto-saved' },
-            ].map(({ icon, label }) => (
-              <div
-                key={label}
-                className="flex flex-col items-center gap-1.5 bg-slate-900/50 border border-slate-700/60 rounded-xl py-3 px-2 text-center"
-              >
-                <span className="text-teal-400">{icon}</span>
-                <span className="text-slate-300 text-xs font-medium leading-tight">{label}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* ── Sailor-to-sailor message ───────────────────────────── */}
-      <div className="bg-slate-900 border-b border-slate-800 py-5 px-4">
-        <div className="max-w-2xl mx-auto flex items-start gap-4">
-          <span className="text-3xl flex-shrink-0 mt-0.5">⛵</span>
-          <div>
-            <p className="text-white font-semibold text-sm mb-1">
-              We&apos;re sailors just like you — we get it.
-            </p>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              There&apos;s nothing quite like being out on the water, and nothing quite like the
-              peace of mind that comes with the right cover. Fill in as much detail as you can —
-              our underwriters genuinely love the specifics, and the more they know about
-              your boat and how you use her, the more competitive your quote will be.{' '}
-              <span className="text-slate-500">
-                Think of it as giving your boat her best first impression. ⚓
-              </span>
-            </p>
-          </div>
+      {/* ── Intro strip ───────────────────────────────────────── */}
+      <div className="bg-slate-900 border-b border-slate-800 py-3 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Fill in as much detail as you can — our underwriters love the specifics, and the more
+            they know about your boat and how you use her, the more competitive your quote will be.
+          </p>
         </div>
       </div>
 
       {/* Sticky progress */}
       <div className="bg-slate-900 sticky top-0 z-10 border-b border-slate-800 px-4 py-2.5 sm:py-4">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <div className="flex justify-between text-xs text-slate-500 mb-2">
             <span>
               Step {step} of 7 —{' '}
@@ -2411,59 +2376,98 @@ export default function MarineProposalForm() {
       </div>
 
       {/* Step content */}
-      <div className="max-w-2xl mx-auto px-4 pt-6">
-        <h2 className="text-xl font-bold text-white mb-2">
-          <span className="text-teal-500 mr-2">{step}.</span>
-          {STEPS[step - 1]}
-        </h2>
-        <p className="text-slate-500 text-xs italic mb-5 leading-relaxed">
-          {STEP_QUIPS[step - 1]}
-        </p>
+      <div className="max-w-5xl mx-auto px-4 pt-6">
+        <div className="grid xl:grid-cols-[120px_1fr_120px] gap-5 items-start">
 
-        {stepContent[step - 1]}
+          {/* Left badge column — xl+ only */}
+          <div className="hidden xl:flex flex-col gap-3">
+            <div className="sticky top-24 space-y-3">
+              {[
+                { icon: <Lock className="w-5 h-5" />, label: '256-bit SSL', sub: 'Encrypted' },
+                { icon: <Anchor className="w-5 h-5" />, label: 'Marine specialists', sub: 'Expert underwriters' },
+              ].map(({ icon, label, sub }) => (
+                <div key={label} className="flex flex-col items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl py-5 px-3 text-center">
+                  <span className="text-teal-400">{icon}</span>
+                  <p className="text-white text-xs font-semibold leading-snug">{label}</p>
+                  <p className="text-slate-500 text-xs leading-tight">{sub}</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        {/* Navigation */}
-        <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-800">
-          <button
-            type="button"
-            onClick={prevStep}
-            disabled={step === 1}
-            className={`px-6 py-3 rounded-xl font-semibold text-sm transition border ${
-              step === 1
-                ? 'border-slate-800 text-slate-700 cursor-not-allowed'
-                : 'border-slate-600 text-slate-300 hover:border-slate-400 hover:text-white'
-            }`}
-          >
-            ← Back
-          </button>
+          {/* Form column */}
+          <div>
+            <h2 className="text-xl font-bold text-white mb-2">
+              <span className="text-teal-500 mr-2">{step}.</span>
+              {STEPS[step - 1]}
+            </h2>
+            <p className="text-slate-500 text-xs italic mb-5 leading-relaxed">
+              {STEP_QUIPS[step - 1]}
+            </p>
 
-          {step < 7 ? (
-            <button
-              type="button"
-              onClick={nextStep}
-              className="px-5 sm:px-8 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-semibold text-sm transition"
-            >
-              <span className="sm:hidden">Next →</span>
-              <span className="hidden sm:inline">Next: {STEPS[step]} →</span>
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={handleSubmit}
-              disabled={submitting || !form.declarationAccepted}
-              className={`px-8 py-3 rounded-xl font-bold text-sm transition ${
-                submitting || !form.declarationAccepted
-                  ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
-                  : 'bg-teal-600 hover:bg-teal-500 text-white shadow-lg shadow-teal-900/40'
-              }`}
-            >
-              {submitting ? 'Submitting…' : 'Submit Proposal'}
-            </button>
-          )}
+            {stepContent[step - 1]}
+
+            {/* Navigation */}
+            <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-800">
+              <button
+                type="button"
+                onClick={prevStep}
+                disabled={step === 1}
+                className={`px-6 py-3 rounded-xl font-semibold text-sm transition border ${
+                  step === 1
+                    ? 'border-slate-800 text-slate-700 cursor-not-allowed'
+                    : 'border-slate-600 text-slate-300 hover:border-slate-400 hover:text-white'
+                }`}
+              >
+                ← Back
+              </button>
+
+              {step < 7 ? (
+                <button
+                  type="button"
+                  onClick={nextStep}
+                  className="px-5 sm:px-8 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-semibold text-sm transition"
+                >
+                  <span className="sm:hidden">Next →</span>
+                  <span className="hidden sm:inline">Next: {STEPS[step]} →</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={submitting || !form.declarationAccepted}
+                  className={`px-8 py-3 rounded-xl font-bold text-sm transition ${
+                    submitting || !form.declarationAccepted
+                      ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
+                      : 'bg-teal-600 hover:bg-teal-500 text-white shadow-lg shadow-teal-900/40'
+                  }`}
+                >
+                  {submitting ? 'Submitting…' : 'Submit Proposal'}
+                </button>
+              )}
+            </div>
+            <p className="text-center text-slate-600 text-xs mt-4">
+              Your answers are saved automatically as you type.
+            </p>
+          </div>
+
+          {/* Right badge column — xl+ only */}
+          <div className="hidden xl:flex flex-col gap-3">
+            <div className="sticky top-24 space-y-3">
+              {[
+                { icon: <Clock className="w-5 h-5" />, label: 'Quote in 2 days', sub: '2 working days' },
+                { icon: <Save className="w-5 h-5" />, label: 'Auto-saved', sub: 'Never lose progress' },
+              ].map(({ icon, label, sub }) => (
+                <div key={label} className="flex flex-col items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl py-5 px-3 text-center">
+                  <span className="text-teal-400">{icon}</span>
+                  <p className="text-white text-xs font-semibold leading-snug">{label}</p>
+                  <p className="text-slate-500 text-xs leading-tight">{sub}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
-        <p className="text-center text-slate-600 text-xs mt-4">
-          Your answers are saved automatically as you type.
-        </p>
       </div>
 
       {/* ── Inactivity popup ──────────────────────────────────── */}
