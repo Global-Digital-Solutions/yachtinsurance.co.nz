@@ -2322,7 +2322,7 @@ export default function MarineProposalForm() {
         <div className="max-w-2xl mx-auto">
           {/* Keane badge */}
           <div className="inline-flex items-center gap-2 bg-teal-900/50 border border-teal-700/60 rounded-full px-4 py-1.5 text-teal-300 text-xs font-semibold uppercase tracking-wider mb-5">
-            <span>⚓</span> Specialist Marine Underwriting via Keane Specialty
+            <span>⚓</span> Specialist Marine Underwriting Proposal
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
             Marine Insurance Proposal Form
@@ -2376,7 +2376,7 @@ export default function MarineProposalForm() {
             <p className="text-slate-400 text-sm leading-relaxed">
               There&apos;s nothing quite like being out on the water, and nothing quite like the
               peace of mind that comes with the right cover. Fill in as much detail as you can —
-              Keane&apos;s underwriters genuinely love the specifics, and the more they know about
+              our underwriters genuinely love the specifics, and the more they know about
               your boat and how you use her, the more competitive your quote will be.{' '}
               <span className="text-slate-500">
                 Think of it as giving your boat her best first impression. ⚓
