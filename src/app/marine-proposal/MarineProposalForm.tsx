@@ -2264,7 +2264,7 @@ export default function MarineProposalForm() {
   const stepContent = [step1, step2, step3, step4, step5, step6, step7];
 
   const STEP_QUIPS = [
-    "The quote process is longer than a sea shanty — but we promise it'll be worth it. ⚓",
+    "The skipper's details first — the easy part. Let's get you logged. 🧭",
     "Got a first mate? Add them here. They'll thank you when the boom swings. 🪝",
     "Your boat deserves better than 'big, floaty, goes fast' — the more detail, the sharper the deal. 🛥️",
     "Engines, tenders, trailers… our underwriters have seen worse. Considerably worse. ⚙️",
@@ -2321,12 +2321,9 @@ export default function MarineProposalForm() {
         }}
       >
         <div className="max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-teal-900/50 border border-teal-700/60 rounded-full px-4 py-1.5 text-teal-300 text-xs font-semibold uppercase tracking-wider mb-4">
+          <div className="inline-flex items-center gap-2 bg-teal-900/50 border border-teal-700/60 rounded-full px-5 py-2 text-teal-300 text-sm font-semibold uppercase tracking-wider">
             <span>⚓</span> Specialist Marine Insurance Quote
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
-            Marine Insurance Proposal Form
-          </h1>
         </div>
       </section>
 
@@ -2336,6 +2333,9 @@ export default function MarineProposalForm() {
           <p className="text-slate-400 text-sm leading-relaxed">
             Fill in as much detail as you can — our underwriters love the specifics, and the more
             they know about your boat and how you use her, the more competitive your quote will be.
+          </p>
+          <p className="text-slate-500 text-xs italic mt-1.5">
+            The quote process is longer than a sea shanty — but we promise it&apos;ll be worth it. ⚓
           </p>
         </div>
       </div>
@@ -2397,11 +2397,7 @@ export default function MarineProposalForm() {
 
           {/* Form column */}
           <div>
-            <h2 className="text-xl font-bold text-white mb-2">
-              <span className="text-teal-500 mr-2">{step}.</span>
-              {STEPS[step - 1]}
-            </h2>
-            <p className="text-slate-500 text-xs italic mb-5 leading-relaxed">
+            <p className="text-slate-400 text-sm italic mb-5 leading-relaxed">
               {STEP_QUIPS[step - 1]}
             </p>
 
