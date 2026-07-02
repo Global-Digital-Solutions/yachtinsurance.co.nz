@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
       title_id: titleId,
       first_name: firstName,
       last_name: lastName || firstName,
-      dob: formData.dob || '1970-01-01',
+      date_of_birth: formData.dob || '1970-01-01',
       address: formData.address || 'Not provided',
       city: formData.city || 'Not provided',
       state: formData.stateCounty || '',
@@ -115,12 +115,13 @@ export async function POST(req: NextRequest) {
       country_id: countryId,
       nationality_id: nationalityId,
       email: formData.email || '',
-      phone: formData.phone || '',
+      telephone: formData.phone || '',
       occupation: formData.occupation || '',
       boating_qualifications: formData.boatingQualifications || '',
-      boating_experience_years: toInt(formData.boatingExperience),
+      years_experience: toInt(formData.boatingExperience),
       previous_vessels: formData.previousVessels || '',
       referral_source_id: referralSourceId,
+      referral_source_other: 'yachtinsurance.co.nz',
 
       // Additional insured
       has_additional_insured: formData.hasAdditional ? 1 : 0,
@@ -148,8 +149,8 @@ export async function POST(req: NextRequest) {
       vessel_is_conversion_details: formData.isConversionDetails || '',
       vessel_construction_material_id: materialId,
       vessel_construction_other: formData.constructionOther || '',
-      vessel_date_purchased: formData.datePurchased || '',
-      vessel_price_paid: toFloat(formData.pricePaid),
+      vessel_purchase_date: formData.datePurchased || '',
+      vessel_price: toFloat(formData.pricePaid),
       vessel_price_currency_id: hullCurrencyId,
       vessel_last_survey_date: formData.lastSurveyDate || '',
       vessel_surveyor_name: formData.surveyorName || '',
@@ -162,7 +163,7 @@ export async function POST(req: NextRequest) {
       engine_fuel: formData.engine_fuel || 'Diesel',
       engine_serial: formData.engine_serial || '',
       engine_count: toInt(formData.engine_count) || 1,
-      engine_max_speed_knots: toFloat(formData.engine_maxSpeed),
+      vessel_maximum_speed: toFloat(formData.engine_maxSpeed),
 
       // Tender
       has_tender: formData.hasTender ? 1 : 0,
@@ -203,16 +204,16 @@ export async function POST(req: NextRequest) {
       lpg_approved_tubing: yn(formData.lpg_approvedTubing),
 
       // Mooring
-      cruising_itinerary: formData.cruisingItinerary || '',
-      mooring_name: formData.mooringName || '',
+      vessel_cruising_area: formData.cruisingItinerary || '',
+      mooring_location: formData.mooringName || '',
       mooring_type: formData.mooringType || '',
       mooring_location_country_id: mooringCountryId,
       mooring_location_postcode: formData.mooringPostcode || '',
       laid_up_location: formData.laidUpLocation || '',
       laid_up_from: formData.laidUpFrom || '',
       laid_up_to: formData.laidUpTo || '',
-      stored_ashore_daily: yn(formData.storedAshoreDaily),
-      stored_ashore_how: formData.storedAshoreHow || '',
+      mooring_vessel_ashore: yn(formData.storedAshoreDaily),
+      mooring_vessel_ashore_details: formData.storedAshoreHow || '',
 
       // Sums insured
       sums_insured_currency_id: siCurrencyId,
@@ -230,7 +231,7 @@ export async function POST(req: NextRequest) {
       // Cover
       cover_fully_comprehensive: yn(formData.cover_fullyComp),
       cover_third_party_only: yn(formData.cover_tplOnly),
-      cover_private_pleasure: yn(formData.cover_privatePleasure),
+      cover_private_pleasure_only: yn(formData.cover_privatePleasure),
       cover_commercial: yn(formData.cover_commercial),
       ...(coverCommercialTypeId ? { cover_commercial_type_id: coverCommercialTypeId } : {}),
       cover_commercial_passenger_liability: yn(formData.cover_commercialPassenger),
