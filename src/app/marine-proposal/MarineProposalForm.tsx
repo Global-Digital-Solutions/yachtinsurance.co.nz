@@ -760,6 +760,7 @@ export default function MarineProposalForm() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const progressRef = useRef<HTMLDivElement>(null);
 
   // Inactivity popup
   const [showInactivityPopup, setShowInactivityPopup] = useState(false);
@@ -933,14 +934,24 @@ export default function MarineProposalForm() {
   }, [form, proposalId]);
 
   /* ── Navigation ── */
+  const scrollToForm = () => {
+    setTimeout(() => {
+      if (progressRef.current) {
+        progressRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 30);
+  };
+
   const nextStep = () => {
     saveDraft(step, form); // save to Supabase as user progresses
     setStep((s) => Math.min(s + 1, 6));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToForm();
   };
   const prevStep = () => {
     setStep((s) => Math.max(s - 1, 1));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToForm();
   };
 
   /* ── Final submit ── */
@@ -2326,6 +2337,52 @@ export default function MarineProposalForm() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 from-10% via-slate-700 via-40% to-slate-600 to-100% pb-16 overflow-x-hidden">
 
+      {/* ── Submitting overlay ─────────────────────────────────── */}
+      {submitting && (
+        <div className="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-50 flex items-center justify-center px-4">
+          <div className="text-center max-w-md">
+            {/* Animated anchor */}
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                <div className="absolute inset-0 rounded-full bg-teal-500/20 animate-ping" />
+                <div className="relative w-24 h-24 rounded-full bg-teal-900/60 border border-teal-700/60 flex items-center justify-center">
+                  <span className="text-4xl" style={{ animation: 'spin 3s linear infinite' }}>⚓</span>
+                </div>
+              </div>
+            </div>
+            <h2 className="text-white text-2xl font-bold mb-3">Sending your proposal…</h2>
+            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+              We&apos;re securely transmitting your vessel details to our specialist underwriters.
+              Please don&apos;t close this page — this takes around 15–20 seconds.
+            </p>
+            {/* Animated progress dots */}
+            <div className="flex justify-center items-center gap-2 mb-6">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <div
+                  key={i}
+                  className="w-2 h-2 bg-teal-500 rounded-full"
+                  style={{ animation: `pulse 1.2s ease-in-out ${i * 0.2}s infinite` }}
+                />
+              ))}
+            </div>
+            <div className="space-y-2 text-left max-w-xs mx-auto">
+              {[
+                { label: 'Saving your details', done: true },
+                { label: 'Contacting underwriters', done: false },
+                { label: 'Generating your reference', done: false },
+              ].map(({ label, done }) => (
+                <div key={label} className="flex items-center gap-3 text-sm">
+                  <span className={done ? 'text-teal-400' : 'text-slate-600'}>
+                    {done ? '✓' : '○'}
+                  </span>
+                  <span className={done ? 'text-slate-300' : 'text-slate-500'}>{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section
         className="relative py-5 sm:py-8 px-4 text-center"
@@ -2357,7 +2414,7 @@ export default function MarineProposalForm() {
       </div>
 
       {/* Sticky progress */}
-      <div className="bg-slate-900/70 backdrop-blur-sm sticky top-0 z-10 border-b border-slate-700/50 px-4 py-2.5 sm:py-4">
+      <div ref={progressRef} className="bg-slate-900/70 backdrop-blur-sm sticky top-0 z-10 border-b border-slate-700/50 px-4 py-2.5 sm:py-4">
         <div className="max-w-3xl mx-auto">
           <div className="flex justify-between text-xs text-slate-500 mb-2">
             <span>
