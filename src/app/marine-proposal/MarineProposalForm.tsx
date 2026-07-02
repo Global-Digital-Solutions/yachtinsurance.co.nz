@@ -212,10 +212,13 @@ const CheckBox = ({
   </label>
 );
 
-const Card = ({ title, children }: { title?: string; children: React.ReactNode }) => (
+const Card = ({ title, hint, children }: { title?: string; hint?: string; children: React.ReactNode }) => (
   <div className="bg-slate-800/40 border border-slate-700 rounded-xl p-4 sm:p-5 space-y-4">
     {title && (
-      <h3 className="text-teal-400 font-semibold text-sm uppercase tracking-wider">{title}</h3>
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <h3 className="text-teal-400 font-semibold text-sm uppercase tracking-wider">{title}</h3>
+        {hint && <p className="text-slate-500 text-xs italic">{hint}</p>}
+      </div>
     )}
     {children}
   </div>
@@ -1004,7 +1007,7 @@ export default function MarineProposalForm() {
 
   const step1 = (
     <div className="space-y-4">
-      <Card title="Personal Information">
+      <Card title="Personal Information" hint="The skipper's details first — the easy part. Let's get you logged. 🧭">
         {/* Title + First name + Last name */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Select
@@ -2264,7 +2267,7 @@ export default function MarineProposalForm() {
   const stepContent = [step1, step2, step3, step4, step5, step6, step7];
 
   const STEP_QUIPS = [
-    "The skipper's details first — the easy part. Let's get you logged. 🧭",
+    "",
     "Got a first mate? Add them here. They'll thank you when the boom swings. 🪝",
     "Your boat deserves better than 'big, floaty, goes fast' — the more detail, the sharper the deal. 🛥️",
     "Engines, tenders, trailers… our underwriters have seen worse. Considerably worse. ⚙️",
@@ -2308,7 +2311,7 @@ export default function MarineProposalForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800 pb-16 overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 from-10% via-slate-700 via-40% to-slate-600 to-100% pb-16 overflow-x-hidden">
 
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section
@@ -2397,9 +2400,11 @@ export default function MarineProposalForm() {
 
           {/* Form column */}
           <div>
-            <p className="text-slate-400 text-sm italic mb-5 leading-relaxed">
-              {STEP_QUIPS[step - 1]}
-            </p>
+            {STEP_QUIPS[step - 1] && (
+              <p className="text-slate-400 text-sm italic mb-5 leading-relaxed">
+                {STEP_QUIPS[step - 1]}
+              </p>
+            )}
 
             {stepContent[step - 1]}
 
