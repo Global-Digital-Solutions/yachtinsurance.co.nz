@@ -706,6 +706,11 @@ export default function MarineProposalForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
+  // Inactivity popup
+  const [showInactivityPopup, setShowInactivityPopup] = useState(false);
+  const [sessionExpired, setSessionExpired] = useState(false);
+  const [popupCountdown, setPopupCountdown] = useState(300); // seconds
+
   // Supabase proposal ID — persisted across page refreshes
   const [proposalId, setProposalId] = useState<string | null>(() => {
     if (typeof window !== 'undefined') {
@@ -719,6 +724,12 @@ export default function MarineProposalForm() {
   formRef.current = form;
   const proposalIdRef = useRef(proposalId);
   proposalIdRef.current = proposalId;
+
+  // Inactivity timer refs
+  const inactivityTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sessionCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const countdownIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const popupActiveRef = useRef(false); // true while popup is showing — prevents timer reset
 
   // Persist form to localStorage on every change
   useEffect(() => {
@@ -775,6 +786,64 @@ export default function MarineProposalForm() {
     },
     [],
   );
+
+  /* ── 5-minute inactivity popup ────────────────────────────── */
+  const startSessionCloseTimer = useCallback(() => {
+    setPopupCountdown(300);
+    if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
+    countdownIntervalRef.current = setInterval(() => {
+      setPopupCountdown((prev) => {
+        if (prev <= 1) {
+          if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    if (sessionCloseTimerRef.current) clearTimeout(sessionCloseTimerRef.current);
+    sessionCloseTimerRef.current = setTimeout(() => {
+      setShowInactivityPopup(false);
+      setSessionExpired(true);
+      popupActiveRef.current = false;
+    }, 5 * 60 * 1000);
+  }, []);
+
+  const resetInactivityTimer = useCallback(() => {
+    if (popupActiveRef.current) return; // don't reset while popup countdown is running
+    if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+    inactivityTimerRef.current = setTimeout(() => {
+      setShowInactivityPopup(true);
+      popupActiveRef.current = true;
+      startSessionCloseTimer();
+    }, 5 * 60 * 1000);
+  }, [startSessionCloseTimer]);
+
+  const handleContinue = useCallback(() => {
+    setShowInactivityPopup(false);
+    popupActiveRef.current = false;
+    if (sessionCloseTimerRef.current) clearTimeout(sessionCloseTimerRef.current);
+    if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
+    setPopupCountdown(300);
+    resetInactivityTimer();
+  }, [resetInactivityTimer]);
+
+  // Reset inactivity timer whenever form state or step changes (user is active)
+  useEffect(() => {
+    if (!form.email) return; // only track once user has entered contact info
+    resetInactivityTimer();
+    return () => {
+      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+    };
+  }, [form, step, resetInactivityTimer]);
+
+  // Clean up all inactivity timers on unmount
+  useEffect(() => {
+    return () => {
+      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+      if (sessionCloseTimerRef.current) clearTimeout(sessionCloseTimerRef.current);
+      if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
+    };
+  }, []);
 
   /* ── 20-minute abandon timer ──────────────────────────────── */
   // Resets on every form change. Fires auto-submit to Keane if user goes idle.
@@ -2153,6 +2222,40 @@ export default function MarineProposalForm() {
   const progressPct = (step / 7) * 100;
   const stepContent = [step1, step2, step3, step4, step5, step6, step7];
 
+  // Session timed out — show recovery screen (draft safely saved in Supabase)
+  if (sessionExpired) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+        <div className="max-w-md w-full text-center">
+          <div className="w-16 h-16 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center mx-auto mb-6 text-3xl">
+            ⏱
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-3">Session Timed Out</h2>
+          <p className="text-slate-400 text-sm leading-relaxed mb-8">
+            Your session closed due to inactivity — but your progress has been saved. Click below to
+            pick up exactly where you left off.
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setSessionExpired(false);
+              setShowInactivityPopup(false);
+              popupActiveRef.current = false;
+              setPopupCountdown(300);
+              resetInactivityTimer();
+            }}
+            className="px-8 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-bold text-sm transition"
+          >
+            Continue My Proposal →
+          </button>
+          <p className="mt-4 text-slate-600 text-xs">
+            Alternatively, email us at hello@cover4you.co.nz and we can complete the proposal for you.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-slate-950 pb-16">
       {/* Header */}
@@ -2251,6 +2354,35 @@ export default function MarineProposalForm() {
           Your answers are saved automatically as you type.
         </p>
       </div>
+
+      {/* ── Inactivity popup ──────────────────────────────────── */}
+      {showInactivityPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-sm px-4">
+          <div className="bg-slate-900 border border-slate-700 rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl">
+            <div className="w-14 h-14 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center mx-auto mb-5 text-2xl">
+              ⏰
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">Still there?</h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-3">
+              You&apos;ve been inactive for a few minutes. Your progress is saved — but this
+              session will close in:
+            </p>
+            <div className="text-4xl font-mono font-bold text-amber-400 mb-6 tabular-nums">
+              {Math.floor(popupCountdown / 60)}:{String(popupCountdown % 60).padStart(2, '0')}
+            </div>
+            <button
+              type="button"
+              onClick={handleContinue}
+              className="w-full px-6 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-bold text-sm transition mb-3"
+            >
+              Continue My Proposal →
+            </button>
+            <p className="text-slate-600 text-xs">
+              Your details are safe and will be here when you return.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
