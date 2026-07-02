@@ -2258,13 +2258,60 @@ export default function MarineProposalForm() {
 
   return (
     <div className="min-h-screen bg-slate-950 pb-16">
-      {/* Header */}
-      <div className="bg-slate-900 border-b border-slate-800 py-6 px-4">
+
+      {/* ── Hero ──────────────────────────────────────────────── */}
+      <section
+        className="relative py-16 px-4 text-center"
+        style={{
+          backgroundImage:
+            'linear-gradient(to bottom, rgba(2,8,23,0.45) 0%, rgba(2,8,23,0.70) 60%, rgba(2,8,23,0.95) 100%), url(/home-hero.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 40%',
+        }}
+      >
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-2xl font-bold text-white">Marine Insurance Proposal Form</h1>
-          <p className="text-slate-400 text-sm mt-1">
-            Complete all sections. Your progress is saved automatically.
+          {/* Keane badge */}
+          <div className="inline-flex items-center gap-2 bg-teal-900/50 border border-teal-700/60 rounded-full px-4 py-1.5 text-teal-300 text-xs font-semibold uppercase tracking-wider mb-5">
+            <span>⚓</span> Specialist Marine Underwriting via Keane Specialty
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+            Marine Insurance Proposal Form
+          </h1>
+          <p className="text-slate-300 text-base leading-relaxed max-w-lg mx-auto">
+            Complete your proposal and receive a tailored marine insurance quote from Keane
+            Specialty within <strong className="text-white">2 working days</strong>. All
+            information is saved automatically as you go.
           </p>
+
+          {/* Mini trust strip */}
+          <div className="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-slate-400 text-xs">
+            <span className="flex items-center gap-1.5"><span className="text-teal-400">✓</span> No obligation</span>
+            <span className="flex items-center gap-1.5"><span className="text-teal-400">✓</span> Worldwide cover available</span>
+            <span className="flex items-center gap-1.5"><span className="text-teal-400">✓</span> No vessel age restrictions</span>
+            <span className="flex items-center gap-1.5"><span className="text-teal-400">✓</span> Secure &amp; encrypted</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Trust bar ─────────────────────────────────────────── */}
+      <div className="bg-slate-900 border-y border-slate-800 py-4 px-4">
+        <div className="max-w-2xl mx-auto flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs text-slate-400">
+          <div className="flex items-center gap-2">
+            <span className="text-teal-400 text-base">🔒</span>
+            <span>256-bit encrypted form</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-teal-400 text-base">🌊</span>
+            <span>Marine specialists — not a general insurer</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-teal-400 text-base">⏱</span>
+            <span>Quote within 2 working days</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-teal-400 text-base">💾</span>
+            <span>Progress saved automatically</span>
+          </div>
         </div>
       </div>
 
