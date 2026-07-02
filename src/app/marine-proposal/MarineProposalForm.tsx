@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { Lock, Anchor, Clock, Save } from 'lucide-react';
 
 /* ── Site-specific defaults (set via Vercel env vars per deployment) ── */
 // .co.nz → NEXT_PUBLIC_FORM_DEFAULT_COUNTRY=New Zealand, NEXT_PUBLIC_FORM_DEFAULT_CURRENCY=NZD
@@ -212,7 +213,7 @@ const CheckBox = ({
 );
 
 const Card = ({ title, children }: { title?: string; children: React.ReactNode }) => (
-  <div className="bg-slate-800/40 border border-slate-700 rounded-xl p-5 space-y-4">
+  <div className="bg-slate-800/40 border border-slate-700 rounded-xl p-4 sm:p-5 space-y-4">
     {title && (
       <h3 className="text-teal-400 font-semibold text-sm uppercase tracking-wider">{title}</h3>
     )}
@@ -255,7 +256,7 @@ const MONTHS_LONG = [
 const THIS_YEAR = new Date().getFullYear();
 
 const selCls =
-  'bg-slate-800 border border-slate-600 rounded-lg px-2 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition cursor-pointer w-full';
+  'bg-slate-800 border border-slate-600 rounded-lg px-1.5 sm:px-2 py-2.5 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition cursor-pointer w-full';
 
 const DateSelect = ({
   label,
@@ -2307,11 +2308,11 @@ export default function MarineProposalForm() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 pb-16">
+    <div className="min-h-screen bg-slate-950 pb-16 overflow-x-hidden">
 
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section
-        className="relative py-16 px-4 text-center"
+        className="relative py-8 sm:py-14 px-4 text-center"
         style={{
           backgroundImage:
             'linear-gradient(to bottom, rgba(2,8,23,0.45) 0%, rgba(2,8,23,0.70) 60%, rgba(2,8,23,0.95) 100%), url(/home-hero.png)',
@@ -2324,7 +2325,7 @@ export default function MarineProposalForm() {
           <div className="inline-flex items-center gap-2 bg-teal-900/50 border border-teal-700/60 rounded-full px-4 py-1.5 text-teal-300 text-xs font-semibold uppercase tracking-wider mb-5">
             <span>⚓</span> Specialist Marine Underwriting Proposal
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
             Marine Insurance Proposal Form
           </h1>
           <p className="text-slate-300 text-base leading-relaxed max-w-lg mx-auto">
@@ -2333,37 +2334,25 @@ export default function MarineProposalForm() {
             information is saved automatically as you go.
           </p>
 
-          {/* Mini trust strip */}
-          <div className="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-slate-400 text-xs">
-            <span className="flex items-center gap-1.5"><span className="text-teal-400">✓</span> No obligation</span>
-            <span className="flex items-center gap-1.5"><span className="text-teal-400">✓</span> Worldwide cover available</span>
-            <span className="flex items-center gap-1.5"><span className="text-teal-400">✓</span> No vessel age restrictions</span>
-            <span className="flex items-center gap-1.5"><span className="text-teal-400">✓</span> Secure &amp; encrypted</span>
+          {/* Trust badges — 2×2 grid on mobile, 4-across on sm+ */}
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-lg mx-auto">
+            {[
+              { icon: <Lock className="w-4 h-4" />, label: '256-bit encrypted' },
+              { icon: <Anchor className="w-4 h-4" />, label: 'Marine specialists' },
+              { icon: <Clock className="w-4 h-4" />, label: 'Quote in 2 days' },
+              { icon: <Save className="w-4 h-4" />, label: 'Auto-saved' },
+            ].map(({ icon, label }) => (
+              <div
+                key={label}
+                className="flex flex-col items-center gap-1.5 bg-slate-900/50 border border-slate-700/60 rounded-xl py-3 px-2 text-center"
+              >
+                <span className="text-teal-400">{icon}</span>
+                <span className="text-slate-300 text-xs font-medium leading-tight">{label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* ── Trust bar ─────────────────────────────────────────── */}
-      <div className="bg-slate-900 border-y border-slate-800 py-4 px-4">
-        <div className="max-w-2xl mx-auto flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs text-slate-400">
-          <div className="flex items-center gap-2">
-            <span className="text-teal-400 text-base">🔒</span>
-            <span>256-bit encrypted form</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-teal-400 text-base">🌊</span>
-            <span>Marine specialists — not a general insurer</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-teal-400 text-base">⏱</span>
-            <span>Quote within 2 working days</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-teal-400 text-base">💾</span>
-            <span>Progress saved automatically</span>
-          </div>
-        </div>
-      </div>
 
       {/* ── Sailor-to-sailor message ───────────────────────────── */}
       <div className="bg-slate-900 border-b border-slate-800 py-5 px-4">
@@ -2387,7 +2376,7 @@ export default function MarineProposalForm() {
       </div>
 
       {/* Sticky progress */}
-      <div className="bg-slate-900 sticky top-0 z-10 border-b border-slate-800 px-4 py-4">
+      <div className="bg-slate-900 sticky top-0 z-10 border-b border-slate-800 px-4 py-2.5 sm:py-4">
         <div className="max-w-2xl mx-auto">
           <div className="flex justify-between text-xs text-slate-500 mb-2">
             <span>
@@ -2452,9 +2441,10 @@ export default function MarineProposalForm() {
             <button
               type="button"
               onClick={nextStep}
-              className="px-8 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-semibold text-sm transition"
+              className="px-5 sm:px-8 py-3 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-semibold text-sm transition"
             >
-              Next: {STEPS[step]} →
+              <span className="sm:hidden">Next →</span>
+              <span className="hidden sm:inline">Next: {STEPS[step]} →</span>
             </button>
           ) : (
             <button
