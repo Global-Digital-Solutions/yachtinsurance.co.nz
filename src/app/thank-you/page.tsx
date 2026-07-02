@@ -4,7 +4,7 @@ import { CheckCircle2, Clock, Mail, ArrowRight, Shield, Anchor, Star, Award } fr
 import ReferenceDisplay from './ReferenceDisplay';
 
 export const metadata: Metadata = {
-  title: 'Proposal Submitted | Thank You | YachtInsurance.co.nz',
+  title: 'Quote Form Submitted | Thank You | YachtInsurance.co.nz',
   description:
     'Your marine insurance proposal has been submitted to Keane Specialty. You will receive a tailored quote within 2 working days.',
   robots: { index: false, follow: false },
@@ -89,7 +89,7 @@ export default function ThankYouPage() {
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-            Proposal Submitted
+            Quote Form Submitted
           </h1>
           <p className="text-teal-300 text-xl font-medium mb-6">
             You&apos;ve been matched with Keane Specialty

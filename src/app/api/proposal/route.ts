@@ -53,15 +53,15 @@ export async function POST(request: NextRequest) {
 type FV = string | boolean | string[] | undefined | null;
 
 function formatProposalEmail(d: Record<string, FV>): string {
-  const lines: string[] = ['MARINE INSURANCE PROPOSAL FORM', '================================', ''];
+  const lines: string[] = ['<strong style="font-size:16px">🚢 MARINE INSURANCE PROPOSAL FORM</strong>', ''];
 
   const L = (label: string, val: FV) => {
     if (val === undefined || val === null || val === '' || val === false) return;
-    if (Array.isArray(val)) { if (val.length > 0) lines.push(`${label}: ${val.join(', ')}`); }
-    else { lines.push(`${label}: ${val}`); }
+    if (Array.isArray(val)) { if (val.length > 0) lines.push(`<strong>${label}:</strong> ${val.join(', ')}`); }
+    else { lines.push(`<strong>${label}:</strong> ${val}`); }
   };
 
-  const H = (title: string) => lines.push('', `--- ${title} ---`);
+  const H = (title: string) => lines.push('', `<strong style="color:#0d9488">▸ ${title}</strong>`);
 
   H('PROPOSER DETAILS');
   const fullName = d.ownerName || (d.firstName && d.lastName ? `${d.title || ''} ${d.firstName} ${d.lastName}`.trim() : null);
@@ -106,11 +106,11 @@ function formatProposalEmail(d: Record<string, FV>): string {
     L('Manufacturer', d.tender_manufacturer); L('Model', d.tender_model);
     L('Length (metres)', d.tender_length); L('Year Built', d.tender_yearBuilt);
     L('Purchase Date', d.tender_purchaseDate); L('Purchase Price', d.tender_purchasePrice);
-    lines.push('  Outboard Motor:');
-    L('  Manufacturer', d.tenderMotor_manufacturer); L('  Model', d.tenderMotor_model);
-    L('  Year Built', d.tenderMotor_yearBuilt); L('  HP', d.tenderMotor_hp);
-    L('  Fuel Type', d.tenderMotor_fuel); L('  Serial Number', d.tenderMotor_serial);
-    L('  Locked When Not In Use', d.tenderMotor_locked);
+    lines.push('<em>&nbsp;&nbsp;Outboard Motor:</em>');
+    L('&nbsp;&nbsp;Manufacturer', d.tenderMotor_manufacturer); L('&nbsp;&nbsp;Model', d.tenderMotor_model);
+    L('&nbsp;&nbsp;Year Built', d.tenderMotor_yearBuilt); L('&nbsp;&nbsp;HP', d.tenderMotor_hp);
+    L('&nbsp;&nbsp;Fuel Type', d.tenderMotor_fuel); L('&nbsp;&nbsp;Serial Number', d.tenderMotor_serial);
+    L('&nbsp;&nbsp;Locked When Not In Use', d.tenderMotor_locked);
   } else { lines.push('No tender/dinghy'); }
 
   H('TRAILER');
@@ -226,5 +226,5 @@ function formatProposalEmail(d: Record<string, FV>): string {
   lines.push('Declaration Accepted: Yes');
   lines.push('', `Submitted: ${new Date().toISOString()}`);
 
-  return lines.join('\n');
+  return lines.join('<br>\n');
 }

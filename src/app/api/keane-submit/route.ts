@@ -285,29 +285,51 @@ export async function POST(req: NextRequest) {
       is_partial_submission: isPartial ? true : false,
     };
 
+    // Guard: fail fast if credentials missing
+    if (!process.env.KEANE_API_KEY || !process.env.KEANE_API_SECRET) {
+      console.error('Keane credentials not set — KEANE_API_KEY / KEANE_API_SECRET missing');
+      if (proposalId) {
+        await getSupabase()
+          .from('marine_proposals')
+          .update({
+            status: 'keane_error',
+            keane_error: 'Missing KEANE_API_KEY or KEANE_API_SECRET env vars',
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', proposalId);
+      }
+      return NextResponse.json(
+        { ok: false, error: 'Keane credentials not configured' },
+        { status: 500 },
+      );
+    }
+
     // POST to Keane
     const keaneRes = await fetch(`${KEANE_BASE}/save-quote-data`, {
       method: 'POST',
       headers: {
-        'X-API-KEY': process.env.KEANE_API_KEY!,
-        'X-API-SECRET': process.env.KEANE_API_SECRET!,
+        'X-API-KEY': process.env.KEANE_API_KEY,
+        'X-API-SECRET': process.env.KEANE_API_SECRET,
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
       body: JSON.stringify(keanePayload),
     });
 
-    const keaneData = await keaneRes.json();
+    // Keane may return non-JSON on auth failure — handle gracefully
+    const rawText = await keaneRes.text();
+    let keaneData: Record<string, unknown> = {};
+    try { keaneData = JSON.parse(rawText); } catch { keaneData = { raw: rawText }; }
 
     if (!keaneRes.ok) {
-      console.error('Keane API error:', keaneData);
+      console.error(`Keane API error ${keaneRes.status}:`, keaneData);
       // Update Supabase with error — data is safe there
       if (proposalId) {
         await getSupabase()
           .from('marine_proposals')
           .update({
             status: 'keane_error',
-            keane_error: JSON.stringify(keaneData),
+            keane_error: `HTTP ${keaneRes.status}: ${JSON.stringify(keaneData)}`,
             updated_at: new Date().toISOString(),
           })
           .eq('id', proposalId);
