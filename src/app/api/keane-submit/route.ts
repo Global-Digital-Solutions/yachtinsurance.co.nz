@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase-server';
+import { getSupabase } from '@/lib/supabase-server';
 
 const KEANE_BASE = 'https://admin.keanespecialty.com/api/quote';
 
@@ -303,7 +303,7 @@ export async function POST(req: NextRequest) {
       console.error('Keane API error:', keaneData);
       // Update Supabase with error — data is safe there
       if (proposalId) {
-        await supabase
+        await getSupabase()
           .from('marine_proposals')
           .update({
             status: 'keane_error',
@@ -326,7 +326,7 @@ export async function POST(req: NextRequest) {
 
     // Update Supabase with Keane reference
     if (proposalId) {
-      await supabase
+      await getSupabase()
         .from('marine_proposals')
         .update({
           status: isPartial ? 'auto_submitted' : 'submitted',

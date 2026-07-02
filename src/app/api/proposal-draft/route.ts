@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase-server';
+import { getSupabase } from '@/lib/supabase-server';
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,6 +17,8 @@ export async function POST(req: NextRequest) {
       auto_submit_at: new Date(Date.now() + 20 * 60 * 1000).toISOString(),
       updated_at: new Date().toISOString(),
     };
+
+    const supabase = getSupabase();
 
     if (proposalId) {
       // UPDATE existing draft
