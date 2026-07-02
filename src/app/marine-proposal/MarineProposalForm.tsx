@@ -23,7 +23,6 @@ const noteCls = 'text-xs text-slate-500 mt-1';
 
 const STEPS = [
   'Proposer Details',
-  'Additional Insured',
   'Vessel Particulars',
   'Engine, Tender & Trailer',
   'Safety, Gas & Mooring',
@@ -223,6 +222,30 @@ const Card = ({ title, hint, children }: { title?: string; hint?: string; childr
     {children}
   </div>
 );
+
+const FieldTooltip = ({ text }: { text: string }) => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <span className="relative inline-flex flex-shrink-0">
+      <button
+        type="button"
+        className="w-4 h-4 rounded-full bg-slate-700 hover:bg-slate-600 text-slate-400 text-xs font-bold leading-none flex items-center justify-center transition"
+        onClick={() => setOpen(!open)}
+        onBlur={() => setTimeout(() => setOpen(false), 150)}
+        tabIndex={-1}
+        aria-label="More info"
+      >
+        ?
+      </button>
+      {open && (
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 w-56 bg-slate-800 border border-slate-600 rounded-xl p-3 text-xs text-slate-300 leading-relaxed shadow-2xl">
+          {text}
+          <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-slate-800 border-b border-r border-slate-600" />
+        </div>
+      )}
+    </span>
+  );
+};
 
 const Grid2 = ({ children }: { children: React.ReactNode }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{children}</div>
@@ -912,7 +935,7 @@ export default function MarineProposalForm() {
   /* ── Navigation ── */
   const nextStep = () => {
     saveDraft(step, form); // save to Supabase as user progresses
-    setStep((s) => Math.min(s + 1, 7));
+    setStep((s) => Math.min(s + 1, 6));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   const prevStep = () => {
@@ -934,7 +957,7 @@ export default function MarineProposalForm() {
 
     try {
       // 1. Save final state to Supabase
-      await saveDraft(7, form);
+      await saveDraft(6, form);
 
       // 2. Submit to Keane API (single call, full data)
       let keaneReference = '';
@@ -974,7 +997,7 @@ export default function MarineProposalForm() {
   };
 
   /* ── Sums Insured row ── */
-  const siRow = (label: string, curField: keyof FormState, amtField: keyof FormState) => (
+  const siRow = (label: string, curField: keyof FormState, amtField: keyof FormState, tip?: string) => (
     <div className="flex gap-2 items-start" key={label}>
       <div className="w-28">
         <label className="block text-xs text-slate-400 mb-1.5">Currency</label>
@@ -989,7 +1012,7 @@ export default function MarineProposalForm() {
         </select>
       </div>
       <div className="flex-1">
-        <label className="block text-xs text-slate-400 mb-1.5">{label}</label>
+        <label className="flex items-center gap-1 text-xs text-slate-400 mb-1.5">{label}{tip && <FieldTooltip text={tip} />}</label>
         <input
           type="number"
           min="0"
@@ -1147,12 +1170,7 @@ export default function MarineProposalForm() {
           placeholder="List vessel name, type, length and years operated..."
         />
       </Card>
-    </div>
-  );
-
-  const step2 = (
-    <div className="space-y-4">
-      <Card>
+      <Card title="Additional Insured">
         <div className="flex items-start gap-3">
           <Toggle
             checked={form.hasAdditional}
@@ -1166,7 +1184,7 @@ export default function MarineProposalForm() {
           </div>
         </div>
       </Card>
-      {form.hasAdditional ? (
+      {form.hasAdditional && (
         <>
           <Card title="Additional Insured — Personal Details">
             <Grid2>
@@ -1229,10 +1247,6 @@ export default function MarineProposalForm() {
             />
           </Card>
         </>
-      ) : (
-        <div className="text-center py-8 text-slate-500 text-sm">
-          No additional insured — proceed to the next step.
-        </div>
       )}
     </div>
   );
@@ -1853,16 +1867,16 @@ export default function MarineProposalForm() {
           Enter the insured value for each item. Leave blank if not applicable.
         </p>
         <div className="space-y-3">
-          {siRow('Hull (vessel)', 'si_hull_currency', 'si_hull_amount')}
-          {siRow('Tender / Dinghy', 'si_tender_currency', 'si_tender_amount')}
-          {siRow('Trailer', 'si_trailer_currency', 'si_trailer_amount')}
-          {siRow('Personal Effects', 'si_effects_currency', 'si_effects_amount')}
-          {siRow('Navigation Equipment', 'si_nav_currency', 'si_nav_amount')}
-          {siRow('Third Party Liability', 'si_tpl_currency', 'si_tpl_amount')}
-          {siRow('Uninsured Boater', 'si_uninsured_currency', 'si_uninsured_amount')}
-          {siRow('Medical Payments', 'si_medical_currency', 'si_medical_amount')}
-          {siRow('Captain / Crew', 'si_crew_currency', 'si_crew_amount')}
-          {siRow('Passenger Liability', 'si_passenger_currency', 'si_passenger_amount')}
+          {siRow('Hull (vessel)', 'si_hull_currency', 'si_hull_amount', 'The agreed or market value of your vessel — hull, deck and all fixed equipment.')}
+          {siRow('Tender / Dinghy', 'si_tender_currency', 'si_tender_amount', 'Value of your tender or dinghy, including any permanently fitted outboard motor.')}
+          {siRow('Trailer', 'si_trailer_currency', 'si_trailer_amount', 'Replacement value of the road trailer used to transport the vessel.')}
+          {siRow('Personal Effects', 'si_effects_currency', 'si_effects_amount', 'Clothing, gear and personal items normally kept aboard.')}
+          {siRow('Navigation Equipment', 'si_nav_currency', 'si_nav_amount', 'Chartplotters, VHF, radar, AIS and other navigation electronics.')}
+          {siRow('Third Party Liability', 'si_tpl_currency', 'si_tpl_amount', 'Your legal liability to others for property damage or personal injury. NZ minimum recommendation: $500,000.')}
+          {siRow('Uninsured Boater', 'si_uninsured_currency', 'si_uninsured_amount', 'Protects you if struck by an uninsured vessel whose owner cannot cover your losses.')}
+          {siRow('Medical Payments', 'si_medical_currency', 'si_medical_amount', 'Medical costs for people aboard injured during a covered accident, regardless of fault.')}
+          {siRow('Captain / Crew', 'si_crew_currency', 'si_crew_amount', 'Covers paid crew members for liability and injury while working aboard.')}
+          {siRow('Passenger Liability', 'si_passenger_currency', 'si_passenger_amount', 'Your liability to fare-paying or invited passengers — typically required for commercial use.')}
         </div>
       </Card>
 
@@ -2263,17 +2277,16 @@ export default function MarineProposalForm() {
   );
 
   /* ── Render ──────────────────────────────────────────────── */
-  const progressPct = (step / 7) * 100;
-  const stepContent = [step1, step2, step3, step4, step5, step6, step7];
+  const progressPct = (step / 6) * 100;
+  const stepContent = [step1, step3, step4, step5, step6, step7];
 
   const STEP_QUIPS = [
     "",
-    "Got a first mate? Add them here. They'll thank you when the boom swings. 🪝",
     "Your boat deserves better than 'big, floaty, goes fast' — the more detail, the sharper the deal. 🛥️",
     "Engines, tenders, trailers… our underwriters have seen worse. Considerably worse. ⚙️",
     "Nearly there. Even pirates had to fill out paperwork eventually. 🏴‍☠️",
     "The fun bit — deciding what everything's worth. Treat your hull value like a Tinder profile: honest, but put your best foot forward. 💰",
-    "Land ahoy! 🏝️ You're nearly done — just the declaration left. Shorter than The Rime of the Ancient Mariner and considerably less tragic.",
+    "",
   ];
 
   // Session timed out — show recovery screen (draft safely saved in Supabase)
@@ -2348,7 +2361,7 @@ export default function MarineProposalForm() {
         <div className="max-w-3xl mx-auto">
           <div className="flex justify-between text-xs text-slate-500 mb-2">
             <span>
-              Step {step} of 7 —{' '}
+              Step {step} of 6 —{' '}
               <span className="text-teal-400 font-medium">{STEPS[step - 1]}</span>
             </span>
             <span>{Math.round(progressPct)}% complete</span>
@@ -2423,7 +2436,7 @@ export default function MarineProposalForm() {
                 ← Back
               </button>
 
-              {step < 7 ? (
+              {step < 6 ? (
                 <button
                   type="button"
                   onClick={nextStep}
