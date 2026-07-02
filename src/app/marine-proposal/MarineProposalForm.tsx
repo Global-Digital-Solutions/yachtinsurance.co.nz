@@ -2343,14 +2343,25 @@ export default function MarineProposalForm() {
         </div>
       </div>
 
-      {/* ── Nudge banner ──────────────────────────────────────── */}
-      <div className="bg-teal-950/60 border-b border-teal-900/40 py-3 px-4 text-center">
-        <p className="text-teal-300 text-sm">
-          🎣 <strong>The more we know, the better the quote.</strong>{' '}
-          <span className="text-teal-400/80">
-            Keane&apos;s underwriters love detail — think of it as giving your boat its best first impression.
-          </span>
-        </p>
+      {/* ── Sailor-to-sailor message ───────────────────────────── */}
+      <div className="bg-slate-900 border-b border-slate-800 py-5 px-4">
+        <div className="max-w-2xl mx-auto flex items-start gap-4">
+          <span className="text-3xl flex-shrink-0 mt-0.5">⛵</span>
+          <div>
+            <p className="text-white font-semibold text-sm mb-1">
+              We&apos;re sailors just like you — we get it.
+            </p>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              There&apos;s nothing quite like being out on the water, and nothing quite like the
+              peace of mind that comes with the right cover. Fill in as much detail as you can —
+              Keane&apos;s underwriters genuinely love the specifics, and the more they know about
+              your boat and how you use her, the more competitive your quote will be.{' '}
+              <span className="text-slate-500">
+                Think of it as giving your boat her best first impression. ⚓
+              </span>
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Sticky progress */}
