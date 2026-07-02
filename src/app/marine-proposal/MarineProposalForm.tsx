@@ -2054,6 +2054,18 @@ export default function MarineProposalForm() {
 
   const step7 = (
     <div className="space-y-4">
+      {/* Land ahoy finish-line banner */}
+      <div className="bg-teal-900/30 border border-teal-700/50 rounded-xl p-5 flex items-center gap-4">
+        <span className="text-4xl flex-shrink-0">🏝️</span>
+        <div>
+          <p className="text-teal-300 font-bold text-base mb-0.5">Land ahoy — you&apos;re nearly done!</p>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            You&apos;ve navigated 6 steps like a seasoned blue-water sailor. Just the declaration to go
+            and your proposal is on its way to Keane Specialty. Fair winds from here.
+          </p>
+        </div>
+      </div>
+
       <div className="bg-amber-900/20 border border-amber-700/50 rounded-xl p-4">
         <p className="text-amber-300 text-sm font-medium mb-1">Declaration Questions</p>
         <p className="text-slate-400 text-sm">
@@ -2250,6 +2262,16 @@ export default function MarineProposalForm() {
   const progressPct = (step / 7) * 100;
   const stepContent = [step1, step2, step3, step4, step5, step6, step7];
 
+  const STEP_QUIPS = [
+    "The quote process is longer than a sea shanty — but we promise it'll be worth it. ⚓",
+    "Got a first mate? Add them here. They'll thank you when the boom swings. 🪝",
+    "Your boat deserves better than 'big, floaty, goes fast' — the more detail, the sharper the deal. 🛥️",
+    "Engines, tenders, trailers… we know, it's a lot. Keane's underwriters have seen worse. Considerably worse. ⚙️",
+    "Nearly there. Even pirates had to fill out paperwork eventually. 🏴‍☠️",
+    "The fun bit — deciding what everything's worth. Treat your hull value like a Tinder profile: honest, but put your best foot forward. 💰",
+    "Land ahoy! 🏝️ You're nearly done — just the declaration left. Shorter than The Rime of the Ancient Mariner and considerably less tragic.",
+  ];
+
   // Session timed out — show recovery screen (draft safely saved in Supabase)
   if (sessionExpired) {
     return (
@@ -2401,10 +2423,13 @@ export default function MarineProposalForm() {
 
       {/* Step content */}
       <div className="max-w-2xl mx-auto px-4 pt-6">
-        <h2 className="text-xl font-bold text-white mb-5">
+        <h2 className="text-xl font-bold text-white mb-2">
           <span className="text-teal-500 mr-2">{step}.</span>
           {STEPS[step - 1]}
         </h2>
+        <p className="text-slate-500 text-xs italic mb-5 leading-relaxed">
+          {STEP_QUIPS[step - 1]}
+        </p>
 
         {stepContent[step - 1]}
 
