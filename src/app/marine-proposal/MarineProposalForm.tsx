@@ -276,17 +276,37 @@ const DateSelect = ({
   maxYear?: number;
   futureOnly?: boolean;
 }) => {
-  const parts = value ? value.split('-') : ['', '', ''];
-  const yr = parts[0] || '';
-  const mo = parts[1] || '';
-  const dy = parts[2] || '';
-
-  const emit = (y: string, m: string, d: string) => {
-    if (y && m && d) onChange(`${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`);
-    else onChange('');
+  // Parse a full date string into its three parts
+  const parse = (v: string) => {
+    if (v) { const p = v.split('-'); return { yr: p[0] || '', mo: p[1] || '', dy: p[2] || '' }; }
+    return { yr: '', mo: '', dy: '' };
   };
 
-  const daysInMo = yr && mo ? new Date(parseInt(yr), parseInt(mo), 0).getDate() : 31;
+  // LOCAL state — each dropdown persists independently.
+  // Previously the component used a shared emit() that reset to '' when any part was missing,
+  // causing each selection to immediately revert. Now we only call onChange when all 3 are set.
+  const [parts, setParts] = React.useState(() => parse(value));
+
+  // Sync if parent resets the value (e.g. localStorage restore on mount)
+  const prevValue = React.useRef(value);
+  React.useEffect(() => {
+    if (value !== prevValue.current) {
+      prevValue.current = value;
+      setParts(parse(value));
+    }
+  }, [value]);
+
+  const update = (next: { yr: string; mo: string; dy: string }) => {
+    setParts(next);
+    if (next.yr && next.mo && next.dy) {
+      onChange(`${next.yr}-${next.mo.padStart(2, '0')}-${next.dy.padStart(2, '0')}`);
+    }
+    // Partial selections stay in local state only — no onChange('') reset
+  };
+
+  const daysInMo = parts.yr && parts.mo
+    ? new Date(parseInt(parts.yr), parseInt(parts.mo), 0).getDate()
+    : 31;
   const lo = minYear ?? (futureOnly ? THIS_YEAR : 1940);
   const hi = maxYear ?? (futureOnly ? THIS_YEAR + 3 : THIS_YEAR);
   const years = Array.from({ length: hi - lo + 1 }, (_, i) => (futureOnly ? lo + i : hi - i));
@@ -300,8 +320,8 @@ const DateSelect = ({
       <div className="grid grid-cols-3 gap-2">
         <select
           id={`${id}-day`}
-          value={dy}
-          onChange={(e) => emit(yr, mo, e.target.value)}
+          value={parts.dy}
+          onChange={(e) => update({ ...parts, dy: e.target.value })}
           className={selCls}
         >
           <option value="">Day</option>
@@ -311,7 +331,11 @@ const DateSelect = ({
             </option>
           ))}
         </select>
-        <select value={mo} onChange={(e) => emit(yr, e.target.value, dy)} className={selCls}>
+        <select
+          value={parts.mo}
+          onChange={(e) => update({ ...parts, mo: e.target.value })}
+          className={selCls}
+        >
           <option value="">Month</option>
           {MONTHS_LONG.map((m, i) => (
             <option key={i} value={String(i + 1).padStart(2, '0')}>
@@ -319,7 +343,11 @@ const DateSelect = ({
             </option>
           ))}
         </select>
-        <select value={yr} onChange={(e) => emit(e.target.value, mo, dy)} className={selCls}>
+        <select
+          value={parts.yr}
+          onChange={(e) => update({ ...parts, yr: e.target.value })}
+          className={selCls}
+        >
           <option value="">Year</option>
           {years.map((y) => (
             <option key={y} value={String(y)}>
@@ -2313,6 +2341,16 @@ export default function MarineProposalForm() {
             <span>Progress saved automatically</span>
           </div>
         </div>
+      </div>
+
+      {/* ── Nudge banner ──────────────────────────────────────── */}
+      <div className="bg-teal-950/60 border-b border-teal-900/40 py-3 px-4 text-center">
+        <p className="text-teal-300 text-sm">
+          🎣 <strong>The more we know, the better the quote.</strong>{' '}
+          <span className="text-teal-400/80">
+            Keane&apos;s underwriters love detail — think of it as giving your boat its best first impression.
+          </span>
+        </p>
       </div>
 
       {/* Sticky progress */}
