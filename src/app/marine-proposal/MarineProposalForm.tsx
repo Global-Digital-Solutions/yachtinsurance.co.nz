@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Lock, Anchor, Clock, Save } from 'lucide-react';
+import { Lock, Anchor, Shield, Zap } from 'lucide-react';
 
 /* ── Site-specific defaults (set via Vercel env vars per deployment) ── */
 // .co.nz → NEXT_PUBLIC_FORM_DEFAULT_COUNTRY=New Zealand, NEXT_PUBLIC_FORM_DEFAULT_CURRENCY=NZD
@@ -2451,11 +2451,12 @@ export default function MarineProposalForm() {
           <div className="hidden xl:flex flex-col gap-3">
             <div className="sticky top-24 space-y-3">
               {[
-                { icon: <Clock className="w-5 h-5" />, label: 'Quote in 2 days', sub: '2 working days' },
-                { icon: <Save className="w-5 h-5" />, label: 'Auto-saved', sub: 'Never lose progress' },
-              ].map(({ icon, label, sub }) => (
-                <div key={label} className="flex flex-col items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl py-5 px-3 text-center">
+                { icon: <Shield className="w-4 h-4" />, stat: '20k+', label: 'Boats insured', sub: 'to date' },
+                { icon: <Zap className="w-4 h-4" />, stat: '24hr', label: 'Quote turnaround', sub: 'or less' },
+              ].map(({ icon, stat, label, sub }) => (
+                <div key={label} className="flex flex-col items-center gap-1.5 bg-slate-900 border border-slate-800 rounded-xl py-5 px-3 text-center">
                   <span className="text-teal-400">{icon}</span>
+                  <p className="text-teal-300 text-base font-bold leading-none mt-0.5">{stat}</p>
                   <p className="text-white text-xs font-semibold leading-snug">{label}</p>
                   <p className="text-slate-500 text-xs leading-tight">{sub}</p>
                 </div>
