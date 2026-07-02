@@ -11,10 +11,16 @@ export async function POST(request: NextRequest) {
 
     const emailBody = formatProposalEmail(data);
 
+    const displayName =
+      data.ownerName ||
+      (data.firstName && data.lastName
+        ? `${data.title || ''} ${data.firstName} ${data.lastName}`.trim()
+        : 'Unknown');
+
     const formBody = new URLSearchParams({
       source: 'yachtinsurance.co.nz/marine-proposal',
-      _subject: `Marine Proposal — ${data.ownerName || 'Unknown'} — ${data.vesselName || 'Vessel TBC'}`,
-      name: String(data.ownerName || ''),
+      _subject: `Marine Proposal — ${displayName} — ${data.vesselName || 'Vessel TBC'}`,
+      name: displayName,
       email: String(data.email || ''),
       phone: String(data.phone || ''),
       proposal_body: emailBody,
@@ -58,7 +64,8 @@ function formatProposalEmail(d: Record<string, FV>): string {
   const H = (title: string) => lines.push('', `--- ${title} ---`);
 
   H('PROPOSER DETAILS');
-  L('Owner Name', d.ownerName); L('Date of Birth', d.dob);
+  const fullName = d.ownerName || (d.firstName && d.lastName ? `${d.title || ''} ${d.firstName} ${d.lastName}`.trim() : null);
+  L('Owner Name', fullName); L('Title', d.title); L('Nationality', d.nationality); L('Date of Birth', d.dob);
   L('Address', d.address); L('City/Town', d.city);
   L('State/County', d.stateCounty); L('Zip/Postcode', d.zipPostcode); L('Country', d.country);
   L('Email', d.email); L('Phone', d.phone); L('Occupation', d.occupation);
