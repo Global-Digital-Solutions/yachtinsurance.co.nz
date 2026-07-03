@@ -2090,7 +2090,7 @@ export default function MarineProposalForm() {
           <p className="text-teal-300 font-bold text-base mb-0.5">Land ahoy — you&apos;re nearly done!</p>
           <p className="text-slate-400 text-sm leading-relaxed">
             You&apos;ve navigated 6 steps like a seasoned blue-water sailor. Just the declaration to go
-            and your proposal is on its way to our underwriters. Fair winds from here.
+            and your information is on its way to our underwriters. Fair winds from here.
           </p>
         </div>
       </div>
