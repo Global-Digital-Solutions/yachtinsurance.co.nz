@@ -146,14 +146,16 @@ const YesNo = ({
   value,
   onChange,
   hint,
+  disabled,
 }: {
   label: string;
   id: string;
   value: string;
   onChange: (v: string) => void;
   hint?: string;
+  disabled?: boolean;
 }) => (
-  <div>
+  <div className={disabled ? 'opacity-40 pointer-events-none' : ''}>
     <p className={labelCls}>{label}</p>
     <div className="flex gap-2" id={id}>
       {['Yes', 'No'].map((opt) => (
@@ -161,6 +163,7 @@ const YesNo = ({
           key={opt}
           type="button"
           onClick={() => onChange(opt)}
+          disabled={disabled}
           className={`px-5 py-2 rounded-lg text-sm font-semibold transition border ${
             value === opt
               ? opt === 'Yes'
@@ -279,7 +282,10 @@ const MONTHS_LONG = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December',
 ];
-const THIS_YEAR = new Date().getFullYear();
+const _TODAY      = new Date();
+const THIS_YEAR   = _TODAY.getFullYear();
+const THIS_MONTH  = _TODAY.getMonth() + 1; // 1-indexed
+const THIS_DAY    = _TODAY.getDate();
 
 const selCls =
   'bg-slate-800 border border-slate-600 rounded-lg px-1.5 sm:px-2 py-2.5 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition cursor-pointer w-full';
@@ -338,6 +344,12 @@ const DateSelect = ({
   const hi = maxYear ?? (futureOnly ? THIS_YEAR + 3 : THIS_YEAR);
   const years = Array.from({ length: hi - lo + 1 }, (_, i) => (futureOnly ? lo + i : hi - i));
 
+  // futureOnly: hide months that have fully passed in the current year
+  const isCurrentYear = futureOnly && parts.yr === String(THIS_YEAR);
+  // futureOnly: hide days before today when in the current year + month
+  const isCurrentYearMonth = isCurrentYear && parts.mo === String(THIS_MONTH).padStart(2, '0');
+  const minDay = isCurrentYearMonth ? THIS_DAY : 1;
+
   return (
     <div>
       <label htmlFor={`${id}-day`} className={labelCls}>
@@ -352,11 +364,13 @@ const DateSelect = ({
           className={selCls}
         >
           <option value="">Day</option>
-          {Array.from({ length: daysInMo }, (_, i) => i + 1).map((d) => (
-            <option key={d} value={String(d).padStart(2, '0')}>
-              {d}
-            </option>
-          ))}
+          {Array.from({ length: daysInMo }, (_, i) => i + 1)
+            .filter((d) => d >= minDay)
+            .map((d) => (
+              <option key={d} value={String(d).padStart(2, '0')}>
+                {d}
+              </option>
+            ))}
         </select>
         <select
           value={parts.mo}
@@ -364,11 +378,15 @@ const DateSelect = ({
           className={selCls}
         >
           <option value="">Month</option>
-          {MONTHS_LONG.map((m, i) => (
-            <option key={i} value={String(i + 1).padStart(2, '0')}>
-              {m}
-            </option>
-          ))}
+          {MONTHS_LONG.map((m, i) => {
+            const monthNum = i + 1;
+            if (isCurrentYear && monthNum < THIS_MONTH) return null;
+            return (
+              <option key={i} value={String(monthNum).padStart(2, '0')}>
+                {m}
+              </option>
+            );
+          })}
         </select>
         <select
           value={parts.yr}
@@ -1308,7 +1326,6 @@ export default function MarineProposalForm() {
           <Field
             label="Year Built"
             id="yearBuilt"
-            type="number"
             value={form.yearBuilt}
             onChange={(v) => set('yearBuilt', v)}
             required
@@ -1464,9 +1481,9 @@ export default function MarineProposalForm() {
           <Field
             label="Year Built"
             id="engine_yearBuilt"
-            type="number"
             value={form.engine_yearBuilt}
             onChange={(v) => set('engine_yearBuilt', v)}
+            placeholder="e.g. 2018"
           />
           <Field
             label="Horsepower (HP)"
@@ -1558,9 +1575,9 @@ export default function MarineProposalForm() {
               <Field
                 label="Year Built"
                 id="tender_yearBuilt"
-                type="number"
                 value={form.tender_yearBuilt}
                 onChange={(v) => set('tender_yearBuilt', v)}
+                placeholder="e.g. 2015"
               />
             </Grid2>
             <Grid2>
@@ -1598,9 +1615,9 @@ export default function MarineProposalForm() {
               <Field
                 label="Year Built"
                 id="tenderMotor_yearBuilt"
-                type="number"
                 value={form.tenderMotor_yearBuilt}
                 onChange={(v) => set('tenderMotor_yearBuilt', v)}
+                placeholder="e.g. 2019"
               />
               <Field
                 label="Horsepower (HP)"
@@ -1897,13 +1914,15 @@ export default function MarineProposalForm() {
             label="Fully Comprehensive"
             id="cover_fullyComp"
             value={form.cover_fullyComp}
-            onChange={(v) => set('cover_fullyComp', v)}
+            onChange={(v) => { set('cover_fullyComp', v); if (v === 'Yes') set('cover_tplOnly', 'No'); }}
+            disabled={form.cover_tplOnly === 'Yes'}
           />
           <YesNo
             label="Third Party Liability Only"
             id="cover_tplOnly"
             value={form.cover_tplOnly}
-            onChange={(v) => set('cover_tplOnly', v)}
+            onChange={(v) => { set('cover_tplOnly', v); if (v === 'Yes') set('cover_fullyComp', 'No'); }}
+            disabled={form.cover_fullyComp === 'Yes'}
           />
         </Grid2>
         <Grid2>
@@ -2339,7 +2358,7 @@ export default function MarineProposalForm() {
 
       {/* ── Submitting overlay ─────────────────────────────────── */}
       {submitting && (
-        <div className="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-50 flex items-center justify-center px-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ backgroundImage: 'linear-gradient(rgba(2,8,23,0.88) 0%, rgba(2,8,23,0.82) 100%), url(/home-hero.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
           <div className="text-center max-w-md">
             {/* Animated anchor */}
             <div className="flex justify-center mb-8">
@@ -2350,7 +2369,7 @@ export default function MarineProposalForm() {
                 </div>
               </div>
             </div>
-            <h2 className="text-white text-2xl font-bold mb-3">Sending your proposal…</h2>
+            <h2 className="text-white text-2xl font-bold mb-3">Sending your information…</h2>
             <p className="text-slate-400 text-sm leading-relaxed mb-8">
               We&apos;re securely transmitting your vessel details to our specialist underwriters.
               Please don&apos;t close this page — this takes around 15–20 seconds.

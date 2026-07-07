@@ -6,19 +6,19 @@ import ReferenceDisplay from './ReferenceDisplay';
 export const metadata: Metadata = {
   title: 'Quote Form Submitted | Thank You | YachtInsurance.co.nz',
   description:
-    'Your marine insurance proposal has been submitted to Keane Specialty. You will receive a tailored quote within 2 working days.',
+    'Your marine insurance information has been submitted to Keane Specialty. You will receive a tailored quote within 24 hours.',
   robots: { index: false, follow: false },
 };
 
 const NEXT_STEPS = [
   {
     n: '1',
-    title: 'Your Proposal Is With Keane Specialty',
-    body: "Keane's underwriting team has received your full vessel and cover details. They are a specialist marine underwriter — not a general insurer — so your proposal is being reviewed by people who understand boats.",
+    title: 'Your Information Is With Keane Specialty',
+    body: "Keane's underwriting team has received your full vessel and cover details. They are a specialist marine underwriter — not a general insurer — so your information is being reviewed by people who understand boats.",
   },
   {
     n: '2',
-    title: 'You Will Hear From Keane Within 2 Working Days',
+    title: 'You Will Hear From Keane Within 24 Hours',
     body: 'Keane will contact you directly by email with a tailored quote. Please check your inbox — and your spam folder. The email will come from a keanespecialty.com address, so you know it\'s genuine.',
   },
   {
@@ -40,19 +40,19 @@ const FAQS = [
   },
   {
     q: 'Is the email from Keane genuine?',
-    a: "Yes. Keane Specialty will contact you directly from a @keanespecialty.com email address. We let them know your proposal has come through our site, so they're expecting to hear from you. If anything looks suspicious, contact us at hello@cover4you.co.nz.",
+    a: "Yes. Keane Specialty will contact you directly from a @keanespecialty.com email address. We let them know your submission has come through our site, so they're expecting to hear from you. If anything looks suspicious, contact us at hello@cover4you.co.nz.",
   },
   {
-    q: 'Can I make changes to my proposal?',
+    q: 'Can I make changes to my submission?',
     a: "Absolutely. When Keane contacts you, simply tell them about any changes to your vessel details, cover requirements or sums insured — they'll update the quote accordingly before binding.",
   },
   {
     q: 'What if I need cover to start urgently?',
-    a: "Email us at hello@cover4you.co.nz and we can flag the urgency with Keane directly. In many cases cover can be bound on the same day once the proposal is reviewed.",
+    a: "Email us at hello@cover4you.co.nz and we can flag the urgency with Keane directly. In many cases cover can be bound on the same day once the details are reviewed.",
   },
   {
     q: 'Am I committed to buying?',
-    a: "No. This is a no-obligation proposal — you're not committed to anything. Review the quote at your leisure and proceed only when you're completely happy.",
+    a: "No. This is a no-obligation submission — you're not committed to anything. Review the quote at your leisure and proceed only when you're completely happy.",
   },
 ];
 
@@ -96,9 +96,9 @@ export default function ThankYouPage() {
           </p>
           <p className="text-slate-300 text-lg leading-relaxed max-w-xl mx-auto">
             Based on your vessel details and cover requirements, we&apos;ve forwarded your
-            proposal to <strong className="text-white">Keane Specialty</strong> — one of the
+            information to <strong className="text-white">Keane Specialty</strong> — one of the
             leading specialist marine underwriters in the market. They will contact you with a
-            tailored quote within <strong className="text-white">2 working days</strong>.
+            tailored quote within <strong className="text-white">24 hours</strong>.
           </p>
 
           {/* Reference number (shows when returned from Keane API) */}
@@ -110,7 +110,7 @@ export default function ThankYouPage() {
               <Shield className="w-4 h-4 text-teal-400" /> No obligation
             </span>
             <span className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-teal-400" /> 2-day quote turnaround
+              <Clock className="w-4 h-4 text-teal-400" /> 24hr quote turnaround
             </span>
             <span className="flex items-center gap-2">
               <Anchor className="w-4 h-4 text-teal-400" /> Marine specialists
