@@ -149,7 +149,7 @@ export default function About() {
                     Our mission is to provide transparent, independent insurance <Link href="/compare" className="text-sky-300 hover:text-white underline underline-offset-2 transition-colors">comparison services that help you find better coverage</Link> at fairer premiums. We <Link href="/compare" className="text-sky-300 hover:text-white underline underline-offset-2 transition-colors">compare policies from New Zealand's leading marine insurers</Link>, explaining <Link href="/coverage" className="text-sky-300 hover:text-white underline underline-offset-2 transition-colors">coverage differences</Link> so you can make informed decisions.
                   </p>
                   <p className="leading-relaxed">
-                    Whether you own a small recreational boat, a <Link href="/sectors/yacht" className="text-sky-300 hover:text-white underline underline-offset-2 transition-colors">cruising yacht</Link>, or a <Link href="/sectors/racing-boat" className="text-sky-300 hover:text-white underline underline-offset-2 transition-colors">racing vessel</Link>, we're committed to matching you with the insurance provider and coverage level that best fits your needs and budget. <Link href="/contact" className="text-sky-300 hover:text-white underline underline-offset-2 transition-colors">Get a quote today</Link>.
+                    Whether you own a small recreational boat, a <Link href="/sectors/yacht" className="text-sky-300 hover:text-white underline underline-offset-2 transition-colors">cruising yacht</Link>, or a <Link href="/sectors/racing-boat" className="text-sky-300 hover:text-white underline underline-offset-2 transition-colors">racing vessel</Link>, we're committed to matching you with the insurance provider and coverage level that best fits your needs and budget. <Link href="/marine-proposal" className="text-sky-300 hover:text-white underline underline-offset-2 transition-colors">Get a quote today</Link>.
                   </p>
                 </div>
               </div>
@@ -412,7 +412,7 @@ export default function About() {
             </div>
             <div className="bg-white rounded-lg p-6 border border-sky-200 hover:shadow-lg transition-shadow">
               <h3 className="font-bold text-lg text-slate-900 mb-2">
-                <Link href="/contact" className="text-sky-600 hover:text-sky-700">Get Your Quote</Link>
+                <Link href="/marine-proposal" className="text-sky-600 hover:text-sky-700">Get Your Quote</Link>
               </h3>
               <p className="text-slate-600 text-sm mb-4">Start comparing quotes from multiple NZ marine insurers and find the best coverage for your vessel today.</p>
             </div>

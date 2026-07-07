@@ -392,7 +392,7 @@ export default function YachtInsurancePage() {
               like yours.
             </p>
             <Link
-              href="/contact"
+              href="/marine-proposal"
               className="inline-flex items-center gap-2 px-6 py-3 bg-sky-600 text-white font-semibold rounded-lg hover:bg-sky-700 transition-colors"
             >
               Get Your Quote
@@ -522,7 +522,7 @@ export default function YachtInsurancePage() {
             minutes
           </p>
           <Link
-            href="/contact"
+            href="/marine-proposal"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-sky-600 font-bold rounded-lg hover:bg-sky-50 transition-colors shadow-xl"
           >
             Get Your Quote

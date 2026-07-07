@@ -70,7 +70,7 @@ export default function Home() {
                 ))}
               </div>
               <div className="flex flex-wrap gap-4">
-                <Link href="/contact" className="bg-teal-500 hover:bg-teal-400 text-white font-bold px-8 py-4 rounded-xl transition-colors">Get a Quote</Link>
+                <Link href="/marine-proposal" className="bg-teal-500 hover:bg-teal-400 text-white font-bold px-8 py-4 rounded-xl transition-colors">Get a Quote</Link>
                 <Link href="/compare" className="border border-white/20 hover:border-white/40 text-white font-semibold px-8 py-4 rounded-xl transition-colors">Compare Insurers</Link>
               </div>
             </div>
@@ -191,7 +191,7 @@ export default function Home() {
             <p className="text-slate-400 text-sm">Not sure which cover you need? Our advisors will guide you through the options.</p>
             <div className="flex gap-3">
               <Link href="/coverage" className="border border-white/20 hover:border-teal-400 text-white hover:text-teal-300 font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors">All Coverage Types</Link>
-              <Link href="/contact" className="bg-teal-500 hover:bg-teal-400 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-colors">Get a Quote</Link>
+              <Link href="/marine-proposal" className="bg-teal-500 hover:bg-teal-400 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-colors">Get a Quote</Link>
             </div>
           </div>
         </div>
@@ -238,7 +238,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <Link href="/contact" className="mt-8 block w-full bg-teal-500 hover:bg-teal-400 text-white font-bold py-4 rounded-xl text-center transition-colors">Get a Quote Now</Link>
+              <Link href="/marine-proposal" className="mt-8 block w-full bg-teal-500 hover:bg-teal-400 text-white font-bold py-4 rounded-xl text-center transition-colors">Get a Quote Now</Link>
             </div>
           </div>
         </div>
@@ -286,7 +286,7 @@ export default function Home() {
             Get competitive yacht insurance quotes from New Zealand&apos;s specialist marine advisors. Compare multiple insurers — no obligation, response within 24 hours.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/contact" className="bg-white hover:bg-teal-50 text-teal-700 font-bold px-8 py-4 rounded-xl transition-colors">Get a Quote</Link>
+            <Link href="/marine-proposal" className="bg-white hover:bg-teal-50 text-teal-700 font-bold px-8 py-4 rounded-xl transition-colors">Get a Quote</Link>
             <Link href="/compare" className="border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-xl transition-colors">Compare Insurers</Link>
           </div>
         </div>

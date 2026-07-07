@@ -215,7 +215,7 @@ export default function FAQsPage() {
               </div>
             </Link>
             <Link
-              href="/contact"
+              href="/marine-proposal"
               className="flex items-center gap-3 p-5 bg-white rounded-xl border border-slate-200 hover:border-sky-300 hover:shadow-md transition-all group"
             >
               <div className="p-2 bg-emerald-100 rounded-lg group-hover:bg-emerald-200 transition-colors">

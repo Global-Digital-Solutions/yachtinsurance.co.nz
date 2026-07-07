@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import MarineProposalForm from './MarineProposalForm';
 
 export const metadata: Metadata = {
@@ -8,5 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default function MarineProposalPage() {
-  return <MarineProposalForm />;
+  return (
+    // Suspense boundary required for useSearchParams inside MarineProposalForm
+    <Suspense fallback={<div className="min-h-screen bg-slate-950" />}>
+      <MarineProposalForm />
+    </Suspense>
+  );
 }

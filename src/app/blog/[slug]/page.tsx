@@ -327,7 +327,7 @@ export default async function BlogPostPage({
                 from our marine insurance specialists.
               </p>
               <Link
-                href="/contact"
+                href="/marine-proposal"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-sky-600 font-semibold rounded-lg hover:bg-sky-50 transition-colors"
               >
                 Get Your Quote
@@ -381,7 +381,7 @@ export default async function BlogPostPage({
             Get a no-obligation quote from our marine insurance specialists
           </p>
           <Link
-            href="/contact"
+            href="/marine-proposal"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-sky-600 font-bold rounded-lg hover:bg-sky-50 transition-colors shadow-lg"
           >
             Get Your Quote

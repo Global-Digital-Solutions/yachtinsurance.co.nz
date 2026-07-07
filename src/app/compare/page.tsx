@@ -245,7 +245,7 @@ export default function Compare() {
                 {/* Card Footer */}
                 <div className={`p-6 pt-4 border-t ${insurer.featured ? 'border-amber-100 bg-amber-50' : 'border-slate-200 bg-slate-50'}`}>
                   <Link
-                    href="/contact"
+                    href="/marine-proposal"
                     className={`inline-flex items-center gap-2 w-full justify-center px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
                       insurer.featured
                         ? 'bg-amber-400 text-slate-900 hover:bg-amber-500'
@@ -280,7 +280,7 @@ export default function Compare() {
               </p>
             </div>
             <Link
-              href="/contact"
+              href="/marine-proposal"
               className="flex-shrink-0 inline-block px-7 py-3 bg-white text-teal-700 rounded-lg font-bold text-sm hover:bg-teal-50 transition-colors whitespace-nowrap shadow"
             >
               Get Expert Advice →
@@ -420,7 +420,7 @@ export default function Compare() {
           {/* CTA underneath */}
           <div className="text-center mt-10">
             <Link
-              href="/contact"
+              href="/marine-proposal"
               className="inline-block px-10 py-4 bg-gradient-to-r from-sky-600 to-teal-500 text-white rounded-xl font-semibold text-lg hover:from-sky-700 hover:to-teal-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Compare Quotes Now →
@@ -503,7 +503,7 @@ export default function Compare() {
             </div>
             <div className="bg-white rounded-lg p-6 border border-sky-200 hover:shadow-lg transition-shadow">
               <h3 className="font-bold text-lg text-slate-900 mb-2">
-                <Link href="/contact" className="text-sky-600 hover:text-sky-700">Get Your Quote</Link>
+                <Link href="/marine-proposal" className="text-sky-600 hover:text-sky-700">Get Your Quote</Link>
               </h3>
               <p className="text-slate-600 text-sm mb-4">Start comparing quotes from NZ's leading marine insurers and find the best value for your vessel.</p>
             </div>

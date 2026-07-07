@@ -603,7 +603,7 @@ export default function BlueWaterInsurancePage() {
             Get a specialized quote for blue water cruiser insurance from New Zealand
           </p>
           <Link
-            href="/contact"
+            href="/marine-proposal"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-sky-600 font-bold rounded-lg hover:bg-sky-50 transition-colors shadow-xl"
           >
             Get Your Quote

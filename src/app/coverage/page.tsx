@@ -173,7 +173,7 @@ export default function Coverage() {
                   Marine insurance typically falls into two main categories: damage to your own vessel (hull and machinery) and liability for damage you cause to others. Most policies also include optional covers for personal effects, weather damage, theft, and specialized needs like <Link href="/sectors/racing-boat" className="text-sky-300 hover:text-white font-semibold underline underline-offset-2">racing</Link> or overseas cruising.
                 </p>
                 <p className="leading-relaxed">
-                  <Link href="/compare" className="text-sky-300 hover:text-white font-semibold underline underline-offset-2">Compare providers</Link> to find the right protection, or fill in the form to <Link href="/contact" className="text-sky-300 hover:text-white font-semibold underline underline-offset-2">get a quote today</Link>.
+                  <Link href="/compare" className="text-sky-300 hover:text-white font-semibold underline underline-offset-2">Compare providers</Link> to find the right protection, or fill in the form to <Link href="/marine-proposal" className="text-sky-300 hover:text-white font-semibold underline underline-offset-2">get a quote today</Link>.
                 </p>
               </div>
             </div>
@@ -521,7 +521,7 @@ export default function Coverage() {
             </div>
             <div className="bg-white rounded-lg p-6 border border-sky-200 hover:shadow-lg transition-shadow">
               <h3 className="font-bold text-lg text-slate-900 mb-2">
-                <Link href="/contact" className="text-sky-600 hover:text-sky-700">Get Your Quote</Link>
+                <Link href="/marine-proposal" className="text-sky-600 hover:text-sky-700">Get Your Quote</Link>
               </h3>
               <p className="text-slate-600 text-sm mb-4">Compare quotes from multiple NZ insurers and discover how much coverage you could get at the right price.</p>
             </div>

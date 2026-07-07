@@ -209,7 +209,7 @@ export default function BlogPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/contact"
+              href="/marine-proposal"
               className="px-8 py-4 bg-white text-sky-700 rounded-xl font-semibold text-lg hover:bg-sky-50 transition-colors shadow-lg hover:shadow-xl"
             >
               Get a Quote
@@ -255,7 +255,7 @@ export default function BlogPage() {
             </div>
             <div className="bg-slate-50 rounded-lg p-6 border border-sky-200 hover:shadow-lg transition-shadow">
               <h3 className="font-bold text-lg text-slate-900 mb-2">
-                <Link href="/contact" className="text-sky-600 hover:text-sky-700">Get Your Quote</Link>
+                <Link href="/marine-proposal" className="text-sky-600 hover:text-sky-700">Get Your Quote</Link>
               </h3>
               <p className="text-slate-600 text-sm mb-4">Compare quotes from multiple NZ marine insurers and find the right protection for your boat.</p>
             </div>

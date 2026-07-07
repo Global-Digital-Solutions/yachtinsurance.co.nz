@@ -7,41 +7,38 @@ const inputClass =
   'w-full px-3 py-2.5 bg-slate-700/60 border border-white/10 rounded-lg text-white placeholder-slate-400 text-sm focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition-all';
 
 export default function HeroForm() {
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus('loading');
     const fd = new FormData(e.currentTarget);
-    const body = {
-      name: fd.get('name'),
-      email: fd.get('email'),
-      phone: fd.get('phone'),
-      vessel_type: fd.get('vessel_type'),
-      vessel_value: fd.get('vessel_value'),
-      vessel_make_model: fd.get('vessel_make_model'),
-      mooring_location: fd.get('mooring_location'),
-      company_url: fd.get('company_url') || '',
-    };
-    try {
-      const res = await fetch('/api/quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      if (!res.ok) throw new Error('failed');
-      window.location.href = '/thank-you/';
-    } catch {
-      setStatus('error');
-    }
+
+    // Honeypot — real users never fill this
+    if (fd.get('company_url') && String(fd.get('company_url')).trim() !== '') return;
+
+    setLoading(true);
+
+    // Build query params to pre-populate the full marine proposal form
+    const params = new URLSearchParams({
+      hf:    '1',
+      name:  String(fd.get('name')              || ''),
+      email: String(fd.get('email')             || ''),
+      phone: String(fd.get('phone')             || ''),
+      vmm:   String(fd.get('vessel_make_model') || ''),
+      vt:    String(fd.get('vessel_type')       || ''),
+      vv:    String(fd.get('vessel_value')      || ''),
+      ml:    String(fd.get('mooring_location')  || ''),
+    });
+
+    window.location.href = `/marine-proposal?${params.toString()}`;
   }
 
   return (
     <div className="bg-slate-900/80 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
       {/* Header */}
       <div className="px-6 py-5 border-b border-white/10">
-        <h3 className="text-lg font-bold text-white">Quick Quote Request</h3>
-        <p className="text-slate-400 text-sm mt-0.5">Fast response from specialist NZ marine advisors</p>
+        <h3 className="text-lg font-bold text-white">Get a Quote</h3>
+        <p className="text-slate-400 text-sm mt-0.5">Fast response from specialist marine advisors</p>
       </div>
 
       {/* Form */}
@@ -116,23 +113,16 @@ export default function HeroForm() {
             <input type="text" name="mooring_location" required placeholder="e.g. Westhaven Marina, Auckland" className={inputClass} />
           </div>
 
-          {/* Error */}
-          {status === 'error' && (
-            <p className="text-red-400 text-xs bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
-              Something went wrong. Please try again or email hello@cover4you.co.nz
-            </p>
-          )}
-
           {/* Submit */}
           <button
             type="submit"
-            disabled={status === 'loading'}
+            disabled={loading}
             className="w-full py-3 bg-teal-500 hover:bg-teal-400 text-white font-bold rounded-xl text-sm transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed mt-1"
           >
-            {status === 'loading' ? (
-              <><Loader2 size={16} className="animate-spin" /> Sending…</>
+            {loading ? (
+              <><Loader2 size={16} className="animate-spin" /> Starting your quote…</>
             ) : (
-              'Get My Quote →'
+              'Get a Quote →'
             )}
           </button>
 

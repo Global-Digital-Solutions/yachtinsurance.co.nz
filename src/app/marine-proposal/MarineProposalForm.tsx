@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Lock, Anchor, Shield, Zap } from 'lucide-react';
 
 /* ── Site-specific defaults (set via Vercel env vars per deployment) ── */
@@ -764,6 +764,7 @@ const BLANK: FormState = {
 /* ── Main Component ──────────────────────────────────────────── */
 export default function MarineProposalForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<FormState>(() => {
     if (typeof window !== 'undefined') {
@@ -813,6 +814,69 @@ export default function MarineProposalForm() {
       /* ignore */
     }
   }, [form]);
+
+  // ── Pre-populate from HeroForm quick-quote redirect (runs once on mount) ──
+  // HeroForm passes ?hf=1&name=...&email=...&phone=...&vmm=...&vt=...&vv=...&ml=...
+  useEffect(() => {
+    if (searchParams.get('hf') !== '1') return;
+
+    const rawName = searchParams.get('name') || '';
+    const nameParts = rawName.trim().split(/\s+/);
+    const firstName = nameParts[0] || '';
+    const lastName  = nameParts.slice(1).join(' ') || '';
+
+    // vessel make/model → split on first space (first word = brand, rest = model)
+    const rawVmm   = searchParams.get('vmm') || '';
+    const vmmParts = rawVmm.trim().split(/\s+/);
+    const manufacturer = vmmParts[0] || '';
+    const model        = vmmParts.slice(1).join(' ') || '';
+
+    // vessel value range → approximate hull sum insured
+    const vv = searchParams.get('vv') || '';
+    const hullAmount =
+      vv.includes('Under')       ? '20000'  :
+      vv.includes('25,000')      ? '50000'  :
+      vv.includes('75,000')      ? '112500' :
+      vv.includes('150,000')     ? '325000' :
+      vv.includes('Over')        ? '500000' : '';
+
+    // vessel type → map short hero labels to full-form dropdown options
+    const typeMap: Record<string, string> = {
+      'Yacht':             'Sail Monohull',
+      'Racing Boat':       'Sail Monohull',
+      'Coastal Cruising':  'Sail Monohull',
+      'Blue Water Cruiser':'Sail Monohull',
+      'Jet Ski':           'Jet Ski / PWC',
+      'Dinghy':            'Runabout',
+      'Tender':            'Motor Cruiser',
+    };
+    const vesselType = typeMap[searchParams.get('vt') || ''] || '';
+
+    // Clear stale localStorage draft so pre-fill starts clean
+    try {
+      localStorage.removeItem('marine-proposal-draft');
+      localStorage.removeItem('marine-proposal-id');
+    } catch { /* ignore */ }
+    setProposalId(null);
+
+    setForm({
+      ...BLANK,
+      firstName,
+      lastName,
+      email:          searchParams.get('email') || '',
+      phone:          searchParams.get('phone') || '',
+      manufacturer,
+      model,
+      vesselType,
+      mooringName:    searchParams.get('ml') || '',
+      si_hull_amount: hullAmount,
+      si_hull_currency: DEFAULT_CURRENCY,
+    });
+
+    // Remove params from URL so a page refresh doesn't re-apply
+    window.history.replaceState({}, '', '/marine-proposal');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // intentionally mount-only — searchParams are stable after first render
 
   const set = useCallback(<K extends keyof FormState>(field: K, value: FormState[K]) => {
     setForm((prev) => ({ ...prev, [field]: value }));

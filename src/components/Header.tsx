@@ -68,7 +68,7 @@ export default function Header() {
           {/* Desktop CTA */}
           <div className="hidden lg:block">
             <Link
-              href="/contact"
+              href="/marine-proposal"
               className="bg-teal-500 hover:bg-teal-400 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors"
             >
               Get a Quote
@@ -114,7 +114,7 @@ export default function Header() {
           </div>
           <div className="pt-2">
             <Link
-              href="/contact"
+              href="/marine-proposal"
               onClick={() => setMobileOpen(false)}
               className="block w-full bg-teal-500 hover:bg-teal-400 text-white font-semibold px-5 py-3 rounded-xl text-sm text-center transition-colors"
             >
