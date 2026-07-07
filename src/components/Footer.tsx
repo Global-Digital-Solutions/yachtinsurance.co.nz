@@ -135,6 +135,18 @@ export default function Footer() {
           </p>
         </div>
 
+        {/* Global Marine Insurance Network */}
+        <div className="border-t border-white/10 pt-8 mb-8">
+          <p className="text-xs text-slate-500 uppercase tracking-wider mb-3 font-semibold">Our Global Marine Insurance Network</p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <a href="https://www.floridacover.com/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 text-xs transition-colors">Florida Marine Insurance</a>
+            <a href="https://www.yachtinsurance.co.uk/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 text-xs transition-colors">Yacht Insurance UK</a>
+            <a href="https://www.yachtinsurance.co.za/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 text-xs transition-colors">Yacht Insurance South Africa</a>
+            <a href="https://www.boatinsurance.co.za/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 text-xs transition-colors">Boat Insurance South Africa</a>
+            <a href="https://www.yachtinsurance.asia/" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 text-xs transition-colors">Yacht Insurance Asia</a>
+          </div>
+        </div>
+
         {/* Bottom Section */}
         <div className="border-t border-white/5 pt-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
