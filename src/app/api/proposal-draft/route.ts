@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       // INSERT new draft
       const { data, error } = await supabase
         .from('marine_proposals')
-        .insert({ ...payload, status: 'draft', created_at: new Date().toISOString() })
+        .insert({ ...payload, status: 'draft', source: 'yachtinsurance.co.nz', created_at: new Date().toISOString() })
         .select('id')
         .single();
       if (error) {
